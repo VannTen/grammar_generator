@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 10:57:59 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/17 09:14:00 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ void		print_sym_initializer(t_symbol const *sym, int fd);
 */
 
 t_symbol	*parse_symbol(char const *str_sym);
+
 #endif

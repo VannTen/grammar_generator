@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 10:59:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/17 09:13:57 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_bool	is_left_recursive(t_sym_name const *sym_name, t_prod const *prod);
 */
 
 size_t	get_prod_len(t_prod const *prod);
+
 /*
 ** Setting prod
 ** Implementation file : prod_set.c
