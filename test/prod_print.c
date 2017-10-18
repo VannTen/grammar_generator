@@ -5,23 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:20:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/18 18:30:36 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/18 18:07:15 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/18 18:40:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_defs.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-void	print_prod(t_prod const *prod, int const fd)
+int main(void)
 {
-	size_t	index;
+	int			my_pipe[2];
+	char const	*prod[] = {"TYPE_1", "TYPE_2", NULL};
+	char const	result[] = "TYPE_1, TYPE_2";
+	char		buf[100];
 
-	index = 0;
-	while (prod[index] != NULL)
-	{
-		ft_putstr_fd(prod[index], fd);
-		index++;
-		if (prod[index] != NULL)
-			ft_putstr_fd(", ", fd);
-	}
+	pipe(my_pipe);
+	print_prod((t_prod*)prod, my_pipe[1]);
+	buf[read(my_pipe[0], buf, 50)] = '\0';
+	if (ft_strequ(result, buf))
+		return (EXIT_SUCCESS);
+	else
+		return (EXIT_FAILURE);
 }

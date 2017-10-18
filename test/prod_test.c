@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prod_print.c                                       :+:      :+:    :+:   */
+/*   prod_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:20:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/18 18:30:36 by mgautier         ###   ########.fr       */
+/*   Created: 2017/10/18 18:02:22 by mgautier          #+#    #+#             */
+/*   Updated: 2017/10/18 18:06:07 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prods_defs.h"
+#include "prods_interface.h"
+#include <stdlib.h>
 
-void	print_prod(t_prod const *prod, int const fd)
+int main(void)
 {
-	size_t	index;
+	const char	*prod_1[] = {"TEST_1", "TEST_2"};
 
-	index = 0;
-	while (prod[index] != NULL)
-	{
-		ft_putstr_fd(prod[index], fd);
-		index++;
-		if (prod[index] != NULL)
-			ft_putstr_fd(", ", fd);
-	}
+	if (is_left_recursive("TEST_2", (t_prod const*)prod_1))
+		return (EXIT_FAILURE);
+	if (!is_left_recursive("TEST_1", (t_prod const*)prod_1))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
