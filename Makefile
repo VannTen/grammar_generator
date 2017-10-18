@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/04 13:12:11 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/10/18 13:17:57 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/18 17:25:50 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -32,14 +32,18 @@ PRINT_INFO := KK
 ## Externals programms
 ##
 
-CC = gcc
-AR = ar
-MKDIR = mkdir
-RMDIR = rm -Rf
-SED = sed
-LN = ln -f
-TOUCH = touch
-RANLIB = ranlib
+SHELL = /bin/bash
+DEBUGGER := lldb
+DEBUG_TEST_INVOK :=\
+	$(DEBUGGER) --source <( echo -e "br set --name main\nrun\nnext" ) --
+CC := gcc
+AR := ar
+MKDIR := mkdir
+RMDIR := rm -Rf
+SED := sed
+LN := ln -f
+TOUCH := touch
+RANLIB := ranlib
 
 ##
 ## Project specific variable
@@ -181,7 +185,8 @@ $(UNIT_TESTS): $(DIR)test_bin/%: $(OBJ_LOCAL_$(DIR))%.o\
 
 $(addsuffix .latest_test, $(UNIT_TESTS)): %.latest_test: %
 	$$(QUIET)echo Testing $$(subst test_bin/,,$$<).c ...
-	$$(QUIET)./$$<
+	$$(QUIET)./$$< || ( echo "Error on $$<, invoking $$(DEBUGGER)";\
+		$$(DEBUG_TEST_INVOK) ./$$< && exit 1 )
 	$$(QUIET)touch $$@
 	$$(QUIET)echo $$(subst test_bin/,,$$<).c : check !
 
