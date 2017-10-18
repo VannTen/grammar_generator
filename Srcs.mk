@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/10/16 16:27:47 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/17 15:21:44 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,5 @@ SRC_DIR :=
 OBJ_DIR := object
 INC_DIR := includes
 DEP_DIR := .dep
-TEST_DIR := test
+TEST_DIR := test_bin
+TEST_SRC_DIR := test
