@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 20:15:17 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/11 20:43:45 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/18 19:00:27 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_prod	*prefix_to_prod(t_sym_name const *type, t_prod const *prod)
 		index = 0;
 		new_prod[index] = type;
 		index++;
-		while (prod[index] != NULL)
+		while (prod[index - 1] != NULL)
 		{
 			new_prod[index] = prod[index - 1];
 			index++;
@@ -81,6 +81,7 @@ t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2)
 			result_prod[index_1 + index_2] = prod_2[index_2];
 			index_2++;
 		}
+		result_prod[index_1 + index_2] = NULL;
 	}
 	return (result_prod);
 }
