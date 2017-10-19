@@ -6,14 +6,13 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 09:28:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/18 18:52:35 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/10/19 14:07:18 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_interface.h"
 #include "libft.h"
 #include <stdlib.h>
-#include "prod_get.c"
 
 int	main(void)
 {

@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/11/04 13:12:11 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/10/18 17:25:50 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/19 13:33:46 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -110,6 +110,7 @@ $(if $(PRINT_INFO),$(info Linking $@ ...))
 $(QUIET)$(CC) $(LDFLAGS) $(LD_OPTI_FLAGS) $^ -o $@ $(LDFLAGS_TGT)
 endef
 
+INTERMEDIATE_TARGET = lib$(TARGET_$(DIR)).a
 
 ##
 ## Macro variables
@@ -177,7 +178,7 @@ endef
 
 UNIT_TESTS = $(patsubst %.c, $(DIR)test_bin/%, $(SRC_$(DIR)))
 define UNIT_TEST_RULE
-$(UNIT_TESTS): $(DIR)test_bin/%: $(OBJ_LOCAL_$(DIR))%.o\
+$(UNIT_TESTS): $(DIR)test_bin/%: $(INTERMEDIATE_TARGET)\
 	$(TEST_SRC_LOCAL_$(DIR))%.c\
 	$$(patsubst lib%,-l$$(BUILD_PREFIX)%,$$(LIBS_$$(DIR)))\
 	| $(DIR)test_bin/

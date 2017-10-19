@@ -6,7 +6,7 @@
 #*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        *#
 #*                                                +#+#+#+#+#+   +#+           *#
 #*   Created: 2016/12/13 19:41:31 by mgautier          #+#    #+#             *#
-#*   Updated: 2017/10/17 16:13:24 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/10/19 13:34:16 by mgautier         ###   ########.fr       *#
 #*                                                                            *#
 #* ************************************************************************** *#
 
@@ -90,19 +90,34 @@ endif
 # Otherwise, use the linker for an executable
 
 ifeq ($(suffix $(TARGET_$(DIR))),.a)
+
 $(TARGET_$(DIR)): RECIPE = $(LINK_STATIC_LIB)
 LIBPATH_INC += $(DIR)
+
 else ifeq ($(suffix $(TARGET_$(DIR))),.so)
+
 $(TARGET_$(DIR)): RECIPE = $(LINK_SHARED_LIB)
 LIBPATH_INC += $(DIR)
 else
+
 $(TARGET_$(DIR)): RECIPE = $(LINK_EXE)
+
+$(INTERMEDIATE_TARGET): $(OBJ_$(DIR))
+	$(LINK_STATIC_LIB)
+
+vpath $(INTERMEDIATE_TARGET) $(DIR)
+
+$(TARGET_$(DIR)): $(INTERMEDIATE_TARGET) $(ELSE)\
+	$(patsubst lib%,-l$(BUILD_PREFIX)%,$(LIBS_$(DIR)))
+	$(QUIET) $(RECIPE)
+
 endif
 
 # Local rules
 
-$(TARGET_$(DIR)): $(OBJ_$(DIR)) $(ELSE) $(patsubst lib%,-l$(BUILD_PREFIX)%,$(LIBS_$(DIR)))
-	$(QUIET) $(RECIPE)
+#$(TARGET_$(DIR)): $(OBJ_$(DIR)) $(ELSE)\
+#	$(patsubst lib%,-l$(BUILD_PREFIX)%,$(LIBS_$(DIR)))
+#	$(QUIET) $(RECIPE)
 
 $(eval $(STATIC_OBJ_RULE))
 ifneq ($(strip $(TEST_LOCAL_$(DIR))),)
