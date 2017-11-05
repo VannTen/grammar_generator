@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/10/17 15:21:44 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/05 13:29:30 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,3 +44,5 @@ INC_DIR := includes
 DEP_DIR := .dep
 TEST_DIR := test_bin
 TEST_SRC_DIR := test
+COMPONENTS :=
+LIBRARIES := libft
