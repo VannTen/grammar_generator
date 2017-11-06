@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/13 13:25:54 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/06 13:41:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char		*sta_strip(char const *str, va_list args)
 	return (ft_strip(str, va_arg(args, char*)));
 }
 
-static t_prod	*parse_one_prod(char const *one_str_prod)
+t_prod			*parse_one_prod(char const *one_str_prod)
 {
 	char	**each_sym_name;
 	t_prod	*one_prod;

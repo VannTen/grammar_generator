@@ -6,14 +6,14 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:00:42 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/17 17:26:03 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/06 13:42:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_defs.h"
 #include <stdlib.h>
 
-static void	destroy_one_prod(t_prod	**to_destroy)
+void		destroy_one_prod(t_prod	**to_destroy)
 {
 	t_prod	*one_prod;
 	size_t	index;

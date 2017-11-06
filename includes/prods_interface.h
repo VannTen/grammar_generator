@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/17 09:13:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/06 13:42:47 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef t_sym_name*	t_prod;
 */
 
 void	destroy_prods(t_prod ***prods);
+void	destroy_one_prod(t_prod	**to_destroy);
 
 /*
 ** Testing prod
@@ -66,5 +67,6 @@ void	print_prod(t_prod const *prod, int fd);
 */
 
 t_prod	**parse_prods(char const *str_prod);
+t_prod	*parse_one_prod(char const *one_str_prod);
 
 #endif
