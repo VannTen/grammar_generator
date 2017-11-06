@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 19:05:20 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/19 10:19:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/05 14:52:40 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static t_bool	symbol_are_identical(t_symbol const *sym_1,
 
 int				main(void)
 {
-	const char	symbol[] = "HHHH             \n\t   : DEI_TT | UHDE IUHDE     \t"
+	const char	symbol[] = "HHHH            \n\t  : DEI_TT | UHDE IUHDE     \t"
 		"| DESDE|";
 	const char	symbol_error[] = "\t\n\t";
 	t_symbol	result;

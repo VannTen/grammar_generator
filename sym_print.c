@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:47:56 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/13 14:17:49 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/06 12:02:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ void		print_sym_initializer(t_symbol const *sym, int const fd)
 	lower_case = ft_strmap(sym->name, f_tolower);
 	ft_dprintf(fd, "\n%1$s\t*create_%2$s(void)\n{\n"
 			"\t%1$s\t*new;\n"
-			"%4$s"
+			"\n"
 			"\tnew = malloc(sizeof(t_symbol));\n"
 			"\tif (new != NULL)\n\t{\n"
-			"\t\tnew->type = %3$s;\n", type_name, lower_case, sym->name,
-			nb_prod != 0 ? "\tsize_t\t\tindex;\n\n" : "");
+			"\t\tnew->type = %3$s;\n", type_name, lower_case, sym->name);
 	if (nb_prod == 0)
 		ft_dprintf(fd, "\t\tnew->productions = NULL;\n");
 	else
