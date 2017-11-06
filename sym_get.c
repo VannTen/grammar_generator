@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 10:15:56 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/06 14:24:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_prod		*take_left_recursive(t_symbol *sym)
 	t_prod	*prod;
 
 	index = 0;
+	prod = NULL;
 	while (sym->prods[index] != NULL)
 	{
 		if (is_left_recursive(sym->name, sym->prods[index]))
@@ -43,7 +44,7 @@ t_prod		*take_left_recursive(t_symbol *sym)
 		}
 		index++;
 	}
-	return (NULL);
+	return (prod);
 }
 
 char const *get_name(t_symbol const *sym)
