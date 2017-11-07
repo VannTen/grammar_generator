@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 10:48:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/07 11:33:26 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/07 12:26:28 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SYMBOL_DEFS_H
 # include "symbol_interface.h"
 
-typedef struct s_symbol	t_symbol;
 struct	s_symbol
 {
 	t_symbol_type	type;
