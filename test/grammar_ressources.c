@@ -5,32 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/12 18:23:50 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 15:00:59 by mgautier         ###   ########.fr       */
+/*   Created: 2017/11/08 15:05:00 by mgautier          #+#    #+#             */
+/*   Updated: 2017/11/08 15:13:56 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "grammar_defs.h"
-#include "sym_interface.h"
-#include "libft.h"
+#include "grammar_interface.h"
 #include <stdlib.h>
 
-static void	sym_destroy(void **to_destroy)
-{
-	destroy_symbol((t_symbol**)to_destroy);
-}
-
-void		destroy_grammar(t_grammar **to_destroy)
+int main(int argc, char const *argv[])
 {
 	t_grammar	*gram;
 
-	gram = *to_destroy;
-	if (gram != NULL)
+	if (argc < 1)
 	{
-		gram->start_symbol = NULL;
-		f_fifo_destroy(&gram->sym_list, &sym_destroy);
-		ft_strdel(&gram->name);
-		free(gram);
-		*to_destroy = NULL;
+		gram = parse_grammar(argv[1]);
+		if (gram == NULL)
+			return (EXIT_FAILURE);
+		destroy_grammar(&gram);
+		if (gram != NULL)
+			return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
 }

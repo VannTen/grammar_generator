@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/05 13:29:30 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/08 16:10:35 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,30 @@ SRC_DIR :=
 OBJ_DIR := object
 INC_DIR := includes
 DEP_DIR := .dep
-TEST_DIR := test_bin
-TEST_SRC_DIR := test
 COMPONENTS :=
 LIBRARIES := libft
+
+# Testing
+
+TEST_DIR := test_bin
+TEST_SRC_DIR := test
+STATIC_TEST_FILES := arithmetic_expr.grammar\
+	arithmetic_expr_init.test.c\
+	arithmetic_expr_sym_list.test.h\
+	arithmetic_expr_names.test.c
+
+## Units tests
+
+DONT_TEST := \
+	grammar_print_init.c\
+	grammar_print_proto.c\
+	grammar_print_header.c\
+	grammar_print_source.c\
+	grammar_print_names.c\
+	grammar_parse.c\
+	generate_grammar.c
+
+## Function tests
+
+TEST_LIST :=\
+	check_generated_files.sh
