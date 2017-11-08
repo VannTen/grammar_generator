@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 13:47:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 16:52:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 17:39:47 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ static t_bool	test_left_recur(t_symbol *sym, t_prod const *recur_prod)
 	return (result);
 }
 
+static t_bool	test_has_left_recurs(void)
+{
+	const char	*symbol_str[2] = {
+		"SYMBOL: UUUU JJJJ HH| WER| SYMBOL HUI TRE|FRE",
+		"SYMBOL: UUUU JJJ FF | JE SYMBOL | K SYMBOL" };
+	t_symbol	*symbol[2];
+	t_bool		result;
+
+	symbol[0] = parse_symbol(symbol_str[0]);
+	symbol[1] = parse_symbol(symbol_str[1]);
+	result = symbol[0] != NULL && has_left_recursion(symbol[0])
+		&& symbol[1] != NULL && !has_left_recursion(symbol[1]);
+	destroy_symbol(&symbol[0]);
+	destroy_symbol(&symbol[1]);
+	return (result);
+
+}
+
 static t_bool	test_get_name(t_symbol const *sym, char const *name)
 {
 	return (ft_strequ(get_name(sym),name));
@@ -49,10 +67,11 @@ int				main(void)
 
 	symbol = parse_symbol(symbol_str);
 	left_recur = parse_one_prod(str_prod);
-	if (symbol != NULL && left_recur != NULL)
+	if (symbol != NULL && left_recur != NULL && has_left_recursion(symbol))
 		result = test_get_name(symbol, "SYMBOL")
 			&& test_get_prod_nb(symbol, 4)
-			&& test_left_recur(symbol, left_recur);
+			&& test_left_recur(symbol, left_recur)
+			&& test_has_left_recurs();
 	else
 		result = FALSE;
 	destroy_symbol(&symbol);

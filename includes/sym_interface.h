@@ -40,6 +40,7 @@ t_prod		*add_prod(t_symbol *sym, t_prod *prod);
 */
 
 t_prod		*take_left_recursive(t_symbol *sym);
+t_bool		has_left_recursion(t_symbol const *sym);
 char const	*get_name(t_symbol const *sym);
 size_t		get_prod_nb(t_symbol const *sym);
 
@@ -56,6 +57,13 @@ void		print_sym_initializer(t_symbol const *sym, int fd);
 */
 
 t_symbol	*parse_symbol(char const *str_sym);
+
+/*
+** Transforming symbol
+** Implementation file : sym_transform.c
+*/
+
+t_symbol	*eliminate_left_recursion(t_symbol *sym);
 
 /*
 ** Symbols equality (test purposes)
