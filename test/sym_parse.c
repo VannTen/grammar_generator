@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 19:05:20 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/05 14:52:40 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 16:59:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,6 @@ static t_prod	**prods(void)
 		NULL};
 
 	return (prods);
-}
-
-static t_bool	prod_are_identical(t_prod const *prod_1, t_prod const *prod_2)
-{
-	return (ft_str_arraycmp((char const*const*)prod_1,
-				(char const*const*)prod_2) == 0);
-}
-
-static t_bool	prods_set_identical(t_prod **set_1, t_prod **set_2)
-{
-	size_t	index;
-
-	index = 0;
-
-	while (set_2[index] != NULL && set_1[index] != NULL
-			&& prod_are_identical(set_1[index], set_2[index]))
-		index++;
-	if (set_2[index] != NULL || set_1[index] != NULL)
-		return (FALSE);
-	else
-		return (TRUE);
-}
-
-static t_bool	symbol_are_identical(t_symbol const *sym_1,
-		t_symbol const *sym_2)
-{
-	return (ft_strequ(sym_1->name, sym_2->name)
-			&& prods_set_identical(sym_1->prods, sym_2->prods));
 }
 
 int				main(void)

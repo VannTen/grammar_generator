@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 13:47:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/06 14:20:43 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 16:52:04 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include "prods_interface.h"
 #include "libft.h"
 #include <stdlib.h>
-
-static t_bool	prod_are_identical(t_prod const *prod_1, t_prod const *prod_2)
-{
-	return (ft_str_arraycmp((char const*const*)prod_1,
-				(char const*const*)prod_2) == 0);
-}
 
 static t_bool	test_left_recur(t_symbol *sym, t_prod const *recur_prod)
 {

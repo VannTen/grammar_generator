@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/17 09:14:00 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 16:58:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,17 @@ size_t		get_prod_nb(t_symbol const *sym);
 void		print_sym_initializer(t_symbol const *sym, int fd);
 
 /*
-** Parsing a prod
+** Parsing one symbol
 ** Implementation file : sym_parse.c
 */
 
 t_symbol	*parse_symbol(char const *str_sym);
+
+/*
+** Symbols equality (test purposes)
+** Implementation file : sym_equality.c
+*/
+
+t_bool		symbol_are_identical(t_symbol const *sym, t_symbol const *sym_2);
 
 #endif

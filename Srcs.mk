@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/08 16:10:35 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/08 17:00:30 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRC :=\
 	prod_print.c\
 	prod_set.c\
 	prod_get.c\
+	prod_equality.c\
+	sym_equality.c\
 	sym_parse.c\
 	sym_print.c\
 	sym_set.c\
@@ -57,6 +59,8 @@ STATIC_TEST_FILES := arithmetic_expr.grammar\
 ## Units tests
 
 DONT_TEST := \
+	prod_equality.c\
+	sym_equality.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
 	grammar_print_header.c\

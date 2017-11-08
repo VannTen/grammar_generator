@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/06 13:42:47 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 16:57:04 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,13 @@ void	print_prod(t_prod const *prod, int fd);
 
 t_prod	**parse_prods(char const *str_prod);
 t_prod	*parse_one_prod(char const *one_str_prod);
+
+/*
+** Equality (test if two prods are the same, useful for test purposes)
+** Implementation file : prod_equality.c
+*/
+
+t_bool	prod_are_identical(t_prod const *prod_1, t_prod const *prod_2);
+t_bool	prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
 
 #endif
