@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/09 10:34:57 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 18:52:16 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:36:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ static	int	print_each_file(t_grammar const *grammar, char **final_names)
 {
 	size_t	index;
 	void (*const	print[])(t_grammar const*, int, char const*) = {
-		print_grammar_proto, print_grammar_source, print_grammar_init,
-		print_grammar_names, print_grammar_header};
-	size_t const	t_index[] = {0, 0, 0, 4, 4};
+		print_grammar_init, print_grammar_names, print_grammar_header};
+	size_t const	t_index[] = {0, 2, 2};
 	int				fd;
 
 	index = 0;
@@ -68,7 +67,7 @@ int			print_grammar(t_grammar const *grammar, char const *gram_name,
 		char const *header_dir, char const *src_dir)
 {
 	char const		*names[] = {
-		"interface.h", "source.c", "init.c", "names.c", "sym_list.h"};
+		"init.c", "names.c", "sym_list.h"};
 	char			*total_names[ARRAY_LENGTH(names)];
 	size_t			index;
 	int				ret;

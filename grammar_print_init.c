@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 12:26:17 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 11:02:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:56:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,14 @@ static void	adapt_print(void const *symbol, va_list args)
 }
 
 void		print_grammar_init(t_grammar const *grammar, int const file,
-		char const *header_proto_name)
+		__attribute__((unused))char const *header_proto_name)
 {
+	print_grammar_source(grammar, file, NULL);
 	ft_dprintf(file,
-			"#include \"%s\"\n"
-			"#include <stdlib.h>\n\n"
-			"t_symbol\t**create_%s_grammar(void)\n{\n"
+			"\nt_symbol\t\t**create_%s_grammar(void)\n{\n"
 			"\tt_symbol\t**grammar;\n"
 			"\tsize_t\t\tindex;\n"
-			"\tt_symbol\t*(*init_func[])(void) = {",
-			get_no_dir_part(header_proto_name), grammar->name);
+			"\tt_symbol\t*(*init_func[])(void) = {", grammar->name);
 	f_fifoiter_va(grammar->sym_list, adapt_print, file, "create_");
 	ft_dprintf(file, "NULL};\n\n"
 			"\tindex = 0;\n"

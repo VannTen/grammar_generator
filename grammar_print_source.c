@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 14:33:54 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 17:41:22 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:57:16 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		print_grammar_source(t_grammar const *grammar, int const file,
 	(void)dummy;
 	ft_dprintf(file,
 			"#include \"symbol_defs.h\"\n"
-			"#include <stdlib.h>\n");
+			"#include \"%s_sym_list.h\"\n"
+			"#include <stdlib.h>\n", grammar->name);
 	f_fifoiter_va(grammar->sym_list, adapt_print, file);
 }
