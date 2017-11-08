@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 14:30:48 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 17:40:03 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 13:30:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,10 @@ void		print_grammar_header(t_grammar const *grammar, int const file,
 	upper_case = ft_strmap(get_no_dir_part(name), f_to_unix_const);
 	ft_dprintf(file,
 			"#ifndef %1$s\n# define %1$s\n\n"
-			"typedef struct	s_symbol\tt_symbol;\n"
 			"typedef enum	e_symbol_type {\n", upper_case);
 	f_fifoiter_va(grammar->sym_list, adapt_print, file,
 			"\t", ",\n");
 	ft_strdel(&upper_case);
-	ft_dprintf(file, "%1$sNB_SYMBOLS\n}%1$st_symbol_type;\n\n"
-		"#endif", "\t");
+	ft_dprintf(file, "%1$.1sNB_SYMBOLS\n}%1$st_symbol_type;\n\n"
+		"#endif", "\t\t\t\t");
 }
