@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 12:00:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 12:27:22 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:16:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 
 struct s_grammar
 {
-	const char	*start_symbol;
+	char const	*start_symbol;
 	t_fifo		*sym_list;
+	char		*name;
 };
 
 #endif

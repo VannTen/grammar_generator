@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:45:03 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/13 13:54:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:17:07 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void			sym_destroy(void **v_sym)
 	destroy_symbol((t_symbol**)v_sym);
 }
 
-static t_grammar	*create_grammar(t_fifo *sym_list)
+static t_grammar	*create_grammar(t_fifo *sym_list, const char *grammar_file)
 {
 	t_grammar	*new_gram;
 
@@ -31,6 +31,9 @@ static t_grammar	*create_grammar(t_fifo *sym_list)
 	{
 		new_gram->start_symbol = get_name(f_fifo_first_elem(sym_list));
 		new_gram->sym_list = sym_list;
+		new_gram->name = bare_file_name(grammar_file);
+		if (new_gram->name == NULL)
+			destroy_grammar(&new_gram);
 	}
 	return (new_gram);
 }
@@ -56,7 +59,7 @@ t_grammar			*parse_grammar(const char *grammar_file)
 				f_fifo_add(sym_list, symbol) == NULL ? fatal(): NULL_EXPR;
 			ft_strdel(&sym_description);
 		}
-		new_gram = create_grammar(sym_list);
+		new_gram = create_grammar(sym_list, grammar_file);
 		if (new_gram == NULL)
 			f_fifo_destroy(&sym_list, sym_destroy);
 	}
