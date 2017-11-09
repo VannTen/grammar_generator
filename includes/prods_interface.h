@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 13:25:05 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/09 16:13:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	remove_symbols_tail(t_prod *prod, size_t nb_sym);
 */
 
 void	print_prod(t_prod const *prod, int fd);
+void	print_prod_back(t_prod const *prod, int fd);
 
 /*
 ** Parsing a prod

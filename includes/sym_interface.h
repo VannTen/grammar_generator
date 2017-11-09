@@ -50,6 +50,7 @@ size_t		get_prod_nb(t_symbol const *sym);
 */
 
 void		print_sym_initializer(t_symbol const *sym, int fd);
+void		print_sym_back(t_symbol const *sym, int fd);
 
 /*
 ** Parsing one symbol

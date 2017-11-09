@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:47:56 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 11:53:49 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/09 16:14:11 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,22 @@ void		print_sym_initializer(t_symbol const *sym, int const fd)
 		print_prod_list(sym, fd, nb_prod);
 	ft_strdel(&lower_case);
 	ft_dprintf(fd, "\t}\n\treturn (new);\n}\n");
+}
+
+void		print_sym_back(t_symbol const *sym, int const fd)
+{
+	size_t	index;
+
+	index = 0;
+	ft_dprintf(fd, "%s:", sym->name);
+	while (1)
+	{
+		print_prod_back(sym->prods[index], fd);
+		if (sym->prods[index] != NULL)
+			ft_putstr_fd("|", fd);
+		else
+			break ;
+		index++;
+	}
+	ft_putstr_fd(";\n", fd);
 }
