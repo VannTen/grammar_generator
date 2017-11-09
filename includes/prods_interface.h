@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 16:57:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/09 13:25:05 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ size_t	get_prod_len(t_prod const *prod);
 t_prod	*append_to_prod(t_sym_name const *type, t_prod const *prod);
 t_prod	*prefix_to_prod(t_sym_name const *type, t_prod const *prod);
 t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2);
+void	remove_symbols_head(t_prod *prod, size_t nb_sym);
+void	remove_symbols_tail(t_prod *prod, size_t nb_sym);
 
 /*
 ** Printing prods

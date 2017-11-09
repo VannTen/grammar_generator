@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 20:15:17 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/18 19:00:27 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/09 13:24:28 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,39 @@ t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2)
 		result_prod[index_1 + index_2] = NULL;
 	}
 	return (result_prod);
+}
+
+void	remove_symbols_tail(t_prod *prod, size_t nb_sym)
+{
+	size_t	index;
+
+	index = 0;
+	while (prod[index + nb_sym] != NULL)
+		index++;
+	while (prod[index] != NULL)
+	{
+		prod[index] = NULL;
+		index++;
+	}
+}
+
+void	remove_symbols_head(t_prod *prod, size_t nb_sym)
+{
+	size_t	index;
+	size_t	index_back;
+
+	index = 0;
+	index_back = 0;
+	while (index < nb_sym)
+	{
+		prod[index] = NULL;
+		index++;
+	}
+	while (prod[index] != NULL)
+	{
+		prod[index_back] = prod[index];
+		prod[index] = NULL;
+		index_back++;
+		index++;
+	}
 }
