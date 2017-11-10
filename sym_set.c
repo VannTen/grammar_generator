@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 20:03:33 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 18:12:24 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/10 15:10:50 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ t_prod		*add_prod(t_symbol *sym, t_prod *prod)
 	if (new_prods != NULL)
 	{
 		index = 0;
-		while (sym->prods[index] != NULL)
+		if (sym->prods != NULL)
 		{
-			new_prods[index] = sym->prods[index];
-			index++;
+			while (sym->prods[index] != NULL)
+			{
+				new_prods[index] = sym->prods[index];
+				index++;
+			}
 		}
 		new_prods[index] = prod;
 		new_prods[index + 1] = NULL;
