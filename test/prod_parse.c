@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:26:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 16:56:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/10 14:15:02 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int				main(void)
 {
-	const char		expect_input[] = "NON_TERM TERM_1 TERM_2   |   "
+	const char		expect_input[] = "NON_TERM TERM_1 TERM_2   | |  "
 		"NON_TERM NON_TERM_2";
 	char const		*prod_1[] = {"NON_TERM", "TERM_1",
 		"TERM_2", NULL};

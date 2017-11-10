@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/06 13:41:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/10 13:39:26 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,48 @@ t_prod			*parse_one_prod(char const *one_str_prod)
 	return (one_prod);
 }
 
+static t_bool	is_valid(char const *prod_str)
+{
+	size_t	index;
+	t_bool	unix_case;
+
+	unix_case = FALSE;
+	index = 0;
+	while (prod_str[index] != '\0')
+	{
+		if (is_among(" \n\t", prod_str[index])) ;
+		else if (is_unix_constants(prod_str[index])
+				|| ft_isdigit(prod_str[index]))
+			unix_case = TRUE;
+		else
+			break ;
+		index++;
+	}
+	return (unix_case && prod_str[index] == '\0');
+}
+
 t_prod			**parse_prods(char const *str_prods)
 {
-	char	**each_prod;
+	char	**each_prod_str;
 	size_t	index;
 	t_prod	**prods;
 
-	each_prod = ft_strsplit(str_prods, PROD_SEP_SIGN);
-	if (each_prod == NULL)
+	each_prod_str = ft_strsplit(str_prods, PROD_SEP_SIGN);
+	if (each_prod_str == NULL)
 		return (NULL);
-	index = ft_string_array_count((char const* const*)each_prod);
+	ft_strip_invalid(each_prod_str, is_valid);
+	index = ft_string_array_count((char const* const*)each_prod_str);
 	prods = malloc(sizeof(t_prod*) * (index + 1));
 	if (prods != NULL)
 	{
 		index = 0;
-		while (each_prod[index] != NULL)
+		while (each_prod_str[index] != NULL)
 		{
-			prods[index] = parse_one_prod(each_prod[index]);
+			prods[index] = parse_one_prod(each_prod_str[index]);
 			index++;
 		}
 		prods[index] = NULL;
 	}
-	ft_free_string_array(&each_prod);
+	ft_free_string_array(&each_prod_str);
 	return (prods);
 }
