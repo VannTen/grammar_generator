@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 16:10:42 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:15:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef t_prod	*(*t_prod_ft)(t_prod*, va_list);
 t_prod			*add_prod(t_symbol *sym, t_prod *prod);
 t_symbol		*append_to_each_prod(t_symbol *add_to, t_symbol const *to_add);
 t_symbol		*prefix_to_each_prod(t_symbol *add_to, t_symbol const *to_add);
+t_symbol		*to_each_prod(t_symbol *add_to, t_prod_ft apply, ...);
 
 /*
 ** Getters

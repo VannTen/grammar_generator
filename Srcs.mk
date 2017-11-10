@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/08 17:00:30 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/10 15:50:28 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC :=\
 	sym_parse.c\
 	sym_print.c\
 	sym_set.c\
+	sym_set_all_prods.c\
 	sym_get.c\
 	sym_ressources.c\
 	grammar_parse.c\
