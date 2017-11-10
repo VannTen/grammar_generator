@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 13:47:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 17:39:47 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/10 11:21:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,13 @@ static t_bool	test_get_name(t_symbol const *sym, char const *name)
 
 static t_bool	test_get_prod_nb(t_symbol const *sym, size_t nb)
 {
-	return (get_prod_nb(sym) == nb);
+	const char	*sym_str = "SYMBOL:";
+	t_symbol	*symbol;
+	t_bool		result;
+
+	symbol = parse_symbol(sym_str);
+	result = (symbol != NULL && get_prod_nb(symbol) == 0);
+	return (result && get_prod_nb(sym) == nb);
 }
 
 int				main(void)

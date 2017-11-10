@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 17:41:08 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/10 11:10:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ size_t		get_prod_nb(t_symbol const *sym)
 	size_t	size;
 
 	size = 0;
-	while (sym->prods[size] != NULL)
-		size++;
+	if (sym->prods != NULL)
+	{
+		while (sym->prods[size] != NULL)
+			size++;
+	}
 	return (size);
 }
 
