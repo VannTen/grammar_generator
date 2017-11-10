@@ -29,6 +29,7 @@ SRC :=\
 	sym_set_all_prods.c\
 	sym_get.c\
 	sym_ressources.c\
+	sym_transform.c\
 	grammar_parse.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
