@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 18:21:54 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/11 11:52:59 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void		print_grammar_header(t_grammar const *grammar, int fd_header_file,
 		char const *name);
 void		print_grammar_names(t_grammar const *grammar,
 		int fd_names_file, const char *name);
+
+/*
+** Grammar printing (for debug)
+** Implementation file : grammar_print.c
+*/
+
+void		print_grammar_back(int fd, t_grammar const *gram);
 
 /*
 ** Grammar tranformation : placeholders for future transformation operations on

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:47:56 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 16:14:11 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/11 12:41:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	print_prod_list(t_symbol const *sym, int const fd, size_t nb_prod)
 			, nb_prod);
 	print_prods(sym->prods, fd);
 	ft_dprintf(fd, "\t\t\tnew->productions[%zu] = NULL;\n\t\t}\n"
-		"\t\telse\n\t\t\tdestroy_symbol(&new);\n", nb_prod);
+			"\t\telse\n\t\t\tdestroy_symbol(&new);\n", nb_prod);
 }
 
 void		print_sym_initializer(t_symbol const *sym, int const fd)
@@ -69,15 +69,17 @@ void		print_sym_back(t_symbol const *sym, int const fd)
 	size_t	index;
 
 	index = 0;
-	ft_dprintf(fd, "%s:", sym->name);
-	while (1)
+	ft_putstr_fd(sym->name, fd);
+	if (sym->prods != NULL)
 	{
+		ft_putstr_fd(":", fd);
 		print_prod_back(sym->prods[index], fd);
-		if (sym->prods[index] != NULL)
-			ft_putstr_fd("|", fd);
-		else
-			break ;
 		index++;
+		while (sym->prods[index] != NULL)
+		{
+			ft_putstr_fd(" | ", fd);
+			print_prod_back(sym->prods[index], fd);
+			index++;
+		}
 	}
-	ft_putstr_fd(";\n", fd);
 }
