@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:22:31 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/12 11:24:00 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 10:11:32 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,5 @@
 
 size_t	get_prod_len(t_prod const *prod)
 {
-	size_t	size;
-
-	size = 0;
-	while (prod[size] != NULL)
-		size++;
-	return (size);
+	return (f_lst_len(prod->sym_list));
 }

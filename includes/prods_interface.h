@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 10:07:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:23:10 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ size_t	get_prod_len(t_prod const *prod);
 ** Implementation file : prod_set.c
 */
 
-t_prod	*append_to_prod(t_symbol const *type, t_prod const *prod);
-t_prod	*prefix_to_prod(t_symbol const *type, t_prod const *prod);
+t_bool	append_to_prod(t_prod *prod, t_symbol const *type);
+t_bool	prefix_to_prod(t_prod *prod, t_symbol const *type);
 t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2);
 void	remove_symbols_head(t_prod *prod, size_t nb_sym);
 void	remove_symbols_tail(t_prod *prod, size_t nb_sym);
