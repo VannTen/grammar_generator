@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 16:13:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 09:36:51 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,15 @@
 ** symbols
 */
 
-typedef	void const	t_sym_name;
-typedef t_sym_name*	t_prod;
+typedef struct s_prod	t_prod;
 
 /*
 ** Ressources management
 ** Implementation file : prod_ressources.c
 */
 
-void	destroy_prods(t_prod ***prods);
-void	destroy_one_prod(t_prod	**to_destroy);
+void	destroy_prod(t_prod	**to_destroy);
+t_prod	*create_prod(void);
 
 /*
 ** Testing prod

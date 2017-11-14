@@ -6,46 +6,32 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:00:42 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/06 13:42:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 09:39:18 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_defs.h"
+#include "libft.h"
 #include <stdlib.h>
 
-void		destroy_one_prod(t_prod	**to_destroy)
+t_prod		*create_prod(void)
 {
-	t_prod	*one_prod;
-	size_t	index;
+	t_prod	*new;
 
-	one_prod = *to_destroy;
-	if (one_prod != NULL)
-	{
-		index = 0;
-		while (one_prod[index] != NULL)
-		{
-			one_prod[index] = NULL;
-			index++;
-		}
-		free(one_prod);
-		*to_destroy = NULL;
-	}
+	new = malloc(sizeof(t_prod));
+	if (new != NULL)
+		new->sym_list = NULL;
+	return (new);
 }
-void		destroy_prods(t_prod ***prods)
-{
-	t_prod	**prod_set;
-	size_t	index;
 
-	prod_set = *prods;
-	if (prod_set != NULL)
+void		destroy_prod(t_prod	**to_destroy)
+{
+	t_prod	*prod;
+
+	prod = *to_destroy;
+	if (prod != NULL)
 	{
-		index = 0;
-		while (prod_set[index] != NULL)
-		{
-			destroy_one_prod(&prod_set[index]);
-			index++;
-		}
-		free(prod_set);
-		*prods = NULL;
+		f_lstdel(&prod->sym_list, no_destroy);
+		*to_destroy = NULL;
 	}
 }
