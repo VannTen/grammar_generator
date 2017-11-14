@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 15:23:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 16:26:38 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ void	print_prod_back(t_prod const *prod, int fd);
 ** Implementation file : prod_parse.c
 */
 
-t_prod	**parse_prods(char const *str_prod);
-t_prod	*parse_one_prod(char const *one_str_prod);
+t_prod	*parse_prod(char const *one_str_prod);
 
 /*
 ** Equality (test if two prods are the same, useful for test purposes)
