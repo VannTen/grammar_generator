@@ -6,24 +6,27 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:20:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 16:13:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 16:25:24 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_defs.h"
+#include "sym_interface.h"
+#include <stdarg.h>
+
+static void	iter(void const *sym, va_list args)
+{
+	ft_dprintf(
+			va_arg(args, int),
+			"%s%s",
+			get_name(sym),
+			va_arg(args, char const*));
+}
 
 static void	print_it(t_prod const *prod, int const fd, char const *sep)
 {
-	size_t	index;
-
-	index = 0;
-	while (prod[index] != NULL)
-	{
-		ft_putstr_fd(prod[index], fd);
-		index++;
-		if (prod[index] != NULL)
-			ft_putstr_fd(sep, fd);
-	}
+	ft_putstr_fd(get_name(f_lst_first_elem(prod->sym_list)), fd);
+	f_lstiter_va(advance_list(prod->sym_list, 1), iter, fd, sep);
 }
 
 void		print_prod(t_prod const *prod, int const fd)
