@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 09:36:51 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/14 10:07:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 
 typedef struct s_prod	t_prod;
 
+typedef struct s_symbol	t_symbol;
+
+/*
+** Some prods functions take a symbol as and address, so I have to include that
+** forward declaration to make it compile. That does not grant access to the
+** internals of sym.
+** However, I wonder if there could be a better way...
+** TODO: Search for another way.
+*/
+
 /*
 ** Ressources management
 ** Implementation file : prod_ressources.c
@@ -35,7 +45,7 @@ t_prod	*create_prod(void);
 ** Implementation file : prod_test.c
 */
 
-t_bool	is_left_recursive(t_sym_name const *sym_name, t_prod const *prod);
+t_bool	is_left_recursive(t_symbol const *sym, t_prod const *prod);
 
 /*
 ** Getters
@@ -49,8 +59,8 @@ size_t	get_prod_len(t_prod const *prod);
 ** Implementation file : prod_set.c
 */
 
-t_prod	*append_to_prod(t_sym_name const *type, t_prod const *prod);
-t_prod	*prefix_to_prod(t_sym_name const *type, t_prod const *prod);
+t_prod	*append_to_prod(t_symbol const *type, t_prod const *prod);
+t_prod	*prefix_to_prod(t_symbol const *type, t_prod const *prod);
 t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2);
 void	remove_symbols_head(t_prod *prod, size_t nb_sym);
 void	remove_symbols_tail(t_prod *prod, size_t nb_sym);
