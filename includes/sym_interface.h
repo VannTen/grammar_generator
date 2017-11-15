@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 19:15:42 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/15 15:18:38 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void		print_sym_back(t_symbol const *sym, int fd);
 ** Implementation file : sym_parse.c
 */
 
-t_symbol	*parse_symbol(char const *str_sym);
+t_symbol	*parse_symbol(char const *str_sym,
+		t_fifo const *sym_added,
+		t_fifo *sym_pending);
 
 /*
 ** Transforming symbol
