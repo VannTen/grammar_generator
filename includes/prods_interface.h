@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/15 11:47:15 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/15 14:23:49 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_symbol	t_symbol;
 */
 
 void	destroy_prod(t_prod	**to_destroy);
+void	iter_del_prod(void **prod);
 t_prod	*create_prod(void);
 
 /*

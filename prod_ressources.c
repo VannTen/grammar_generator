@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:00:42 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 09:39:18 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/15 14:23:51 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ void		destroy_prod(t_prod	**to_destroy)
 		f_lstdel(&prod->sym_list, no_destroy);
 		*to_destroy = NULL;
 	}
+}
+
+void		iter_del_prod(void **prod)
+{
+	destroy_prod((t_prod**)prod);
 }

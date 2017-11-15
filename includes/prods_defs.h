@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 16:28:18 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 09:33:19 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/15 12:55:56 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define GRAM_GEN_PRODS_DEFS_H
 # include "prods_interface.h"
 # define SYMBOL_NAME_SEP ' '
-# define PROD_SEP_SIGN '|'
 
 /*
 ** The prod is a list of symbols references.
