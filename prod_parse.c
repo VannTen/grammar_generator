@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 18:52:22 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/15 11:46:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void			error_funct(t_symbol **sym, t_prod **prod, char **syms_name,
 	free(syms_name);
 }
 
-t_prod				*parse_one_prod(
+t_prod				*parse_prod(
 		char const *one_str_prod,
 		t_fifo const *sym_parsed,
 		t_fifo *sym_pending)
