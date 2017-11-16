@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/16 14:57:32 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/16 16:10:14 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC :=\
 	prod_test.c\
 	prod_print.c\
 	prod_set.c\
+	prod_set_gen.c\
 	prod_get.c\
 	prod_equality.c\
 	prod_special_case.c\
@@ -28,7 +29,6 @@ SRC :=\
 	sym_print.c\
 	sym_print_back.c\
 	sym_set.c\
-	sym_set_all_prods.c\
 	sym_get.c\
 	sym_ressources.c\
 	sym_transform.c\
@@ -63,6 +63,7 @@ STATIC_TEST_FILES := arithmetic_expr.grammar\
 ## Units tests
 
 DONT_TEST := \
+	prod_set_gen.c\
 	prod_equality.c\
 	sym_equality.c\
 	grammar_print_init.c\

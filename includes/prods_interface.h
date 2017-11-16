@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 14:56:36 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 16:06:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@ t_bool	prefix_to_prod(t_prod *prod, t_symbol const *type);
 t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2);
 void	remove_symbols_head(t_prod *prod, size_t nb_sym);
 void	remove_symbols_tail(t_prod *prod, size_t nb_sym);
+
+/*
+** Generic for prod_set (to be used by iterators)
+** Implementaion file : prod_set_gen.c
+*/
+
+t_bool	gen_append_to_prod(void *prod, va_list args);
+t_bool	gen_prefix_to_prod(void *prod, va_list args);
+void	gen_remove_symbols_head(void *prod, va_list args);
+void	gen_remove_symbols_tail(void *prod, va_list args);
 
 /*
 ** Printing prods
