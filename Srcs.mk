@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/16 13:50:13 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/16 14:57:32 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC :=\
 	prod_set.c\
 	prod_get.c\
 	prod_equality.c\
+	prod_special_case.c\
 	sym_equality.c\
 	sym_parse.c\
 	sym_print.c\

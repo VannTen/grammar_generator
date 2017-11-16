@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prod_test.c                                        :+:      :+:    :+:   */
+/*   prod_special_case.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:06:53 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 14:38:46 by mgautier         ###   ########.fr       */
+/*   Created: 2017/11/16 14:55:29 by mgautier          #+#    #+#             */
+/*   Updated: 2017/11/16 14:58:45 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_defs.h"
-#include "libft.h"
-#include <stdarg.h>
+#include "sym_interface.h"
 
-t_bool	gen_prod_is_left_recursive(void const *prod, va_list args)
+t_prod	*get_empty_prod(void)
 {
-	return (is_left_recursive(prod, va_arg(args, t_symbol const*)));
-}
+	t_prod	*prod;
 
-t_bool	is_left_recursive(t_prod const *prod, t_symbol const *sym)
-{
-	return (f_lst_first_elem(prod->sym_list) == sym);
+	prod = create_prod();
+	append_to_prod(prod, get_empty_symbol());
+	return (prod);
 }

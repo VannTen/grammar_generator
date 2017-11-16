@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 13:50:03 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 14:58:17 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_symbol	t_symbol;
 ** Implementation file : sym_ressources.c
 */
 
-t_symbol	*create_symbol(char const *name);
-void		destroy_symbol(t_symbol **to_destroy);
+t_symbol		*create_symbol(char const *name);
+void			destroy_symbol(t_symbol **to_destroy);
 
 /*
 ** Setters
@@ -45,46 +45,47 @@ t_symbol		*to_each_prod(t_symbol *add_to, t_prod_ft apply, ...);
 ** Implementation file : sym_get.c
 */
 
-t_prod		*take_left_recursive(t_symbol *sym);
-t_bool		has_left_recursion(t_symbol const *sym);
-char const	*get_name(t_symbol const *sym);
-size_t		get_prod_nb(t_symbol const *sym);
+t_prod			*take_left_recursive(t_symbol *sym);
+t_bool			has_left_recursion(t_symbol const *sym);
+char const		*get_name(t_symbol const *sym);
+size_t			get_prod_nb(t_symbol const *sym);
 
 /*
 ** Printers
 ** Implementation file : sym_print.c
 */
 
-void		print_sym_initializer(t_symbol const *sym, int fd);
+void			print_sym_initializer(t_symbol const *sym, int fd);
 
 /*
 ** Printers debug
 ** Implementation file : sym_print_back.c
 */
 
-void		print_sym_back(t_symbol const *sym, int fd);
+void			print_sym_back(t_symbol const *sym, int fd);
 
 /*
 ** Parsing one symbol
 ** Implementation file : sym_parse.c
 */
 
-t_symbol	*parse_symbol(char const *str_sym,
+t_symbol		*parse_symbol(char const *str_sym,
 		t_fifo const *sym_added,
 		t_fifo *sym_pending);
+t_symbol const	*get_empty_symbol(void);
 
 /*
 ** Transforming symbol
 ** Implementation file : sym_transform.c
 */
 
-t_symbol	*eliminate_left_recursion(t_symbol *sym);
+t_symbol		*eliminate_left_recursion(t_symbol *sym);
 
 /*
 ** Symbols equality (test purposes)
 ** Implementation file : sym_equality.c
 */
 
-t_bool		symbol_are_identical(t_symbol const *sym, t_symbol const *sym_2);
+t_bool			symbol_are_identical(t_symbol const *sym, t_symbol const *sym_2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 10:09:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 14:56:36 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ t_prod	*create_prod(void);
 /*
 ** Testing prod
 ** Implementation file : prod_test.c
+** gen_prod -> to be used with "higher order" variadic functions.
 */
 
 t_bool	is_left_recursive(t_prod const *prod, t_symbol const *sym);
+t_bool	gen_prod_is_left_recursive(void const *prod, va_list args);
 
 /*
 ** Getters
@@ -90,5 +92,12 @@ t_prod	*parse_prod(char const *one_str_prod,
 
 t_bool	prod_are_identical(t_prod const *prod_1, t_prod const *prod_2);
 t_bool	prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
+
+/*
+** Dealing with exceptions
+** Implementation file : prod_special_case.c
+*/
+
+t_prod	*get_empty_prod(void);
 
 #endif
