@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/15 14:23:49 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 10:09:41 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_prod	*create_prod(void);
 ** Implementation file : prod_test.c
 */
 
-t_bool	is_left_recursive(t_symbol const *sym, t_prod const *prod);
+t_bool	is_left_recursive(t_prod const *prod, t_symbol const *sym);
 
 /*
 ** Getters
