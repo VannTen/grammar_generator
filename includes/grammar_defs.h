@@ -6,13 +6,14 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 12:00:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 11:16:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 17:24:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAMMAR_DEFS_H
 # define GRAMMAR_DEFS_H
 # include "grammar_interface.h"
+# include "sym_interface.h"
 # include "libft.h"
 
 /*
@@ -21,8 +22,9 @@
 
 struct s_grammar
 {
-	char const	*start_symbol;
+	t_symbol	*start_symbol;
 	t_fifo		*sym_list;
+	t_fifo		*tokens_list;
 	char		*name;
 };
 
