@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/15 11:46:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 17:44:50 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static t_symbol		*find_sym(
 	t_symbol	*sym_to_add;
 
 	sym_to_add = f_fifo_every_valid_va(
-			sym_already_parsed, not_same_sym, sym_name);
+			sym_already_parsed, TRUE, not_same_sym, sym_name);
 	sym_to_add = sym_to_add != NULL ?
-		sym_to_add : f_fifo_every_valid_va(sym_pending, not_same_sym, sym_name);
+		sym_to_add : f_fifo_every_valid_va(sym_pending,
+				TRUE, not_same_sym, sym_name);
 	if (sym_to_add == NULL)
 		sym_to_add = create_symbol(sym_name);
 	if (sym_to_add != NULL)
