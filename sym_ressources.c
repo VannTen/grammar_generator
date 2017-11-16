@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:16:08 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/15 10:48:12 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:05:30 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,12 @@ t_symbol	*create_symbol(char const *name)
 void		destroy_symbol(t_symbol **to_destroy)
 {
 	t_symbol	*sym;
-	size_t		index;
 
 	sym = *to_destroy;
 	if (sym != NULL)
 	{
 		ft_strdel((char**)&sym->name);
-		index = 0;
-		while (sym->prods[index] != NULL)
-		{
-		destroy_prod(&sym->prods[index]);
-		index++;
-		}
+		f_lstdel(&sym->prods, iter_del_prod);
 		free(sym);
 		*to_destroy = NULL;
 	}
