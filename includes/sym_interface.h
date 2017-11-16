@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/15 15:18:38 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 13:50:03 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ size_t		get_prod_nb(t_symbol const *sym);
 */
 
 void		print_sym_initializer(t_symbol const *sym, int fd);
+
+/*
+** Printers debug
+** Implementation file : sym_print_back.c
+*/
+
 void		print_sym_back(t_symbol const *sym, int fd);
 
 /*
