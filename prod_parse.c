@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 17:44:50 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 18:34:30 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,19 @@ static t_symbol		*find_sym(
 
 	sym_to_add = f_fifo_every_valid_va(
 			sym_already_parsed, TRUE, not_same_sym, sym_name);
-	sym_to_add = sym_to_add != NULL ?
-		sym_to_add : f_fifo_every_valid_va(sym_pending,
-				TRUE, not_same_sym, sym_name);
 	if (sym_to_add == NULL)
-		sym_to_add = create_symbol(sym_name);
-	if (sym_to_add != NULL)
-		f_fifo_add(sym_pending, sym_to_add);
+	{
+		sym_to_add = f_fifo_every_valid_va(sym_pending,
+				TRUE, not_same_sym, sym_name);
+		if (sym_to_add == NULL)
+		{
+			sym_to_add = create_symbol(sym_name);
+			if (sym_to_add != NULL)
+				f_fifo_add(sym_pending, sym_to_add);
+			else
+				destroy_symbol(&sym_to_add);
+		}
+	}
 	return (sym_to_add);
 }
 
@@ -63,17 +69,18 @@ static t_bool		is_valid(char const *prod_str)
 	return (unix_case && prod_str[index] == '\0');
 }
 
-static void			error_funct(t_symbol **sym, t_prod **prod, char **syms_name,
+static void			error_funct(t_symbol **sym, t_prod **prod, char ***syms_name,
 		size_t *index)
 {
 	destroy_symbol(sym);
 	destroy_prod(prod);
-	while (syms_name[*index] != NULL)
+	while (*syms_name[*index] != NULL)
 	{
-		ft_strdel(&syms_name[*index]);
+		ft_strdel(&(*syms_name)[*index]);
 		(*index)++;
 	}
-	free(syms_name);
+	free(*syms_name);
+	*syms_name = NULL;
 }
 
 t_prod				*parse_prod(
@@ -91,11 +98,12 @@ t_prod				*parse_prod(
 		return (NULL);
 	each_sym_name = ft_strsplit_and(one_str_prod, SYMBOL_NAME_SEP,
 			ft_va_strstrip, " \t\n");
+	new_prod = create_prod();
 	while (each_sym_name[index] != NULL)
 	{
 		sym_added = find_sym(sym_parsed, sym_pending, each_sym_name[index]);
 		if (sym_added == NULL || !append_to_prod(new_prod, sym_added))
-			error_funct(&sym_added, &new_prod, each_sym_name, &index);
+			error_funct(&sym_added, &new_prod, &each_sym_name, &index);
 		index++;
 	}
 	return (new_prod);

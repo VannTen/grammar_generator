@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:26:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/15 12:50:01 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 18:29:08 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool			test_prod_parse(t_fifo const *sym_added,
 
 int				main(void)
 {
-	char	*sym_names[] = {"TERM_1" "TERM_24", "TERM_7", NULL};
+	char	*sym_names[] = {"TERM_1", "TERM_24", "TERM_7", NULL};
 	t_fifo	*sym_added[2];
 	t_bool	result;
 	size_t	index;
@@ -49,7 +49,7 @@ int				main(void)
 		f_fifo_add(sym_added[0], create_symbol(sym_names[index]));
 		index++;
 	}
-	result = test_prod_parse(sym_added[0], sym_added[0]);
+	result = test_prod_parse(sym_added[0], sym_added[1]);
 	f_fifo_destroy(&sym_added[0], no_destroy);
 	f_fifo_destroy(&sym_added[1], no_destroy);
 	return (result ? EXIT_SUCCESS : EXIT_FAILURE);
