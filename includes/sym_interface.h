@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 15:14:46 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/17 10:38:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			print_sym_back(t_symbol const *sym, int fd);
 */
 
 t_symbol		*parse_symbol(char const *str_sym,
-		t_fifo const *sym_added,
+		t_fifo *sym_added,
 		t_fifo *sym_pending);
 t_symbol const	*get_empty_symbol(void);
 
@@ -81,8 +81,13 @@ t_symbol		*eliminate_left_recursion(t_symbol *sym);
 /*
 ** Symbols equality (test purposes)
 ** Implementation file : sym_equality.c
+**
+** same_sym_parsed() : to be used in higher-order variadic functions.
 */
 
-t_bool			symbol_are_identical(t_symbol const *sym, t_symbol const *sym_2);
+t_bool			symbol_are_identical(
+		t_symbol const *sym,
+		t_symbol const *sym_2);
+t_bool			same_sym_parsed(const void *v_sym, va_list args);
 
 #endif

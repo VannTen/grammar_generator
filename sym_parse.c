@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:26:14 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 14:59:56 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:22:57 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		*s_prod_parse(void const *v_prod, va_list args)
 }
 
 static t_lst	*parse_prods(char const *str,
-	t_fifo const *sym_added, t_fifo *sym_pending)
+		t_fifo const *sym_added, t_fifo *sym_pending)
 {
 	t_lst	*each_prod_str;
 	t_lst	*each_prod;
@@ -64,8 +64,22 @@ static t_lst	*parse_prods(char const *str,
 	return (each_prod);
 }
 
+static t_symbol	*find_symbol(
+		char const *src, t_fifo *sym_parsed, t_fifo *sym_pending)
+{
+	t_symbol	*sym_to_add;
+
+	if (f_fifo_every_valid_va(sym_parsed, FALSE, same_sym_parsed, src) != NULL)
+		return (NULL);
+	sym_to_add = f_fifotakeone_if_va(sym_pending, TRUE, same_sym_parsed, src);
+	if (sym_to_add == NULL)
+		sym_to_add = create_symbol(ft_strdup(src));
+	f_fifo_add(sym_parsed, sym_to_add);
+	return (sym_to_add);
+}
+
 t_symbol		*parse_symbol(char const *src,
-	t_fifo const *sym_added, t_fifo *sym_pending)
+		t_fifo *sym_added, t_fifo *sym_pending)
 {
 	char		**name_and_prods;
 	t_symbol	*new_symbol;
@@ -73,12 +87,10 @@ t_symbol		*parse_symbol(char const *src,
 	name_and_prods = strip_input(src);
 	if (name_and_prods != NULL)
 	{
-		new_symbol = create_symbol(name_and_prods[0]);
+		new_symbol = find_symbol(name_and_prods[0], sym_added, sym_pending);
 		if (new_symbol != NULL)
-			new_symbol->prods = parse_prods(name_and_prods[1],
-				sym_added, sym_pending);
-		else
-			new_symbol->prods = NULL;
+			new_symbol->prods =
+				parse_prods(name_and_prods[1], sym_added, sym_pending);
 	}
 	else
 		new_symbol = NULL;
