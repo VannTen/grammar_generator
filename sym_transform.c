@@ -6,11 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 16:34:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 16:11:45 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 09:58:28 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_defs.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <stdarg.h>
 
@@ -18,6 +19,7 @@ static t_lst		*take_left_recursive_prods(t_symbol *left_recursive_sym)
 {
 	return (f_split_lst_va(
 				&left_recursive_sym->prods,
+				TRUE,
 				gen_prod_is_left_recursive,
 				left_recursive_sym));
 }

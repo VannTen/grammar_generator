@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:20:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/14 16:25:24 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 10:07:01 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	iter(void const *sym, va_list args)
 	ft_dprintf(
 			va_arg(args, int),
 			"%s%s",
-			get_name(sym),
-			va_arg(args, char const*));
+			va_arg(args, char const*),
+			get_name(sym));
 }
 
 static void	print_it(t_prod const *prod, int const fd, char const *sep)

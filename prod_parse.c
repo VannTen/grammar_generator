@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:47:13 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 18:34:30 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/17 10:40:16 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-static t_bool		not_same_sym(const void *v_sym, va_list args)
-{
-	t_symbol const	*sym;
-
-	sym = v_sym;
-	return (!ft_strequ(get_name(sym), va_arg(args, char const *)));
-}
-
 static t_symbol		*find_sym(
 		t_fifo const *sym_already_parsed,
 		t_fifo *sym_pending,
@@ -32,11 +24,11 @@ static t_symbol		*find_sym(
 	t_symbol	*sym_to_add;
 
 	sym_to_add = f_fifo_every_valid_va(
-			sym_already_parsed, TRUE, not_same_sym, sym_name);
+			sym_already_parsed, FALSE, same_sym_parsed, sym_name);
 	if (sym_to_add == NULL)
 	{
 		sym_to_add = f_fifo_every_valid_va(sym_pending,
-				TRUE, not_same_sym, sym_name);
+				FALSE, same_sym_parsed, sym_name);
 		if (sym_to_add == NULL)
 		{
 			sym_to_add = create_symbol(sym_name);
