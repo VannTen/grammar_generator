@@ -6,14 +6,16 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:26:43 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 18:29:08 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 16:58:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "prods_interface.h"
 #include "sym_interface.h"
+#include "test_interface.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <stdarg.h>
 
 /*
 ** Test that the parsing of a prod correctly create "pending symbols", which
@@ -21,36 +23,24 @@
 ** list
 */
 
-t_bool			test_prod_parse(t_fifo const *sym_added,
-		t_fifo *sym_pending)
+static t_bool		test_prod_parse(t_prod **prods, t_symbol **syms, ...)
 {
-	const char	expect_input[] = "NON_TERM TERM_1 TERM_2 ";
-	t_prod		*prod;
-	t_bool		result;
+	va_list	args;
+	va_start(args, syms);
 
-	prod = parse_prod(expect_input, sym_added, sym_pending);
-	result = (get_prod_len(prod) == 3 && fifo_len(sym_pending) == 2);
-	destroy_prod(&prod);
-	return (result);
+	return (get_prod_len(prods[0]) == 0
+				&& get_prod_len(prods[1]) == 0
+				&& get_prod_len(prods[2]) == 0
+				&& fifo_len(va_arg(args, t_fifo*)) == 2
+				&& fifo_len(va_arg(args, t_fifo*)) == 2);
 }
 
-int				main(void)
+int					main(void)
 {
-	char	*sym_names[] = {"TERM_1", "TERM_24", "TERM_7", NULL};
-	t_fifo	*sym_added[2];
-	t_bool	result;
-	size_t	index;
+	char const	*str[] = {"   ", "" , "\t\n", "TERM_1 TER", "TERM_7",
+	"TERM_7:TERM_1 TERM_7 | TERM_7 TERM_1|",
+	"TERM_4:|TERM_7" };
 
-	sym_added[0] = f_fifo_create();
-	sym_added[1] = f_fifo_create();
-	index = 0;
-	while (sym_names[index] != NULL)
-	{
-		f_fifo_add(sym_added[0], create_symbol(sym_names[index]));
-		index++;
-	}
-	result = test_prod_parse(sym_added[0], sym_added[1]);
-	f_fifo_destroy(&sym_added[0], no_destroy);
-	f_fifo_destroy(&sym_added[1], no_destroy);
-	return (result ? EXIT_SUCCESS : EXIT_FAILURE);
+	return (test_sym_prod(str, ARRAY_LENGTH(str) - 2, 2, test_prod_parse) ?
+			EXIT_SUCCESS : EXIT_FAILURE);
 }
