@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 09:28:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 11:55:05 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 17:10:49 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static t_bool	test_prod_set(t_prod **prods, t_symbol **syms)
+static t_bool	test_prod_set(t_prod **prods, t_symbol **syms, ...)
 {
 	if (!(prefix_to_prod(prods[0], syms[0])
 				&& prefix_to_prod(prods[0], syms[1])

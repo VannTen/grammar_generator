@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 19:02:01 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 12:06:06 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 17:11:52 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include "test_interface.h"
 #include <stdlib.h>
 
-static t_bool	test_prod_get(t_prod **prods, t_symbol **syms)
+static t_bool	test_prod_get(
+		t_prod **prods,
+		__attribute__((unused))t_symbol **syms,
+		...)
 {
-	(void)syms;
 	if (get_prod_len(prods[1]) == 3)
 		return (TRUE);
 	return (FALSE);
