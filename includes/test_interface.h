@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:43:48 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 11:46:44 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 14:13:22 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ t_bool	test_sym_prod(
 		char const **str,
 		size_t nb_prods,
 		size_t nb_symbols,
-		t_bool (*test)(t_prod **prod, t_symbol **syms));
+		t_bool (*test)(t_prod **prod, t_symbol **syms, ...));
 
 #endif
