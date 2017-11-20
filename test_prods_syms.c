@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:47:06 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 11:53:31 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/20 12:08:11 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ static void		destroy_prods(t_prod ***d_prods, size_t nb_prod)
 			destroy_prod(&prods[index]);
 			index++;
 		}
-		free(*prods);
-		*prods = NULL;
+		free(prods);
+		*d_prods = NULL;
 	}
 }
 
@@ -84,7 +84,7 @@ static void		destroy_symbols(t_symbol ***d_symbols, size_t nb_symbol)
 	t_symbol	**symbols;
 
 	symbols = *d_symbols;
-	if (*symbols != NULL)
+	if (symbols != NULL)
 	{
 		index = 0;
 		while (index < nb_symbol)
@@ -92,8 +92,8 @@ static void		destroy_symbols(t_symbol ***d_symbols, size_t nb_symbol)
 			destroy_symbol(&symbols[index]);
 			index++;
 		}
-		free(*symbols);
-		*symbols = NULL;
+		free(symbols);
+		*d_symbols = NULL;
 	}
 }
 
