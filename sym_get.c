@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 09:57:48 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 17:48:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char const *get_name(t_symbol const *sym)
 
 t_bool		has_left_recursion(t_symbol const *sym)
 {
-	return (NULL == f_lst_every_valid_va(sym->prods,
+	return (NULL != f_lst_every_valid_va(sym->prods,
 				FALSE, gen_prod_is_left_recursive, sym));
 }

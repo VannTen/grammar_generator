@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 14:03:09 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 18:18:17 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void			print_sym_back(t_symbol const *sym, int fd);
 t_symbol		*parse_symbol(char const *str_sym,
 		t_fifo *sym_added,
 		t_fifo *sym_pending);
-t_symbol const	*get_empty_symbol(void);
 
 /*
 ** Transforming symbol
@@ -89,6 +88,7 @@ t_bool			symbol_are_identical(
 		t_symbol const *sym,
 		t_symbol const *sym_2);
 t_bool			same_sym_parsed(const void *v_sym, va_list args);
+t_bool			have_same_prods(t_symbol const *sym_1, t_symbol const *sym_2);
 
 /*
 ** Sym valid names
