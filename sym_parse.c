@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:26:14 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 14:27:01 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 15:36:30 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,17 @@
 static char		**strip_input(char const *src)
 {
 	char	**stripped_input;
-	char	*name;
-	char	*sym_src;
 
-	sym_src	= ft_strip(src, "\t\n");
-	stripped_input = ft_strsplit(sym_src, DERIVATION_SIGN);
-	if (stripped_input != NULL && sym_src != NULL)
+	stripped_input = ft_strsplit(src, DERIVATION_SIGN);
+	if (stripped_input != NULL
+			|| ft_string_array_count((char const *const*)stripped_input) != 2)
 	{
-		name = ft_strip(stripped_input[0], " ");
-		if (name != NULL)
-		{
-			ft_strdel(&stripped_input[0]);
-			stripped_input[0] = name;
-			name = NULL;
-		}
-		else
+		ft_strip_in_place(stripped_input[0], is_valid_sym_name_part, TRUE);
+		if (stripped_input[0][0] == '\0')
 			ft_free_string_array(&stripped_input);
-		ft_strdel(&name);
 	}
 	else
 		ft_free_string_array(&stripped_input);
-	ft_strdel(&sym_src);
 	return (stripped_input);
 }
 

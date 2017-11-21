@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 11:47:06 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 15:21:16 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 15:39:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		destroy_prods(t_prod ***d_prods, size_t nb_prod)
 	if (prods != NULL)
 	{
 		index = 0;
-		while (index < nb_prod && prods[index] != NULL)
+		while (index < nb_prod)
 		{
 			destroy_prod(&prods[index]);
 			index++;
@@ -45,7 +45,7 @@ static void		destroy_symbols(t_symbol ***d_symbols, size_t nb_symbol)
 	if (symbols != NULL)
 	{
 		index = 0;
-		while (index < nb_symbol && symbols[index] != NULL)
+		while (index < nb_symbol)
 		{
 			destroy_symbol(&symbols[index]);
 			index++;
@@ -70,12 +70,8 @@ static t_prod	**parse_prods(
 		while (index < nb_prods)
 		{
 			prods[index] = parse_prod(str[index], sym_lists[0], sym_lists[1]);
-			if (prods[index] == NULL)
-				break ;
 			index++;
 		}
-		if (index < nb_prods)
-			destroy_prods(&prods, nb_prods);
 	}
 	return (prods);
 }
@@ -96,12 +92,8 @@ static t_symbol	**parse_symbols(
 		{
 			symbols[index] = parse_symbol(
 					str[index], sym_lists[0], sym_lists[1]);
-			if (symbols[index] == NULL)
-				break ;
 			index++;
 		}
-		if (index < nb_symbols)
-			destroy_symbols(&symbols, nb_symbols);
 	}
 	return (symbols);
 }
