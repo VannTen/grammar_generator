@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:26:14 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/17 15:22:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 14:27:01 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,4 @@ t_symbol		*parse_symbol(char const *src,
 		new_symbol = NULL;
 	ft_free_string_array(&name_and_prods);
 	return (new_symbol);
-}
-
-t_symbol const	*get_empty_symbol(void)
-{
-	static t_symbol	*empty_sym = NULL;
-
-	if (empty_sym == NULL)
-	{
-		empty_sym = create_symbol("EMPTY");
-		empty_sym->prods = NULL;
-	}
-	return (empty_sym);
 }
