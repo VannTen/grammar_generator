@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:47:56 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 13:52:37 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 16:21:45 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		print_sym_initializer(t_symbol const *sym, int const fd)
 	size_t		nb_prod;
 
 	nb_prod = sym->prods == NULL ?
-		0 : ft_string_array_count((char const* const*)sym->prods);
+		0 : f_lst_len(sym->prods);
 	lower_case = ft_strmap(sym->name, f_tolower);
 	ft_dprintf(fd, "\nstatic %1$s\t*create_%2$s(void)\n{\n"
 			"\t%1$s\t*new;\n"
