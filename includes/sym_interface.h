@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/17 10:38:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 14:03:09 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,13 @@ t_bool			symbol_are_identical(
 		t_symbol const *sym,
 		t_symbol const *sym_2);
 t_bool			same_sym_parsed(const void *v_sym, va_list args);
+
+/*
+** Sym valid names
+** Implementation file : sym_valid.c
+*/
+
+t_bool			is_valid_sym_name_part(char c);
+t_bool			is_valid_sym_name(char const *str);
 
 #endif

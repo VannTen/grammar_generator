@@ -23,6 +23,7 @@ SRC :=\
 	prod_set_gen.c\
 	prod_get.c\
 	prod_equality.c\
+	sym_valid.c\
 	sym_equality.c\
 	sym_parse.c\
 	sym_print.c\
