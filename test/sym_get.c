@@ -6,81 +6,67 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 13:47:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/10 11:21:48 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 17:41:49 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_interface.h"
 #include "prods_interface.h"
+#include "test_interface.h"
 #include "libft.h"
 #include <stdlib.h>
 
-static t_bool	test_left_recur(t_symbol *sym, t_prod const *recur_prod)
+static t_bool	test_left_recur(t_symbol **sym, t_prod **recur_prod)
 {
-	t_prod		*left_recur;
-	t_bool		result;
+	t_prod	*left_rec;
+	t_bool	result;
 
-	result = FALSE;
-	left_recur = take_left_recursive(sym);
-		if (prod_are_identical(left_recur, recur_prod)
-				&& take_left_recursive(sym) == NULL)
-			result = TRUE;
-	destroy_one_prod(&left_recur);
-	return (result);
+	left_rec = take_left_recursive(sym[0]);
+	result = prod_are_identical(left_rec, recur_prod[0])
+		&& get_prod_nb(sym[0]) == 3;
+	destroy_prod(&left_rec);
+	return (result
+			&& NULL == take_left_recursive(sym[1])
+			&& NULL == take_left_recursive(sym[2]));
 }
 
-static t_bool	test_has_left_recurs(void)
+static t_bool	test_has_left_recur(t_symbol **syms)
 {
-	const char	*symbol_str[2] = {
-		"SYMBOL: UUUU JJJJ HH| WER| SYMBOL HUI TRE|FRE",
-		"SYMBOL: UUUU JJJ FF | JE SYMBOL | K SYMBOL" };
-	t_symbol	*symbol[2];
-	t_bool		result;
+	t_bool const	valid[] = {TRUE, FALSE, FALSE};
+	size_t			index;
 
-	symbol[0] = parse_symbol(symbol_str[0]);
-	symbol[1] = parse_symbol(symbol_str[1]);
-	result = symbol[0] != NULL && has_left_recursion(symbol[0])
-		&& symbol[1] != NULL && !has_left_recursion(symbol[1]);
-	destroy_symbol(&symbol[0]);
-	destroy_symbol(&symbol[1]);
-	return (result);
-
+	index = 0;
+	while (index < ARRAY_LENGTH(valid))
+	{
+		if (valid[index] != has_left_recursion(syms[index]))
+			break ;
+		index++;
+	}
+	return (!(index < ARRAY_LENGTH(valid)));
 }
 
-static t_bool	test_get_name(t_symbol const *sym, char const *name)
+static t_bool	test_get_info(t_symbol **syms)
 {
-	return (ft_strequ(get_name(sym),name));
+	return (ft_strequ(get_name(syms[0]), "SYMBOL")
+			&& ft_strequ(get_name(syms[1]), "SYMBOL_2")
+			&& ft_strequ(get_name(syms[2]), "SYMBOL_3"));
 }
 
-static t_bool	test_get_prod_nb(t_symbol const *sym, size_t nb)
+static t_bool	test(t_prod **prods, t_symbol **syms, ...)
 {
-	const char	*sym_str = "SYMBOL:";
-	t_symbol	*symbol;
-	t_bool		result;
-
-	symbol = parse_symbol(sym_str);
-	result = (symbol != NULL && get_prod_nb(symbol) == 0);
-	return (result && get_prod_nb(sym) == nb);
+	return (test_get_info(syms)
+			&& test_has_left_recur(syms)
+			&& test_left_recur(syms, prods));
 }
 
 int				main(void)
 {
-	const char	symbol_str[] = "SYMBOL: UUUU JJJJ HH| WER| SYMBOL HUI TRE|FRE";
-	const char	str_prod[] = "SYMBOL HUI TRE";
-	t_symbol	*symbol;
-	t_prod		*left_recur;
-	t_bool		result;
+	const char	*str[] = {
+		"SYMBOL HUI TRE",
+		"SYMBOL_2 HUI TRE",
+		"SYMBOL: UUUU JJJJ HH| WER| SYMBOL HUI TRE|FRE",
+		"SYMBOL_2: UUUU SYMBOL_2 JJJJ HH| WER| SYMBOL HUI TRE|FRE",
+		"SYMBOL_3: UUUU JJJ FF | JE SYMBOL_3 | K SYMBOL_3" };
 
-	symbol = parse_symbol(symbol_str);
-	left_recur = parse_one_prod(str_prod);
-	if (symbol != NULL && left_recur != NULL && has_left_recursion(symbol))
-		result = test_get_name(symbol, "SYMBOL")
-			&& test_get_prod_nb(symbol, 4)
-			&& test_left_recur(symbol, left_recur)
-			&& test_has_left_recurs();
-	else
-		result = FALSE;
-	destroy_symbol(&symbol);
-	destroy_one_prod(&left_recur);
-	return (result ? EXIT_SUCCESS : EXIT_FAILURE);
+	return (test_sym_prod(str, 2, 3, test) ? EXIT_SUCCESS : EXIT_FAILURE);
 }

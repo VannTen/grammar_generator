@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 16:13:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:27:15 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,64 +20,88 @@
 ** symbols
 */
 
-typedef	void const	t_sym_name;
-typedef t_sym_name*	t_prod;
+typedef struct s_prod		t_prod;
+
+typedef struct s_symbol		t_symbol;
+
+/*
+** Some prods functions take a symbol as and address, so I have to include that
+** forward declaration to make it compile. That does not grant access to the
+** internals of sym.
+** However, I wonder if there could be a better way...
+** TODO: Search for another way.
+*/
 
 /*
 ** Ressources management
 ** Implementation file : prod_ressources.c
 */
 
-void	destroy_prods(t_prod ***prods);
-void	destroy_one_prod(t_prod	**to_destroy);
+void		destroy_prod(t_prod	**to_destroy);
+void		iter_del_prod(void **prod);
+t_prod		*create_prod(void);
 
 /*
 ** Testing prod
 ** Implementation file : prod_test.c
+** gen_prod -> to be used with "higher order" variadic functions.
 */
 
-t_bool	is_left_recursive(t_sym_name const *sym_name, t_prod const *prod);
+t_bool		is_left_recursive(t_prod const *prod, t_symbol const *sym);
+t_bool		gen_prod_is_left_recursive(void const *prod, va_list args);
 
 /*
 ** Getters
 ** Implementation file : prod_get.c
 */
 
-size_t	get_prod_len(t_prod const *prod);
+size_t		get_prod_len(t_prod const *prod);
+const char	*get_sym_name_n(t_prod const *prod, size_t index);
 
 /*
 ** Setting prod
 ** Implementation file : prod_set.c
 */
 
-t_prod	*append_to_prod(t_sym_name const *type, t_prod const *prod);
-t_prod	*prefix_to_prod(t_sym_name const *type, t_prod const *prod);
-t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2);
-void	remove_symbols_head(t_prod *prod, size_t nb_sym);
-void	remove_symbols_tail(t_prod *prod, size_t nb_sym);
+t_bool		append_to_prod(t_prod *prod, t_symbol const *type);
+t_bool		prefix_to_prod(t_prod *prod, t_symbol const *type);
+t_prod		*join_prods(t_prod const *prod_1, t_prod const *prod_2);
+void		remove_symbols_head(t_prod *prod, size_t nb_sym);
+void		remove_symbols_tail(t_prod *prod, size_t nb_sym);
+
+/*
+** Generic for prod_set (to be used by iterators)
+** Implementaion file : prod_set_gen.c
+*/
+
+t_bool		gen_append_to_prod(void *prod, va_list args);
+t_bool		gen_prefix_to_prod(void *prod, va_list args);
+void		gen_remove_symbols_head(void *prod, va_list args);
+void		gen_remove_symbols_tail(void *prod, va_list args);
 
 /*
 ** Printing prods
 ** Implemenation file : prod_print.c
 */
 
-void	print_prod(t_prod const *prod, int fd);
-void	print_prod_back(t_prod const *prod, int fd);
+void		print_prod(t_prod const *prod, int fd);
+void		print_prod_back(t_prod const *prod, int fd);
 
 /*
 ** Parsing a prod
 ** Implementation file : prod_parse.c
 */
 
-t_prod	**parse_prods(char const *str_prod);
-t_prod	*parse_one_prod(char const *one_str_prod);
+t_prod		*parse_prod(char const *one_str_prod,
+		t_fifo const *sym_parsed,
+		t_fifo *sym_pending);
 
 /*
 ** Equality (test if two prods are the same, useful for test purposes)
 ** Implementation file : prod_equality.c
 */
 
-t_bool	prod_are_identical(t_prod const *prod_1, t_prod const *prod_2);
-t_bool	prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
+t_bool		prod_are_identical(t_prod const *prod_1, t_prod const *prod_2);
+t_bool		prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
 
 #endif

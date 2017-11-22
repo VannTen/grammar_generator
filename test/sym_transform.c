@@ -6,44 +6,73 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 18:32:39 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/09 18:53:31 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/22 19:22:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_interface.h"
+#include "prods_interface.h"
+#include "test_interface.h"
 #include "libft.h"
 #include <stdlib.h>
 
-static t_bool	test_eliminate_left_recursion(void)
+static t_bool	test_inside(t_symbol const *sym, t_symbol const *sym1)
 {
-	const char	*sym_str[] = {
-		"SYMBOL:SYMBOL SYMBOL_3 | SYMBOL HY | SYMBOL_3 | SYMBOL_4",
-		"SYMBOL: SYMBOL_3 SYMBOL_LEFT_RECUR | SYMBOL_4 SYMBOL_LEFT_RECUR",
-		"SYMBOL_LEFT_RECUR: SYMBOL_3 SYMBOL_LEFT_RECUR | HY SYMBOL_LEFT_RECUR"
-			"|EMPTY"};
-	t_symbol	*sym[ARRAY_LENGTH(sym_str) + 1];
+	char const	*str[] = {
+		"SYM", "SYM_3", "SYM_LEFT_RECUR", "SYM_4", "SYM_LEFT_RECUR",
+		"SYM_LEFT_RECUR", "SYM_4", "SYM_LEFT_RECUR", "HY", "SYM_LEFT_RECUR"
+	};
+	char const	*cmp[ARRAY_LENGTH(str)];
 	size_t		index;
+
+	cmp[0] = get_name(sym);
+	cmp[1] = get_sym_name_n(get_prod_number(sym, 0), 0);
+	cmp[2] = get_sym_name_n(get_prod_number(sym, 0), 1);
+	cmp[3] = get_sym_name_n(get_prod_number(sym, 1), 0);
+	cmp[4] = get_sym_name_n(get_prod_number(sym, 1), 1);
+	cmp[5] = get_name(sym1);
+	cmp[6] = get_sym_name_n(get_prod_number(sym1, 0), 0);
+	cmp[7] = get_sym_name_n(get_prod_number(sym1, 0), 1);
+	cmp[8] = get_sym_name_n(get_prod_number(sym1, 1), 0);
+	cmp[9] = get_sym_name_n(get_prod_number(sym1, 1), 1);
+	index = 0;
+	while (index < ARRAY_LENGTH(str))
+	{
+		if (!ft_strequ(cmp[index], str[index]))
+			break ;
+		index++;
+	}
+	return (!(index < ARRAY_LENGTH(str)));
+}
+
+static t_bool	test_eliminate_left_recursion(
+		__attribute__((unused))t_prod **prods,
+		t_symbol **syms,
+		...)
+{
+	t_symbol	*no_left_rec;
 	t_bool		result;
 
-	index = 0;
-	while (index < ARRAY_LENGTH(sym_str))
-	{
-		sym[index] = parse_symbol(sym_str[index]);
-		index++;
-	}
-	sym[index] = eliminate_left_recursion(sym[0]);
-	result = symbol_are_identical(sym[0], sym[1])
-		&& symbol_are_identical(sym[2], sym[3]);
-	index = 0;
-	while (index < ARRAY_LENGTH(sym_str) + 1)
-	{
-		destroy_symbol(&sym[index]);
-		index++;
-	}
+	no_left_rec = eliminate_left_recursion(syms[0]);
+	result = no_left_rec != NULL
+		&& get_prod_nb(syms[0]) == 2 && get_prod_nb(no_left_rec) == 3
+		&& ft_strequ(get_name(no_left_rec), "SYM_LEFT_RECUR")
+		&& test_inside(syms[0], no_left_rec);
+	result = result && NULL == eliminate_left_recursion(syms[0]);
+	result = result && NULL == eliminate_left_recursion(no_left_rec);
+	destroy_symbol(&no_left_rec);
 	return (result);
 }
 
-int	main(void)
+int				main(void)
 {
-	return (test_eliminate_left_recursion() ? EXIT_SUCCESS : EXIT_FAILURE);
+	const char	*sym_str[] = {
+		"SYM:SYM SYM_4 | SYM HY | SYM_3 | SYM_4" };
+
+	return (test_sym_prod(sym_str, 0, 1, test_eliminate_left_recursion) ?
+			EXIT_SUCCESS : EXIT_FAILURE);
 }
+/*
+**		"SYM_2: SYM_3 SYM_LEFT_RECUR | SYM_4 SYM_LEFT_RECUR",
+**		"SYM1_LEFT_RECUR: SYM_4 SYM_LEFT_RECUR | HY SYM_LEFT_RECUR|"};
+*/

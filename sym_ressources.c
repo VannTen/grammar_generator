@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:16:08 by mgautier          #+#    #+#             */
-/*   Updated: 2017/10/19 14:19:48 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:05:30 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		destroy_symbol(t_symbol **to_destroy)
 	if (sym != NULL)
 	{
 		ft_strdel((char**)&sym->name);
-		destroy_prods(&sym->prods);
+		f_lstdel(&sym->prods, iter_del_prod);
 		free(sym);
 		*to_destroy = NULL;
 	}

@@ -6,30 +6,19 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 16:48:06 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 16:56:34 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/21 17:33:03 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "prods_interface.h"
+#include "prods_defs.h"
 #include "libft.h"
 
-t_bool	prod_are_identical(t_prod const *prod_1, t_prod const *prod_2)
+static t_bool	sym_equ(void const *v_sym_1, void const *v_sym_2)
 {
-	return (ft_str_arraycmp((char const*const*)prod_1,
-				(char const*const*)prod_2) == 0);
+	return (v_sym_1 == v_sym_2);
 }
 
-t_bool	prods_set_identical(t_prod const **set_1, t_prod const **set_2)
+t_bool			prod_are_identical(t_prod const *prod_1, t_prod const *prod_2)
 {
-	size_t	index;
-
-	index = 0;
-
-	while (set_2[index] != NULL && set_1[index] != NULL
-			&& prod_are_identical(set_1[index], set_2[index]))
-		index++;
-	if (set_2[index] != NULL || set_1[index] != NULL)
-		return (FALSE);
-	else
-		return (TRUE);
+	return (lst_equ(prod_1->sym_list, prod_2->sym_list, sym_equ));
 }

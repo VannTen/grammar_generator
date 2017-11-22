@@ -6,13 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/11 11:52:59 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/16 17:24:31 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAMMAR_INTERFACE_H
 # define GRAMMAR_INTERFACE_H
-# include "grammar_defs.h"
 
 typedef struct s_grammar	t_grammar;
 
@@ -29,6 +28,7 @@ t_grammar	*parse_grammar(const char *grammar_file);
 */
 
 void		destroy_grammar(t_grammar **to_destroy);
+t_grammar	*create_grammar(char const *grammar_file);
 
 /*
 ** Grammar output as header and source file

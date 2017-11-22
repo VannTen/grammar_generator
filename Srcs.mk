@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/10 15:50:28 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/21 14:14:30 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ SRC :=\
 	prod_test.c\
 	prod_print.c\
 	prod_set.c\
+	prod_set_gen.c\
 	prod_get.c\
 	prod_equality.c\
+	sym_valid.c\
 	sym_equality.c\
 	sym_parse.c\
 	sym_print.c\
+	sym_print_back.c\
 	sym_set.c\
-	sym_set_all_prods.c\
 	sym_get.c\
 	sym_ressources.c\
 	sym_transform.c\
@@ -38,7 +40,8 @@ SRC :=\
 	grammar_print_names.c\
 	grammar_ressources.c\
 	grammar_transform.c\
-	generate_grammar.c
+	generate_grammar.c\
+	test_prods_syms.c
 
 # Directories
 
@@ -61,6 +64,7 @@ STATIC_TEST_FILES := arithmetic_expr.grammar\
 ## Units tests
 
 DONT_TEST := \
+	prod_set_gen.c\
 	prod_equality.c\
 	sym_equality.c\
 	grammar_print_init.c\
@@ -69,7 +73,8 @@ DONT_TEST := \
 	grammar_print_source.c\
 	grammar_print_names.c\
 	grammar_parse.c\
-	generate_grammar.c
+	generate_grammar.c\
+	test_prods_syms.c
 
 ## Function tests
 

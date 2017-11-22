@@ -6,62 +6,40 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/10 11:10:10 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/22 17:20:08 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_defs.h"
 #include <stddef.h>
 
-size_t		get_prod_nb(t_symbol const *sym)
+size_t			get_prod_nb(t_symbol const *sym)
 {
-	size_t	size;
-
-	size = 0;
-	if (sym->prods != NULL)
-	{
-		while (sym->prods[size] != NULL)
-			size++;
-	}
-	return (size);
+	return (f_lst_len(sym->prods));
 }
 
-t_prod		*take_left_recursive(t_symbol *sym)
+t_prod			*take_left_recursive(t_symbol *sym)
 {
-	size_t	index;
-	t_prod	*prod;
-
-	index = 0;
-	prod = NULL;
-	while (sym->prods[index] != NULL)
-	{
-		if (is_left_recursive(sym->name, sym->prods[index]))
-		{
-			prod = sym->prods[index];
-			while (sym->prods[index] != NULL)
-			{
-				sym->prods[index] = sym->prods[index + 1];
-				index++;
-			}
-			break ;
-		}
-		index++;
-	}
-	return (prod);
+	return (f_lsttakeone_if_va(
+				&sym->prods, TRUE, gen_prod_is_left_recursive, sym));
 }
 
-char const *get_name(t_symbol const *sym)
+char const		*get_name(t_symbol const *sym)
 {
 	return (sym->name);
 }
 
-t_bool		has_left_recursion(t_symbol const *sym)
+t_bool			has_left_recursion(t_symbol const *sym)
 {
-	size_t	index;
+	return (NULL != f_lst_every_valid_va(sym->prods,
+				FALSE, gen_prod_is_left_recursive, sym));
+}
 
-	index= 0;
-	while (sym->prods[index] != NULL
-			&& !is_left_recursive(sym->name, sym->prods[index]))
-		index++;
-	return (sym->prods[index] != NULL);
+/*
+** Debug
+*/
+
+t_prod const	*get_prod_number(t_symbol const *sym, size_t number)
+{
+	return (get_lst_elem(sym->prods, number));
 }
