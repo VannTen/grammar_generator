@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 18:18:17 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/22 15:01:27 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ t_prod			*take_left_recursive(t_symbol *sym);
 t_bool			has_left_recursion(t_symbol const *sym);
 char const		*get_name(t_symbol const *sym);
 size_t			get_prod_nb(t_symbol const *sym);
+
+/*
+** For debug
+*/
+
+t_prod const	*get_prod_number(t_symbol const *sym, size_t number);
 
 /*
 ** Printers
