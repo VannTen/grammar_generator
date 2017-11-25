@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 12:00:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 17:24:54 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/25 11:51:32 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ struct s_grammar
 	t_symbol	*start_symbol;
 	t_fifo		*sym_list;
 	t_fifo		*tokens_list;
-	char		*name;
 };
 
 #endif

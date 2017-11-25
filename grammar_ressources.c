@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 18:23:50 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 17:32:15 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/25 11:58:14 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ void		destroy_grammar(t_grammar **to_destroy)
 		gram->start_symbol = NULL;
 		f_fifo_destroy(&gram->sym_list, &sym_destroy);
 		f_fifo_destroy(&gram->tokens_list, &sym_destroy);
-		ft_strdel(&gram->name);
 		free(gram);
 		*to_destroy = NULL;
 	}
 }
 
-t_grammar	*create_grammar(char const *grammar_file)
+t_grammar	*create_grammar(void)
 {
 	t_grammar	*new_gram;
 
@@ -46,9 +45,7 @@ t_grammar	*create_grammar(char const *grammar_file)
 		new_gram->start_symbol = NULL;
 		new_gram->sym_list = f_fifo_create();
 		new_gram->tokens_list = f_fifo_create();
-		new_gram->name = bare_file_name(grammar_file);
-		if (new_gram->name == NULL
-				|| new_gram->sym_list == NULL
+		if (new_gram->sym_list == NULL
 				|| new_gram->tokens_list == NULL)
 			destroy_grammar(&new_gram);
 	}

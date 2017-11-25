@@ -28,7 +28,7 @@ t_grammar	*parse_grammar(const char *grammar_file);
 */
 
 void		destroy_grammar(t_grammar **to_destroy);
-t_grammar	*create_grammar(char const *grammar_file);
+t_grammar	*create_grammar(void);
 
 /*
 ** Grammar output as header and source file
