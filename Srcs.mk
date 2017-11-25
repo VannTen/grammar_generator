@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/21 14:14:30 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/25 12:08:14 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC :=\
 	sym_ressources.c\
 	sym_transform.c\
 	grammar_parse.c\
+	grammar_get.c\
+	grammar_test.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
 	grammar_print_header.c\
@@ -73,6 +75,8 @@ DONT_TEST := \
 	grammar_print_source.c\
 	grammar_print_names.c\
 	grammar_parse.c\
+	grammar_get.c\
+	grammar_test.c\
 	generate_grammar.c\
 	test_prods_syms.c
 

@@ -54,6 +54,23 @@ void		print_grammar_names(t_grammar const *grammar,
 void		print_grammar_back(int fd, t_grammar const *gram);
 
 /*
+** Test grammar, to see if it satisfy certain properties
+** Implementation file : grammar_test.c
+*/
+
+t_bool		symbols_are_valid(t_grammar const *gram);
+t_bool		is_of_class(t_grammar const *gram, t_gram_class type);
+
+/*
+** Getters
+** Implementation file : grammar_get.c
+*/
+
+size_t			terminal_sym_count(t_grammar const *gram);
+size_t			non_terminal_sym_count(t_grammar const *gram);
+t_symbol const	*get_start_symbol(t_grammar const *gram);
+
+/*
 ** Grammar tranformation : placeholders for future transformation operations on
 ** grammar object (convert it to LL(1) for example)
 ** Implementation file : grammar_transform.c
