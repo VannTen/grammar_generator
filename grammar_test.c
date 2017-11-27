@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 18:09:14 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/24 13:09:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:55:44 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_bool	symbols_are_valid(t_grammar const *gram)
 {
 	assert(gram != NULL);
 	return (NULL == f_fifo_every_valid_va(gram->sym_list, FALSE, is_terminal)
-			&& NULL == f_fifo_every_valid_va(gram->sym_list, TRUE, is_terminal)
-		 );
+			&& NULL == f_fifo_every_valid_va(
+				gram->tokens_list, TRUE, is_terminal));
 }

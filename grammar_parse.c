@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:45:03 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 17:36:44 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/27 17:54:41 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,72 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <assert.h>
 
-t_grammar			*parse_grammar(const char *grammar_file)
+t_grammar			*parse_grammar_file(const char *grammar_file)
 {
-	int			gram_fd;
-	t_symbol	*symbol;
-	char		*sym_description;
+	int			fd;
 	t_grammar	*new_gram;
 
-	gram_fd = open(grammar_file, O_RDONLY);
-	new_gram = create_grammar(grammar_file);
-	if (gram_fd != -1)
-	{
-		while (get_next_elem(gram_fd, &sym_description, ';') == ONE_LINE_READ
-				&& sym_description[0] != '\0'
-				&& new_gram != NULL)
-		{
-			symbol = parse_symbol(sym_description,
-					new_gram->sym_list, new_gram->tokens_list);
-			if (symbol != NULL
-					|| NULL == f_fifo_add(new_gram->sym_list, symbol))
-				destroy_grammar(&new_gram);
-			ft_strdel(&sym_description);
-		}
-		ft_strdel(&sym_description);
-	}
+	assert(grammar_file != NULL);
+	fd = open(grammar_file, O_RDONLY);
+	new_gram = parse_grammar_fd(fd);
+	close(fd);
+	return (new_gram);
+}
+
+static t_bool	is_empty(char const *sym_def)
+{
+	size_t	index;
+
+	index = 0;
+	while (sym_def[index] == '\n' || sym_def[index] == ' ')
+		index++;
+	return (sym_def[index] == '\0');
+}
+
+static t_bool	sym_parse(void *str, va_list args)
+{
+	t_grammar	*gram;
+
+	gram = va_arg(args, t_grammar*);
+	return (NULL !=
+			parse_symbol(str, gram->sym_list, gram->tokens_list));
+}
+
+t_grammar	*parse_grammar_fd(int const gram_fd)
+{
+	t_grammar	*new_gram;
+	t_lst		*sym_defs;
+
+	assert(gram_fd >= 0 && -1 != read(gram_fd, NULL, 0));
+	new_gram = create_grammar();
+	sym_defs = get_no_empty_elem_list(gram_fd, ';', is_empty);
+	if (new_gram == NULL
+			|| sym_defs == NULL
+			|| !f_lstiterr_va(sym_defs, sym_parse, new_gram))
+		destroy_grammar(&new_gram);
+	f_lstdel(&sym_defs, ft_gen_strdel);
 	close(gram_fd);
 	return (new_gram);
 }
+
+t_grammar	*parse_grammar_string(char const *string)
+{
+	t_grammar	*new_gram;
+	t_lst		*list;
+
+	assert(string != NULL);
+	list = f_strsplit_lst_mod(string, ";", TRUE);
+	if (list != NULL)
+	{
+		new_gram = create_grammar();
+		if (!f_lstiterr_va(list, sym_parse, new_gram))
+			destroy_grammar(&new_gram);
+	}
+	else
+		new_gram = NULL;
+	f_lstdel(&list, ft_gen_strdel);
+	return (new_gram);
+}
+

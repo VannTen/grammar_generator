@@ -74,7 +74,6 @@ DONT_TEST := \
 	grammar_print_header.c\
 	grammar_print_source.c\
 	grammar_print_names.c\
-	grammar_parse.c\
 	grammar_get.c\
 	grammar_test.c\
 	generate_grammar.c\

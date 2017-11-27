@@ -6,21 +6,32 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 17:24:31 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:45:32 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAMMAR_INTERFACE_H
 # define GRAMMAR_INTERFACE_H
+# include "libft.h"
+# include "sym_interface.h"
 
 typedef struct s_grammar	t_grammar;
+
+typedef enum	e_grammar_class
+{
+	LL_1,
+	LR_1,
+	NB_GRAM_CLASS
+}				t_gram_class;
 
 /*
 ** Grammar creation from text file
 ** Implementation file : grammar_parse.c
 */
 
-t_grammar	*parse_grammar(const char *grammar_file);
+t_grammar	*parse_grammar_fd(int fd);
+t_grammar	*parse_grammar_file(char const *grammar_file);
+t_grammar	*parse_grammar_string(char const *grammar_string);
 
 /*
 ** Ressources management
@@ -33,6 +44,8 @@ t_grammar	*create_grammar(void);
 /*
 ** Grammar output as header and source file
 ** Implementation file : grammar_print_*.c
+**
+** Deprecated.
 */
 
 void		print_grammar_source(t_grammar const *grammar, int fd_source_file,
@@ -76,12 +89,6 @@ t_symbol const	*get_start_symbol(t_grammar const *gram);
 ** Implementation file : grammar_transform.c
 */
 
-typedef enum	e_gram_type
-{
-	LL_1,
-	NB_GRAM_TYPES
-}				t_gram_type;
-
-t_grammar	*convert_to(t_grammar const *grammar, t_gram_type type);
+t_grammar	*convert_to(t_grammar const *grammar, t_gram_class type);
 
 #endif
