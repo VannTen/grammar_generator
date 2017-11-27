@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:26:14 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 15:36:30 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/27 15:43:05 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "prods_interface.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <assert.h>
 
 static char		**strip_input(char const *src)
 {
@@ -44,7 +45,8 @@ static t_lst	*parse_prods(char const *str,
 	t_lst	*each_prod_str;
 	t_lst	*each_prod;
 
-	each_prod_str = f_strsplit_lst(str, PROD_SEP_SIGN);
+	assert(str != NULL);
+	each_prod_str = f_strsplit_lst_mod(str, "|", FALSE);
 	if (each_prod_str != NULL)
 		each_prod = f_lstmap_va(each_prod_str, s_prod_parse, iter_del_prod,
 				sym_added, sym_pending);
@@ -79,7 +81,7 @@ t_symbol		*parse_symbol(char const *src,
 	{
 		new_symbol = find_symbol(name_and_prods[0], sym_added, sym_pending);
 		if (new_symbol != NULL)
-			new_symbol->prods =
+			new_symbol->prods = name_and_prods[1] == NULL ? NULL :
 				parse_prods(name_and_prods[1], sym_added, sym_pending);
 	}
 	else

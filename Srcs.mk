@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/25 12:08:14 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/27 15:46:26 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,16 +35,16 @@ SRC :=\
 	grammar_parse.c\
 	grammar_get.c\
 	grammar_test.c\
-	grammar_print_init.c\
-	grammar_print_proto.c\
-	grammar_print_header.c\
-	grammar_print_source.c\
-	grammar_print_names.c\
 	grammar_ressources.c\
 	grammar_transform.c\
-	generate_grammar.c\
 	test_prods_syms.c
 
+#	grammar_print_init.c\
+#	grammar_print_proto.c\
+#	grammar_print_header.c\
+#	grammar_print_source.c\
+#	grammar_print_names.c\
+	generate_grammar.c\
 # Directories
 
 SRC_DIR :=

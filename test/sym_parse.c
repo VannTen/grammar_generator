@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 19:05:20 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 15:14:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/27 16:09:04 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ static t_bool	test_sym_parse(
 	va_list	args;
 
 	va_start(args, sym);
-	return (!((get_prod_nb(sym[0]) != 4)
-			|| sym[1] != NULL
-			|| fifo_len(va_arg(args, t_fifo*)) != 1
-			|| fifo_len(va_arg(args, t_fifo*)) != 4));
+	return ((get_prod_nb(sym[0]) == 4)
+			&& sym[1] == NULL
+			&& fifo_len(va_arg(args, t_fifo*)) == 1
+			&& fifo_len(va_arg(args, t_fifo*)) == 4
+			&& ft_strequ(get_name(sym[0]), "HHHH"));
 }
 
 int				main(void)
@@ -38,7 +39,7 @@ int				main(void)
 		"DEI_TT",
 		"UHDE IUHDE",
 		"DESDE",
-		"HHHH \n\t  : DEI_TT | UHDE IUHDE     \t| DESDE|",
+		"\nHHHH \n\t  : DEI_TT | UHDE IUHDE     \t| DESDE|",
 		"\t\n\t" };
 
 	return (test_sym_prod(symbol, 3, 2, test_sym_parse) ?
