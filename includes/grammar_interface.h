@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/27 15:45:32 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/28 13:05:05 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ void		print_grammar_back(int fd, t_grammar const *gram);
 
 t_bool		symbols_are_valid(t_grammar const *gram);
 t_bool		is_of_class(t_grammar const *gram, t_gram_class type);
+
+/*
+** Grammar comparison
+** Implementation file : grammar_cmp.c
+*/
+
+t_bool		gram_are_equ(t_grammar const *gram_1, t_grammar const *gram_2);
 
 /*
 ** Getters

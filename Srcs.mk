@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/27 15:46:26 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/28 13:03:44 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC :=\
 	prod_set_gen.c\
 	prod_get.c\
 	prod_equality.c\
+	prod_cmp.c\
 	sym_valid.c\
 	sym_equality.c\
 	sym_parse.c\
@@ -30,11 +31,13 @@ SRC :=\
 	sym_print_back.c\
 	sym_set.c\
 	sym_get.c\
+	sym_cmp.c\
 	sym_ressources.c\
 	sym_transform.c\
 	grammar_parse.c\
 	grammar_get.c\
 	grammar_test.c\
+	grammar_cmp.c\
 	grammar_ressources.c\
 	grammar_transform.c\
 	test_prods_syms.c
@@ -69,6 +72,8 @@ DONT_TEST := \
 	prod_set_gen.c\
 	prod_equality.c\
 	sym_equality.c\
+	sym_cmp.c\
+	prod_cmp.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
 	grammar_print_header.c\

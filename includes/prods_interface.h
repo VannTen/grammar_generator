@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/22 19:27:15 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/28 12:53:54 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,12 @@ t_prod		*parse_prod(char const *one_str_prod,
 
 t_bool		prod_are_identical(t_prod const *prod_1, t_prod const *prod_2);
 t_bool		prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
+
+/*
+** Comparison
+** Implementation file : prod_cmp.c
+*/
+
+t_bool		prod_are_equ(t_prod const *prod_1, t_prod const *prod_2);
 
 #endif

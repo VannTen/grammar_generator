@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/22 15:01:27 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/28 12:49:24 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,13 @@ t_bool			symbol_are_identical(
 		t_symbol const *sym_2);
 t_bool			same_sym_parsed(const void *v_sym, va_list args);
 t_bool			have_same_prods(t_symbol const *sym_1, t_symbol const *sym_2);
+
+/*
+** Symbols comparison (to compare different grammars)
+** Implementation file : sym_cmp.c
+*/
+
+t_bool			sym_are_equ(t_symbol const *sym_1, t_symbol const *sym_2);
 
 /*
 ** Sym valid names
