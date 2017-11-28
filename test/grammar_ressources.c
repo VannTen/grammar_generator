@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:05:00 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/08 15:13:56 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/28 10:55:08 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
 
 	if (argc < 1)
 	{
-		gram = parse_grammar(argv[1]);
+		gram = parse_grammar_file(argv[1]);
 		if (gram == NULL)
 			return (EXIT_FAILURE);
 		destroy_grammar(&gram);

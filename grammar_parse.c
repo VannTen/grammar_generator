@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:45:03 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/27 17:54:41 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/28 10:53:51 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <assert.h>
-
-t_grammar			*parse_grammar_file(const char *grammar_file)
-{
-	int			fd;
-	t_grammar	*new_gram;
-
-	assert(grammar_file != NULL);
-	fd = open(grammar_file, O_RDONLY);
-	new_gram = parse_grammar_fd(fd);
-	close(fd);
-	return (new_gram);
-}
 
 static t_bool	is_empty(char const *sym_def)
 {
@@ -49,7 +37,19 @@ static t_bool	sym_parse(void *str, va_list args)
 			parse_symbol(str, gram->sym_list, gram->tokens_list));
 }
 
-t_grammar	*parse_grammar_fd(int const gram_fd)
+t_grammar		*parse_grammar_file(const char *grammar_file)
+{
+	int			fd;
+	t_grammar	*new_gram;
+
+	assert(grammar_file != NULL);
+	fd = open(grammar_file, O_RDONLY);
+	new_gram = parse_grammar_fd(fd);
+	close(fd);
+	return (new_gram);
+}
+
+t_grammar		*parse_grammar_fd(int const gram_fd)
 {
 	t_grammar	*new_gram;
 	t_lst		*sym_defs;
@@ -66,7 +66,7 @@ t_grammar	*parse_grammar_fd(int const gram_fd)
 	return (new_gram);
 }
 
-t_grammar	*parse_grammar_string(char const *string)
+t_grammar		*parse_grammar_string(char const *string)
 {
 	t_grammar	*new_gram;
 	t_lst		*list;
