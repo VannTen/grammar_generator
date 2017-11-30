@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 16:34:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 18:31:45 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 11:36:09 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ static t_lst		*take_left_recursive_prods(t_symbol *left_recursive_sym)
 				TRUE,
 				gen_prod_is_left_recursive,
 				left_recursive_sym));
-}
-
-static t_symbol		*derivate_new_sym(t_symbol const *src,
-		char const *reason_why)
-{
-	t_symbol	*new;
-
-	new = malloc(sizeof(t_symbol));
-	if (new != NULL)
-	{
-		new->name = ft_strvajoin(3, src->name, "_", reason_why);
-		new->prods = NULL;
-		if (new->name == NULL)
-			destroy_symbol(&new);
-	}
-	return (new);
 }
 
 static t_bool	remove_left_recur(void *prod, va_list args)

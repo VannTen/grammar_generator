@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/28 12:49:24 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 11:21:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_symbol	t_symbol;
 
 t_symbol		*create_symbol(char const *name);
 void			destroy_symbol(t_symbol **to_destroy);
+t_symbol		*derivate_new_sym(t_symbol const *src,
+		char const *reason_why);
 
 /*
 ** Setters
