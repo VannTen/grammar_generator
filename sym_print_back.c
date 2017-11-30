@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 13:48:26 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/16 13:54:54 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:49:36 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		prod_back(void const *prod, va_list args)
 
 	fd = va_arg(args, int);
 	ft_putstr_fd(va_arg(args, char const*), fd);
-	print_prod_back(prod, va_arg(args, int));
+	print_prod_back(prod, fd);
 }
 
 static void		s_prod_back(void const *prod, ...)
@@ -40,8 +40,9 @@ void			print_sym_back(t_symbol const *sym, int const fd)
 	ft_putstr_fd(sym->name, fd);
 	if (sym->prods != NULL)
 	{
-		ft_putstr_fd(":", fd);
+		ft_putstr_fd(": ", fd);
 		s_prod_back(f_lst_first_elem(sym->prods), fd, "");
-		f_lstiter_va(advance_list(sym->prods, 1), prod_back, fd, "\n|");
+		f_lstiter_va(advance_list(sym->prods, 1), prod_back, fd, " | ");
+		ft_putstr_fd(";\n", fd);
 	}
 }

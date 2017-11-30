@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:39:24 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/21 16:51:45 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:48:02 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_bool	non_terminal_symbol_works(t_symbol const *symbol)
 	int			pipes[2];
 	int			result;
 	const char	expected_result[] =
-		"HHHH: DEI_TT | UHDE IUHDE | DESDE";
+		"HHHH: DEI_TT | UHDE IUHDE | DESDE;\n";
 
 	pipe(pipes);
 	print_sym_back(symbol, pipes[WRITE_END]);
@@ -35,7 +35,7 @@ static t_bool	terminal_symbol_works(t_symbol const *symbol)
 {
 	int			pipes[2];
 	int			result;
-	const char	expected_result[] = "HHHHER";
+	const char	expected_result[] = "HHHHER;\n";
 
 	pipe(pipes);
 	print_sym_back(symbol, pipes[WRITE_END]);

@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:20:16 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/20 10:07:01 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 14:41:58 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ static void	iter(void const *sym, va_list args)
 
 static void	print_it(t_prod const *prod, int const fd, char const *sep)
 {
-	ft_putstr_fd(get_name(f_lst_first_elem(prod->sym_list)), fd);
-	f_lstiter_va(advance_list(prod->sym_list, 1), iter, fd, sep);
+	if (prod->sym_list != NULL)
+	{
+		ft_putstr_fd(get_name(f_lst_first_elem(prod->sym_list)), fd);
+		f_lstiter_va(advance_list(prod->sym_list, 1), iter, fd, sep);
+	}
 }
 
 void		print_prod(t_prod const *prod, int const fd)
