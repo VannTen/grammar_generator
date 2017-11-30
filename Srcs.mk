@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/30 11:44:27 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/30 16:08:30 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC :=\
 	sym_get.c\
 	sym_cmp.c\
 	sym_ressources.c\
-	sym_transform.c\
+	sym_transform_lrec.c\
+	sym_transform_indirect_lrec.c\
 	grammar_parse.c\
 	grammar_get.c\
 	grammar_test.c\

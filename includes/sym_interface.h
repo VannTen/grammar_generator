@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 11:21:46 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:18:24 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,24 @@ t_symbol		*parse_symbol(char const *str_sym,
 		t_fifo *sym_pending);
 
 /*
-** Transforming symbol
-** Implementation file : sym_transform.c
+** Eliminate simple left recursion in a symbol.
+** Implementation file : sym_transform_lrec.c
 */
 
 t_symbol		*eliminate_left_recursion(t_symbol *sym);
+
+/*
+** Tool for eliminating indirect left recursion.
+** Suppress reference to previous symbols by expanding them into their
+** productions
+** Implementation file : sym_transform_indirect_lrec.c
+*/
+
+
+void			elim_indirect_left_recursion(
+		t_symbol *sym,
+		t_symbol const *sym_indir,
+		t_bool dev_if_left);
 
 /*
 ** Symbols equality (test purposes)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_transform.c                                    :+:      :+:    :+:   */
+/*   sym_transform_lrec.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 18:32:39 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/22 19:22:42 by mgautier         ###   ########.fr       */
+/*   Created: 2017/11/30 16:08:53 by mgautier          #+#    #+#             */
+/*   Updated: 2017/11/30 16:14:55 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "test_interface.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 static t_bool	test_inside(t_symbol const *sym, t_symbol const *sym1)
 {
@@ -67,11 +68,16 @@ static t_bool	test_eliminate_left_recursion(
 int				main(void)
 {
 	const char	*sym_str[] = {
-		"SYM:SYM SYM_4 | SYM HY | SYM_3 | SYM_4" };
+		"SYM:SYM SYM_4 | SYM HY | SYM_3 | SYM_4"
+	};
 
-	return (test_sym_prod(sym_str, 0, 1, test_eliminate_left_recursion) ?
-			EXIT_SUCCESS : EXIT_FAILURE);
+	RET_TEST (test_sym_prod(
+				sym_str,
+				0,
+				ARRAY_LENGTH(sym_str),
+				test_eliminate_left_recursion));
 }
+
 /*
 **		"SYM_2: SYM_3 SYM_LEFT_RECUR | SYM_4 SYM_LEFT_RECUR",
 **		"SYM1_LEFT_RECUR: SYM_4 SYM_LEFT_RECUR | HY SYM_LEFT_RECUR|"};

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_transform.c                                    :+:      :+:    :+:   */
+/*   sym_transform_lrec.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 16:34:55 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 11:36:09 by mgautier         ###   ########.fr       */
+/*   Created: 2017/11/30 16:04:47 by mgautier          #+#    #+#             */
+/*   Updated: 2017/11/30 16:04:52 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-static t_lst		*take_left_recursive_prods(t_symbol *left_recursive_sym)
+static t_lst	*take_left_recursive_prods(t_symbol *left_recursive_sym)
 {
 	return (f_split_lst_va(
 				&left_recursive_sym->prods,
@@ -48,7 +48,8 @@ t_symbol		*eliminate_left_recursion(t_symbol *left_recursive_sym)
 		new_sym = derivate_new_sym(left_recursive_sym, "LEFT_RECUR");
 		if (new_sym != NULL)
 		{
-			f_lstiterr_va(left_recursive_sym->prods, gen_append_to_prod, new_sym);
+			f_lstiterr_va(
+					left_recursive_sym->prods, gen_append_to_prod, new_sym);
 			new_sym->prods = left_rec_prods;
 			f_lstiterr_va(new_sym->prods, remove_left_recur, new_sym);
 			empty_prod = create_prod();
