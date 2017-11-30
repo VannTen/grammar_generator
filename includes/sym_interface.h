@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 16:18:24 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 16:53:13 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_symbol		*eliminate_left_recursion(t_symbol *sym);
 */
 
 
-void			elim_indirect_left_recursion(
+t_bool			elim_indirect_left_recursion(
 		t_symbol *sym,
 		t_symbol const *sym_indir,
 		t_bool dev_if_left);
