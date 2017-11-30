@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/28 13:03:44 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/11/30 11:44:27 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC :=\
 	prod_set.c\
 	prod_set_gen.c\
 	prod_get.c\
+	prod_transform.c\
 	prod_equality.c\
 	prod_cmp.c\
 	sym_valid.c\

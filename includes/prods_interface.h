@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 11:21:49 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 13:04:57 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,14 @@ void		print_prod_back(t_prod const *prod, int fd);
 t_prod		*parse_prod(char const *one_str_prod,
 		t_fifo const *sym_parsed,
 		t_fifo *sym_pending);
+
+/*
+** Prod transformation
+** Implementation file : prod_transform.c
+*/
+
+t_prod		*produce_developed_prod(t_prod const *developed_sym,
+		t_prod const *prod_to_develop);
 
 /*
 ** Equality (test if two prods are the same, useful for test purposes)
