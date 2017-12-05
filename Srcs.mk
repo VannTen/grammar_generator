@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/11/30 16:08:30 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/12/05 14:25:48 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC :=\
 	grammar_cmp.c\
 	grammar_ressources.c\
 	grammar_transform.c\
+	grammar_print.c\
 	test_prods_syms.c
 
 #	grammar_print_init.c\
@@ -83,10 +84,10 @@ DONT_TEST := \
 	grammar_print_names.c\
 	grammar_get.c\
 	grammar_test.c\
+	grammar_print.c\
 	generate_grammar.c\
 	test_prods_syms.c
 
 ## Function tests
 
-TEST_LIST :=\
-	check_generated_files.sh
+TEST_LIST :=

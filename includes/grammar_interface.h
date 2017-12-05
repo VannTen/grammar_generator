@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/28 13:05:05 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/11/30 18:29:20 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ size_t			non_terminal_sym_count(t_grammar const *gram);
 t_symbol const	*get_start_symbol(t_grammar const *gram);
 
 /*
-** Grammar tranformation : placeholders for future transformation operations on
-** grammar object (convert it to LL(1) for example)
+** Performs transformation on the grammar, in order to make it suitable for some
+** kind of parsing techniques.
 ** Implementation file : grammar_transform.c
 */
 
-t_grammar	*convert_to(t_grammar const *grammar, t_gram_class type);
+t_bool			eliminate_all_left_recursion(t_grammar *gram);
 
 #endif

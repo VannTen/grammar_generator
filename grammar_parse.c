@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:45:03 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/28 10:53:51 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/04 15:02:46 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,3 @@ t_grammar		*parse_grammar_string(char const *string)
 	f_lstdel(&list, ft_gen_strdel);
 	return (new_gram);
 }
-
