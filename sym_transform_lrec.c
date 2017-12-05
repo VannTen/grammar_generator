@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 16:04:47 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 16:04:52 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/04 15:17:24 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_symbol		*eliminate_left_recursion(t_symbol *left_recursive_sym)
 	left_rec_prods = take_left_recursive_prods(left_recursive_sym);
 	if (left_rec_prods != NULL)
 	{
-		new_sym = derivate_new_sym(left_recursive_sym, "LEFT_RECUR");
+		new_sym = derivate_new_sym(left_recursive_sym, "LREC");
 		if (new_sym != NULL)
 		{
 			f_lstiterr_va(

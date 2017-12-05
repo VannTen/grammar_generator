@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 16:08:53 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 16:14:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:02:29 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 static t_bool	test_inside(t_symbol const *sym, t_symbol const *sym1)
 {
 	char const	*str[] = {
-		"SYM", "SYM_3", "SYM_LEFT_RECUR", "SYM_4", "SYM_LEFT_RECUR",
-		"SYM_LEFT_RECUR", "SYM_4", "SYM_LEFT_RECUR", "HY", "SYM_LEFT_RECUR"
+		"SYM", "SYM_3", "SYM_LREC", "SYM_4", "SYM_LREC",
+		"SYM_LREC", "SYM_4", "SYM_LREC", "HY", "SYM_LREC"
 	};
 	char const	*cmp[ARRAY_LENGTH(str)];
 	size_t		index;
@@ -46,10 +46,28 @@ static t_bool	test_inside(t_symbol const *sym, t_symbol const *sym1)
 	return (!(index < ARRAY_LENGTH(str)));
 }
 
-static t_bool	test_eliminate_left_recursion(
-		__attribute__((unused))t_prod **prods,
-		t_symbol **syms,
-		...)
+static t_bool	test_supp(t_symbol **syms, t_symbol const *sym_lrec)
+{
+	if (prods_are_equ(syms[0], syms[1])
+			&& prods_are_equ(syms[2], sym_lrec))
+		return (TRUE);
+	else
+	{
+		print_sym_back(syms[0], STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		print_sym_back(syms[1], STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		print_sym_back(syms[2], STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		print_sym_back(sym_lrec, STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		return (FALSE);
+	}
+}
+	static t_bool	test_eliminate_left_recursion(
+			__attribute__((unused))t_prod **prods,
+			t_symbol **syms,
+			...)
 {
 	t_symbol	*no_left_rec;
 	t_bool		result;
@@ -57,8 +75,9 @@ static t_bool	test_eliminate_left_recursion(
 	no_left_rec = eliminate_left_recursion(syms[0]);
 	result = no_left_rec != NULL
 		&& get_prod_nb(syms[0]) == 2 && get_prod_nb(no_left_rec) == 3
-		&& ft_strequ(get_name(no_left_rec), "SYM_LEFT_RECUR")
-		&& test_inside(syms[0], no_left_rec);
+		&& ft_strequ(get_name(no_left_rec), "SYM_LREC")
+		&& test_inside(syms[0], no_left_rec)
+		&& test_supp(syms, no_left_rec);
 	result = result && NULL == eliminate_left_recursion(syms[0]);
 	result = result && NULL == eliminate_left_recursion(no_left_rec);
 	destroy_symbol(&no_left_rec);
@@ -68,7 +87,9 @@ static t_bool	test_eliminate_left_recursion(
 int				main(void)
 {
 	const char	*sym_str[] = {
-		"SYM:SYM SYM_4 | SYM HY | SYM_3 | SYM_4"
+		"SYM:SYM SYM_4 | SYM HY | SYM_3 | SYM_4",
+		"NON_REC: SYM_3 SYM_LREC| SYM_4 SYM_LREC",
+		"PROD:SYM_4 SYM_LREC | HY SYM_LREC | "
 	};
 
 	RET_TEST (test_sym_prod(
@@ -79,6 +100,6 @@ int				main(void)
 }
 
 /*
-**		"SYM_2: SYM_3 SYM_LEFT_RECUR | SYM_4 SYM_LEFT_RECUR",
-**		"SYM1_LEFT_RECUR: SYM_4 SYM_LEFT_RECUR | HY SYM_LEFT_RECUR|"};
+**		"SYM_2: SYM_3 SYM_LREC | SYM_4 SYM_LREC",
+**		"SYM1_LREC: SYM_4 SYM_LREC | HY SYM_LREC|"};
 */
