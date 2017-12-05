@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 13:48:26 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 14:49:36 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/04 15:16:16 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ void			print_sym_back(t_symbol const *sym, int const fd)
 		ft_putstr_fd(": ", fd);
 		s_prod_back(f_lst_first_elem(sym->prods), fd, "");
 		f_lstiter_va(advance_list(sym->prods, 1), prod_back, fd, " | ");
-		ft_putstr_fd(";\n", fd);
 	}
 }

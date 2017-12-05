@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 16:53:13 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:01:09 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_bool			have_same_prods(t_symbol const *sym_1, t_symbol const *sym_2);
 */
 
 t_bool			sym_are_equ(t_symbol const *sym_1, t_symbol const *sym_2);
+t_bool			prods_are_equ(t_symbol const *sym_1, t_symbol const *sym_2);
 
 /*
 ** Sym valid names
