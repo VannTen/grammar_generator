@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:22:31 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/27 15:42:30 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:26:18 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ const char	*get_sym_name_n(t_prod const *prod, size_t index)
 {
 	t_symbol const	*sym;
 
-	sym = get_lst_elem(prod->sym_list, index);
+	sym = get_sym_of_prod(prod, index);
 	return (sym != NULL ? get_name(sym) : NULL);
+}
+
+void const	*get_sym_of_prod(t_prod const *prod, size_t const index)
+{
+	return (get_lst_elem(prod->sym_list, index));
 }
