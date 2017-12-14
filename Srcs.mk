@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/12/05 14:25:48 by mgautier         ###   ########.fr       *#
+#*   Updated: 2017/12/21 14:41:34 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 TARGET := grammar_generator
 
-SRC :=\
+PRODUCTION :=\
 	prod_ressources.c\
 	prod_parse.c\
 	prod_test.c\
@@ -24,7 +24,9 @@ SRC :=\
 	prod_get.c\
 	prod_transform.c\
 	prod_equality.c\
-	prod_cmp.c\
+	prod_left_factor.c\
+	prod_cmp.c
+SYMBOL :=\
 	sym_valid.c\
 	sym_equality.c\
 	sym_parse.c\
@@ -35,15 +37,23 @@ SRC :=\
 	sym_cmp.c\
 	sym_ressources.c\
 	sym_transform_lrec.c\
-	sym_transform_indirect_lrec.c\
+	sym_transform_indirect_lrec.c
+GRAMMAR :=\
 	grammar_parse.c\
 	grammar_get.c\
 	grammar_test.c\
 	grammar_cmp.c\
 	grammar_ressources.c\
 	grammar_transform.c\
-	grammar_print.c\
+	grammar_print.c
+TEST_TOOLS :=\
 	test_prods_syms.c
+
+SRC :=\
+	$(PRODUCTION)\
+	$(SYMBOL)\
+	$(GRAMMAR)\
+	$(TEST_TOOLS)
 
 #	grammar_print_init.c\
 #	grammar_print_proto.c\
