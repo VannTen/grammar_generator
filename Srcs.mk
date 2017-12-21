@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2018/01/09 13:18:48 by mgautier         ###   ########.fr       *#
+#*   Updated: 2018/01/09 13:27:34 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ PRODUCTION :=\
 	prod_transform.c\
 	prod_equality.c\
 	prod_left_factor.c\
-	prod_cmp.c
+	prod_cmp.c\
+	prod_compute_first.c
 SYMBOL :=\
 	sym_valid.c\
 	sym_equality.c\
@@ -43,7 +44,8 @@ SYMBOL :=\
 	sym_transform_indirect_lrec.c\
 	sym_left_factor.c\
 	sym_left_factor_compute.c\
-	sym_left_factor_trie_insert_prods.c
+	sym_left_factor_trie_insert_prods.c\
+	sym_compute_first.c
 GRAMMAR :=\
 	grammar_parse.c\
 	grammar_get.c\
@@ -54,7 +56,8 @@ GRAMMAR :=\
 	grammar_left_factor.c\
 	grammar_print.c
 TEST_TOOLS :=\
-	test_prods_syms.c
+	test_prods_syms.c\
+	sym_compute_first_test_tools.c
 
 SRC :=\
 	$(PRODUCTION)\
@@ -98,6 +101,7 @@ DONT_TEST := \
 	sym_get_first.c\
 	sym_empty_symbol.c\
 	prod_cmp.c\
+	prod_compute_first.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
 	grammar_print_header.c\
@@ -107,7 +111,7 @@ DONT_TEST := \
 	grammar_test.c\
 	grammar_print.c\
 	generate_grammar.c\
-	test_prods_syms.c
+	$(TEST_TOOLS)
 
 ## Function tests
 

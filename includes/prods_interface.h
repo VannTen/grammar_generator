@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/18 11:52:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/03 16:39:49 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,16 @@ t_bool		prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
 */
 
 t_bool		prod_are_equ(t_prod const *prod_1, t_prod const *prod_2);
+
+/*
+** Relay to sym
+** Functions applied from one sym to the sym contained in its productions
+** Implementation file : prod_sym_relay.c
+*/
+
+t_bool		add_firsts_of_sub_symbols(
+		t_prod const *prod,
+		t_symbol *add_to,
+		t_bool *sym_added);
 
 #endif
