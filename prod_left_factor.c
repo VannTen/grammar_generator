@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 14:28:18 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/21 11:11:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/21 15:29:38 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_bool	add_to_new_sym(void *prod, va_list args)
 {
 	return (NULL == add_prod(va_arg(args, t_symbol*), prod));
 }
+
 t_prod			*prod_group_left_factor(t_lst *prods, size_t const index,
 		t_left_fac *ref_sym)
 {
