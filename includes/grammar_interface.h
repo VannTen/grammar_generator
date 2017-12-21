@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 18:29:20 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/05 16:07:03 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,12 @@ t_symbol const	*get_start_symbol(t_grammar const *gram);
 */
 
 t_bool			eliminate_all_left_recursion(t_grammar *gram);
+
+/*
+** Left factorize the grammar
+** Implementation file : grammar_left_factor.c
+*/
+
+t_bool			left_factor_grammar(t_grammar *gram);
 
 #endif

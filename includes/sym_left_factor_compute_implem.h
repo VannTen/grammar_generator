@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grammar_cmp.c                                      :+:      :+:    :+:   */
+/*   sym_left_factor_compute_implem.h                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 11:55:08 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/20 19:13:32 by mgautier         ###   ########.fr       */
+/*   Created: 2017/12/14 17:22:03 by mgautier          #+#    #+#             */
+/*   Updated: 2017/12/14 17:25:18 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "grammar_defs.h"
-#include "libft.h"
+#ifndef SYM_LEFT_FACTOR_COMPUTE_IMPLEM_H
+# define SYM_LEFT_FACTOR_COMPUTE_IMPLEM_H
+# include "libft.h"
+# include <stdarg.h>
 
-static t_bool	equ(void const *sym_1, void const *sym_2)
-{
-	return (sym_are_equ(sym_1, sym_2));
-}
+/*
+** Implementation header for sym_left_factor_compute.c
+** Provides a function suitable as list iterators to insert contents in a trie.
+*/
 
-t_bool			gram_are_equ(t_grammar const *gram_1, t_grammar const *gram_2)
-{
-	return (fifo_same_contents(gram_1->sym_list, gram_2->sym_list, equ));
-}
+t_bool	insert_in_trie(void *prod, va_list args);
+
+#endif

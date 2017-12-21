@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:16:08 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 11:21:19 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/14 15:41:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void		destroy_symbol(t_symbol **to_destroy)
 		free(sym);
 		*to_destroy = NULL;
 	}
+}
+
+void		iter_del_sym(void **sym)
+{
+	destroy_symbol((t_symbol**)sym);
 }
 
 t_symbol	*derivate_new_sym(t_symbol const *src,

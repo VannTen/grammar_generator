@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/05 14:01:09 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/21 15:32:53 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ typedef struct s_symbol	t_symbol;
 
 t_symbol		*create_symbol(char const *name);
 void			destroy_symbol(t_symbol **to_destroy);
+void			iter_del_sym(void **to_del);
 t_symbol		*derivate_new_sym(t_symbol const *src,
 		char const *reason_why);
 
 /*
 ** Setters
 ** Implementation file : sym_set.c
+**
+** add_prod : return NULL on succes, prod on failure.
 */
-
-typedef t_prod	*(*t_prod_ft)(t_prod*, va_list);
 
 t_prod			*add_prod(t_symbol *sym, t_prod *prod);
 
@@ -97,6 +98,15 @@ t_bool			elim_indirect_left_recursion(
 		t_symbol *sym,
 		t_symbol const *sym_indir,
 		t_bool dev_if_left);
+
+/*
+** Left factorize symbols to avoid necessity to have more than one token of
+** lookahed when parsing
+** Implementation file : sym_left_factor.c
+*/
+
+t_bool			left_factor_sym(t_symbol *sym, t_fifo *new_syms);
+t_bool			is_result_of_left_factor(t_symbol const *sym);
 
 /*
 ** Symbols equality (test purposes)

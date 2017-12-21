@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/30 13:04:57 by mgautier         ###   ########.fr       */
+/*   Updated: 2017/12/18 11:52:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_bool		gen_prod_is_left_recursive(void const *prod, va_list args);
 
 size_t		get_prod_len(t_prod const *prod);
 const char	*get_sym_name_n(t_prod const *prod, size_t index);
+void const	*get_sym_of_prod(t_prod const *prod, size_t index);
 
 /*
 ** Setting prod
