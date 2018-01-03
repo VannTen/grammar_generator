@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/09 13:06:23 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/09 13:13:44 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ t_prod const	*get_prod_number(t_symbol const *sym, size_t number);
 */
 
 t_bool			has_empty_prod(t_symbol const *sym);
+t_bool			has_symbol_in_first(
+		t_symbol const *sym_first,
+		t_symbol const *sym_is_here);
 
 /*
 ** Printers

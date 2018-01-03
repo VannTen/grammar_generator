@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2018/01/09 13:05:56 by mgautier         ###   ########.fr       *#
+#*   Updated: 2018/01/09 13:12:14 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SYMBOL :=\
 	sym_set.c\
 	sym_get.c\
 	sym_get_properties.c\
+	sym_get_first.c\
 	sym_cmp.c\
 	sym_ressources.c\
 	sym_transform_lrec.c\
@@ -93,6 +94,7 @@ DONT_TEST := \
 	sym_cmp.c\
 	sym_left_factor_compute.c\
 	sym_left_factor_trie_insert_prods.c\
+	sym_get_first.c\
 	prod_cmp.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
