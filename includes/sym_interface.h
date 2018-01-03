@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/21 15:32:53 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/09 13:06:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ size_t			get_prod_nb(t_symbol const *sym);
 */
 
 t_prod const	*get_prod_number(t_symbol const *sym, size_t number);
+
+/*
+** Get sym properties
+** Implementation file : sym_get_properties.c
+*/
+
+t_bool			has_empty_prod(t_symbol const *sym);
 
 /*
 ** Printers

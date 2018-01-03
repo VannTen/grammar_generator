@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2017/12/21 16:20:48 by mgautier         ###   ########.fr       *#
+#*   Updated: 2018/01/09 13:05:56 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SYMBOL :=\
 	sym_print_back.c\
 	sym_set.c\
 	sym_get.c\
+	sym_get_properties.c\
 	sym_cmp.c\
 	sym_ressources.c\
 	sym_transform_lrec.c\
