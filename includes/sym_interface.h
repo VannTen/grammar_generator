@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/09 13:13:44 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/09 13:21:33 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "prods_interface.h"
 # include <stdarg.h>
 # include <stddef.h>
+# define EMPTY_SYMBOL &g_empty_symbol
 
 typedef struct s_symbol	t_symbol;
 
@@ -146,5 +147,26 @@ t_bool			prods_are_equ(t_symbol const *sym_1, t_symbol const *sym_2);
 
 t_bool			is_valid_sym_name_part(char c);
 t_bool			is_valid_sym_name(char const *str);
+
+/*
+** Sym first set getters
+** Implementation file : sym_get_first.c
+*/
+
+t_bool			has_symbol_in_first(
+		t_symbol const *search_in, t_symbol const *to_find);
+
+/*
+** Sym empty_symbol
+** Defintion of the global variable g_empty_symbol.
+** It is an abstraction used to compute the first set when building the
+** automaton. Since it is not really a grammar symbol (not included in the list
+** of symbols) and always used, it seems logical to use a constant variable.
+** Moreover, that abstraction is needed in several places, without necessary
+** relations between them, which justify to use a global variable.
+** Implementation file : sym_empty_symbol.c
+*/
+
+extern t_symbol const	g_empty_symbol;
 
 #endif
