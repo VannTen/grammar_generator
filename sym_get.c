@@ -6,11 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/11/22 17:20:08 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/03 12:12:51 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_defs.h"
+#include "libft.h"
 #include <stddef.h>
 
 size_t			get_prod_nb(t_symbol const *sym)

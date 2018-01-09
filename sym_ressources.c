@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 10:16:08 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/14 15:41:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/09 13:26:14 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ t_symbol	*create_symbol(char const *name)
 	new = malloc(sizeof(t_symbol));
 	if (new != NULL)
 	{
-		new->name = ft_strdup(name);
 		new->prods = NULL;
+		new->first = NULL;
+		new->name = ft_strdup(name);
 		if (new->name == NULL)
 			destroy_symbol(&new);
 	}
@@ -37,6 +38,7 @@ void		destroy_symbol(t_symbol **to_destroy)
 	{
 		ft_strdel((char**)&sym->name);
 		f_lstdel(&sym->prods, iter_del_prod);
+		f_lstdel(&sym->first, no_destroy);
 		free(sym);
 		*to_destroy = NULL;
 	}
@@ -51,14 +53,13 @@ t_symbol	*derivate_new_sym(t_symbol const *src,
 		char const *reason_why)
 {
 	t_symbol	*new;
+	char		*name;
 
-	new = malloc(sizeof(t_symbol));
-	if (new != NULL)
-	{
-		new->name = ft_strvajoin(3, src->name, "_", reason_why);
-		new->prods = NULL;
-		if (new->name == NULL)
-			destroy_symbol(&new);
-	}
+	name = ft_strvajoin(3, src->name, "_", reason_why);
+	if (name != NULL)
+		new = create_symbol(name);
+	else
+		new = NULL;
+	ft_strdel(&name);
 	return (new);
 }

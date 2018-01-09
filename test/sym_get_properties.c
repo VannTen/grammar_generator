@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_defs.h                                         :+:      :+:    :+:   */
+/*   sym_get_properties.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/03 16:40:26 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/03 12:17:56 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/03 18:20:42 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAM_GEN_SYM_DEFS_H
-# define GRAM_GEN_SYM_DEFS_H
-# include "sym_interface.h"
-# define DERIVATION_SIGN ':'
-# define PROD_SEP_SIGN '|'
+#include "sym_interface.h"
+#include "test_interface.h"
 
-/*
-** prods member is a list of t_prod
-*/
-
-struct s_symbol
+static t_bool	test_has_empty(__attribute__((unused))t_prod **prods,
+		t_symbol **syms, ...)
 {
-	char const	*name;
-	t_lst		*prods;
-	t_lst		*first;
-};
+	return (!has_empty_prod(syms[0]) && has_empty_prod(syms[1]));
+}
 
-#endif
+int	main(void)
+{
+	char const *sym[] = {"SYM_1: JJJJ EEEE LLLL | EEE | EEEEEE| JID",
+		"SYM_2: JJJJ EEEE | | EEEEEELLLL"};
+
+	RET_TEST(test_sym_prod(sym, 0, 2, test_has_empty));
+}

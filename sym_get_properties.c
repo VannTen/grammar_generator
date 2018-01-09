@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_defs.h                                         :+:      :+:    :+:   */
+/*   sym_get_properties.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/03 16:40:26 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/03 12:13:37 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/09 13:09:43 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAM_GEN_SYM_DEFS_H
-# define GRAM_GEN_SYM_DEFS_H
-# include "sym_interface.h"
-# define DERIVATION_SIGN ':'
-# define PROD_SEP_SIGN '|'
+#include "sym_defs.h"
+#include "prods_interface.h"
+#include "libft.h"
 
-/*
-** prods member is a list of t_prod
-*/
-
-struct s_symbol
+static t_bool	is_empty_prod(void const *prod,
+		__attribute__((unused))va_list args)
 {
-	char const	*name;
-	t_lst		*prods;
-	t_lst		*first;
-};
+	return (get_prod_len(prod) == 0);
+}
 
-#endif
+t_bool			has_empty_prod(t_symbol const *sym)
+{
+	return (NULL != f_lst_every_valid_va(sym->prods, FALSE, is_empty_prod));
+}
