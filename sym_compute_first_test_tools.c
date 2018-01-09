@@ -6,11 +6,12 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 18:19:51 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/05 20:34:18 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/10 21:22:26 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_interface.h"
+#include "test_interface.h"
 #include "libft.h"
 #include <stddef.h>
 #include <unistd.h>
@@ -20,14 +21,9 @@ static t_bool	equ(void const *str, void const *sym)
 	return (ft_strequ(str, get_name(sym)));
 }
 
-static void		print(void *sym)
+static void		print(void const *sym, va_list args)
 {
-	ft_dprintf(STDERR_FILENO, "%s\n", get_name(sym));
-}
-
-static void		print_comparison(void *str)
-{
-	ft_dprintf(STDERR_FILENO, "%s\n", str);
+	ft_dprintf(va_arg(args, int), "%s ", get_name(sym));
 }
 
 t_bool	compute_first_sets(
@@ -59,6 +55,11 @@ t_bool	compute_first_sets(
 	return (TRUE);
 }
 
+void	print_symbol_first_set(t_symbol const *sym, int const fd)
+{
+	f_lstiter_va(get_first_set(sym), print, fd);
+}
+
 t_bool	check_first_sets(
 		t_symbol **syms, t_lst **first_sets, size_t nb_sym)
 {
@@ -73,9 +74,9 @@ t_bool	check_first_sets(
 	{
 		ft_dprintf(STDERR_FILENO,
 				"expected for symbol %s :\n", get_name(syms[index]));
-		f_lstiter(first_sets[index], print_comparison);
-		ft_dprintf(STDERR_FILENO, "result :\n");
-		f_lstiter((t_lst*)get_first_set(syms[index]), print);
+		print_first_set_comp(first_sets[index], STDERR_FILENO);
+		ft_dprintf(STDERR_FILENO, "\nresult :\n");
+		print_symbol_first_set((syms[index]), STDERR_FILENO);
 	}
 	return (index == nb_sym);
 }
