@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 17:17:36 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/05 20:35:55 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/10 21:57:34 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 static char const	*g_str_symbol[] = {
 	"SYM: A B C"
-		"|"
 		"| D E F"
 		"| G H U",
 	"A: Z X W"
@@ -25,16 +24,20 @@ static char const	*g_str_symbol[] = {
 		"|",
 	"B: NN KY | KO WT",
 	"Z: IF ELSE | OR PER |",
-	"X: XXX ZZZ | FFF LLL"
+	"X: XXX ZZZ | FFF LLL",
+	"NN: FR |",
+	"KY: EN |",
 
 };
 
 static char const	*g_str_first_set[] = {
-	"T S IF OR XXX FFF G NN KO EMPTY D",
+	"T S IF OR XXX FFF G FR EN KO C D",
 		"IF OR XXX FFF EMPTY T S",
-		"NN KO",
+		"FR EN EMPTY KO",
 		"IF OR EMPTY",
 		"XXX FFF",
+		"FR EMPTY",
+		"EN EMPTY"
 };
 
 static void		compute_tokens_first(void *token)

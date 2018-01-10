@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/22 11:19:37 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/05 13:42:04 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/10 21:26:08 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ static t_bool	add_symbol(void *sym_to_add, va_list args)
 
 	add_to_sym = va_arg(args, t_symbol*);
 	sym_added = va_arg(args, t_bool*);
-	return (add_symbol_to_first_set(sym_to_add, add_to_sym, sym_added));
+	return (sym_to_add != EMPTY_SYMBOL ?
+			add_symbol_to_first_set(sym_to_add, add_to_sym, sym_added) :
+			TRUE);
 }
 
 t_bool			add_first_set_to_first_set(
