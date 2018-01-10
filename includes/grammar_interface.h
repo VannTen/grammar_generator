@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/05 16:07:03 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/09 11:47:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,12 @@ t_bool			eliminate_all_left_recursion(t_grammar *gram);
 */
 
 t_bool			left_factor_grammar(t_grammar *gram);
+
+/*
+** Compute first on all grammar symbols
+** Implementation file : grammar_compute_first.c
+*/
+
+t_bool			compute_first_grammar(t_grammar *grammar);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2018/01/10 21:58:38 by mgautier         ###   ########.fr       *#
+#*   Updated: 2018/01/09 13:55:28 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ GRAMMAR :=\
 	grammar_ressources.c\
 	grammar_transform.c\
 	grammar_left_factor.c\
+	grammar_compute_first.c\
 	grammar_print.c
 TEST_TOOLS :=\
 	test_prods_syms.c\
