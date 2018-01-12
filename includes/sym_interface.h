@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/09 13:27:30 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:20:36 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_bool			has_empty_prod(t_symbol const *sym);
 t_bool			has_symbol_in_first(
 		t_symbol const *sym_first,
 		t_symbol const *sym_is_here);
+t_bool			is_terminal(t_symbol const *sym);
 
 /*
 ** Printers
