@@ -6,7 +6,7 @@
 #    By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/19 07:58:53 by mgautier          #+#    #+#              #
-#*   Updated: 2018/01/09 13:55:28 by mgautier         ###   ########.fr       *#
+#*   Updated: 2018/01/12 18:32:50 by mgautier         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ PRODUCTION :=\
 	prod_equality.c\
 	prod_left_factor.c\
 	prod_cmp.c\
-	prod_compute_first.c
+	prod_compute_first.c\
+	prod_compute_follow.c
 SYMBOL :=\
 	sym_valid.c\
 	sym_equality.c\
@@ -36,7 +37,7 @@ SYMBOL :=\
 	sym_set.c\
 	sym_get.c\
 	sym_get_properties.c\
-	sym_get_first.c\
+	sym_get_sets.c\
 	sym_empty_symbol.c\
 	sym_cmp.c\
 	sym_ressources.c\
@@ -45,7 +46,8 @@ SYMBOL :=\
 	sym_left_factor.c\
 	sym_left_factor_compute.c\
 	sym_left_factor_trie_insert_prods.c\
-	sym_compute_first.c
+	sym_compute_first.c\
+	sym_compute_follow.c
 GRAMMAR :=\
 	grammar_parse.c\
 	grammar_get.c\
@@ -101,10 +103,12 @@ DONT_TEST := \
 	sym_cmp.c\
 	sym_left_factor_compute.c\
 	sym_left_factor_trie_insert_prods.c\
-	sym_get_first.c\
+	sym_get_sets.c\
 	sym_empty_symbol.c\
 	prod_cmp.c\
 	prod_compute_first.c\
+	prod_compute_follow.c\
+	sym_compute_follow.c\
 	grammar_print_init.c\
 	grammar_print_proto.c\
 	grammar_print_header.c\

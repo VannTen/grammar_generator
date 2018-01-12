@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/12 18:20:36 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:32:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,6 @@ t_bool			is_valid_sym_name(char const *str);
 */
 
 t_bool			compute_sym_first_set(t_symbol *sym, t_bool *sym_added);
-t_lst const		*get_first_set(t_symbol const *sym);
 t_bool			add_first_set_to_first_set(
 		t_symbol const *sym,
 		t_symbol *add_to,
@@ -191,9 +190,31 @@ t_bool	check_first_sets(
 
 /*
 ** Sym first set getters
-** Implementation file : sym_get_first.c
+** Implementation file : sym_get_sets.c
 */
 
 t_bool			has_symbol_in_first(
 		t_symbol const *search_in, t_symbol const *to_find);
+t_bool			has_symbol_in_follow(
+		t_symbol const *search_in, t_symbol const *to_find);
+t_lst const		*get_first_set(t_symbol const *sym);
+t_lst const		*get_follow_set(t_symbol const *sym);
+
+/*
+** Sym FOLLOW set computation
+** Implementation file : sym_compute_follow.c
+*/
+
+t_bool			compute_follow_from_first_in_sym(t_symbol *sym);
+t_bool			compute_follow_sym_step_3(t_symbol *sym, t_bool *sym_added);
+t_bool			add_to_follow(t_symbol *sym, t_lst const *syms_to_add);
+t_bool			add_one_to_follow(
+		t_symbol *add_to,
+		t_symbol const *sym,
+		t_bool *sym_added);
+t_bool			add_set_to_follow_set(
+		t_symbol *add_to,
+		t_lst const *set_to_add,
+		t_bool *sym_is_added);
+
 #endif

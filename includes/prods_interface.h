@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/03 16:39:49 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:10:50 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct s_symbol		t_symbol;
 ** forward declaration to make it compile. That does not grant access to the
 ** internals of sym.
 ** However, I wonder if there could be a better way...
-** TODO: Search for another way.
+** TODO: Search for another way. Right now C11 is required to compile
+** (c99 throw : redefinition of typedef).
+** using void pointers instead of t_symbol pointers might do the trick
 */
 
 /*
@@ -131,5 +133,16 @@ t_bool		add_firsts_of_sub_symbols(
 		t_prod const *prod,
 		t_symbol *add_to,
 		t_bool *sym_added);
+
+/*
+** Prod : FOLLOW set computation
+** Give to each prod in a sym the FIRST set of the string of grammar symbols
+** following it in that prod.
+** Implementation file : prod_compute_follow.c
+*/
+
+t_bool		compute_follow_prod(t_prod *prod);
+t_bool		compute_follow_prod_step_3(
+		t_prod *prod, t_symbol const *parent_sym, t_bool *sym_added);
 
 #endif
