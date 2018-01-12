@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 19:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/03 16:40:26 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:34:13 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ struct s_symbol
 	char const	*name;
 	t_lst		*prods;
 	t_lst		*first;
+	t_lst		*follow;
 };
 
 #endif
