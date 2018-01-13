@@ -57,11 +57,13 @@ GRAMMAR :=\
 	grammar_transform.c\
 	grammar_left_factor.c\
 	grammar_compute_first.c\
+	grammar_compute_follow.c\
 	grammar_print.c
 TEST_TOOLS :=\
 	test_prods_syms.c\
 	sym_compute_first_test_tools.c\
 	grammar_compute_first_test_tools.c\
+	grammar_compute_set_test_tools.c\
 	compute_first_test_tools.c
 
 SRC :=\

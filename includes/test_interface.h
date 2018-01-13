@@ -55,8 +55,23 @@ t_bool	check_first_sets(
 ** Implementation file : grammar_compute_first_test_tools.c
 */
 
+void	print_first_sets(t_grammar const *gram, int fd);
+void	print_follow_sets(t_grammar const *gram, int fd);
+
+/*
+** Grammar compute_follow tools for testing
+** Implementation file : grammar_compute_follow_test_tools.c
+*/
+
+
+/*
+** Grammar tools for test on first and follow sets
+** Implementation file : grammar_compute_set_test_tools.c
+*/
+
 t_bool	gram_check_first_sets(
 		t_grammar const *gram, t_lst const *first_sets);
-void	print_first_sets(t_grammar const *gram, int fd);
+t_bool	gram_check_follow_sets(
+		t_grammar const *gram, t_lst const *first_sets);
 
 #endif
