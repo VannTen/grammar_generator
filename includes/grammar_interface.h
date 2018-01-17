@@ -112,4 +112,11 @@ t_bool			left_factor_grammar(t_grammar *gram);
 
 t_bool			compute_first_grammar(t_grammar *grammar);
 
+/*
+** Compute follow for all grammar_symbols
+** Implementation file grammar_compure_follow.c
+*/
+
+t_bool			compute_follow_grammar(t_grammar *grammar);
+
 #endif

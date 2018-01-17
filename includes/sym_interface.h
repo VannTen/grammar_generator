@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:11:44 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/09 13:27:30 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/12 18:32:23 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,21 @@
 # include <stdarg.h>
 # include <stddef.h>
 # define EMPTY_SYMBOL &g_empty_symbol
+# define END_OF_INPUT_SYMBOL &g_end_of_input_symbol
 
 typedef struct s_symbol	t_symbol;
+
+/*
+** Sym specials symbols
+** EMPTY_SYMBOL and END_OF_INPUT_SYMBOL are abstraction that are used in FIRST
+** and FOLLOW sets. They respectively means that one symbol might be derived
+** into and empty string of grammar symbols, and that one symbol might be
+** followed by the end of the input stack.
+** Implementation file : sym_special_symbols.c
+*/
+
+extern t_symbol const	g_empty_symbol;
+extern t_symbol const	g_end_of_input_symbol;
 
 /*
 ** Ressources management
@@ -66,6 +79,7 @@ t_bool			has_empty_prod(t_symbol const *sym);
 t_bool			has_symbol_in_first(
 		t_symbol const *sym_first,
 		t_symbol const *sym_is_here);
+t_bool			is_terminal(t_symbol const *sym);
 
 /*
 ** Printers
@@ -149,33 +163,11 @@ t_bool			is_valid_sym_name_part(char c);
 t_bool			is_valid_sym_name(char const *str);
 
 /*
-** Sym first set getters
-** Implementation file : sym_get_first.c
-*/
-
-t_bool			has_symbol_in_first(
-		t_symbol const *search_in, t_symbol const *to_find);
-
-/*
-** Sym empty_symbol
-** Defintion of the global variable g_empty_symbol.
-** It is an abstraction used to compute the first set when building the
-** automaton. Since it is not really a grammar symbol (not included in the list
-** of symbols) and always used, it seems logical to use a constant variable.
-** Moreover, that abstraction is needed in several places, without necessary
-** relations between them, which justify to use a global variable.
-** Implementation file : sym_empty_symbol.c
-*/
-
-extern t_symbol const	g_empty_symbol;
-
-/*
 ** Sym FIRST set computation
 ** Implementation file : sym_compute_first.c
 */
 
 t_bool			compute_sym_first_set(t_symbol *sym, t_bool *sym_added);
-t_lst const		*get_first_set(t_symbol const *sym);
 t_bool			add_first_set_to_first_set(
 		t_symbol const *sym,
 		t_symbol *add_to,
@@ -198,9 +190,31 @@ t_bool	check_first_sets(
 
 /*
 ** Sym first set getters
-** Implementation file : sym_get_first.c
+** Implementation file : sym_get_sets.c
 */
 
 t_bool			has_symbol_in_first(
 		t_symbol const *search_in, t_symbol const *to_find);
+t_bool			has_symbol_in_follow(
+		t_symbol const *search_in, t_symbol const *to_find);
+t_lst const		*get_first_set(t_symbol const *sym);
+t_lst const		*get_follow_set(t_symbol const *sym);
+
+/*
+** Sym FOLLOW set computation
+** Implementation file : sym_compute_follow.c
+*/
+
+t_bool			compute_follow_from_first_in_sym(t_symbol *sym);
+t_bool			compute_follow_sym_step_3(t_symbol *sym, t_bool *sym_added);
+t_bool			add_to_follow(t_symbol *sym, t_lst const *syms_to_add);
+t_bool			add_one_to_follow(
+		t_symbol *add_to,
+		t_symbol const *sym,
+		t_bool *sym_added);
+t_bool			add_set_to_follow_set(
+		t_symbol *add_to,
+		t_lst const *set_to_add,
+		t_bool *sym_is_added);
+
 #endif

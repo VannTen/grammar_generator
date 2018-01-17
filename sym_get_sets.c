@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_get_first.c                                    :+:      :+:    :+:   */
+/*   sym_get_sets.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,6 +26,12 @@ t_bool			has_symbol_in_first(
 			f_lst_every_valid_va(search_in->first, FALSE, same_sym, to_find));
 }
 
+t_bool			has_symbol_in_follow(
+		t_symbol const *search_in, t_symbol const *to_find)
+{
+	return (NULL !=
+			f_lst_every_valid_va(search_in->follow, FALSE, same_sym, to_find));
+}
 /*
 ** Used in debug.
 */
@@ -33,4 +39,9 @@ t_bool			has_symbol_in_first(
 t_lst const		*get_first_set(t_symbol const *sym)
 {
 	return (sym->first);
+}
+
+t_lst const		*get_follow_set(t_symbol const *sym)
+{
+	return (sym->follow);
 }

@@ -15,37 +15,29 @@
 #include "test_interface.h"
 #include "libft.h"
 
-static t_bool	equ(void const *str, void const *sym)
+static void		print(void const *sym, va_list args)
 {
-	return (ft_strequ(str, get_name(sym)));
+	ft_dprintf(va_arg(args, int), "%s ", get_name(sym));
 }
 
-static t_bool	compare_first_sets(void const *sym,
-		void const *first_sets_list)
+static void print_sym_set(void const *sym, va_list args)
 {
-	return (lst_same_contents(first_sets_list, get_first_set(sym), equ));
-}
-
-t_bool	gram_check_first_sets(
-		t_grammar const *gram, t_lst const *first_sets)
-{
-	return (lst_same_contents(
-				get_intern_lst(gram->sym_list),
-				first_sets,
-				compare_first_sets));
-}
-
-static void print_sym_first_set(void const *sym, va_list args)
-{
-	int	fd;
+	int			fd;
+	t_lst const	*(*get_set)(t_symbol const *sym);
 
 	fd = va_arg(args, int);
+	get_set = va_arg(args, t_lst const *(*)(t_symbol const*));
 	ft_dprintf(fd, "Sym : %s:\n", get_name(sym));
-	print_symbol_first_set(sym, fd);
+	f_lstiter_va(get_set(sym), print, fd);
 	ft_dprintf(fd, "\n");
+}
+
+void	print_follow_sets(t_grammar const *gramm, int const fd)
+{
+	f_fifoiter_va(gramm->sym_list, print_sym_set, fd, get_follow_set);
 }
 
 void	print_first_sets(t_grammar const *gramm, int const fd)
 {
-	f_fifoiter_va(gramm->sym_list, print_sym_first_set, fd);
+	f_fifoiter_va(gramm->sym_list, print_sym_set, fd, get_first_set);
 }

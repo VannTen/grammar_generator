@@ -14,4 +14,7 @@
 #include <stddef.h>
 
 t_symbol const g_empty_symbol =
-{.name = "EMPTY", .prods = NULL, .first = NULL};
+{.name = "EMPTY", .prods = NULL, .first = NULL, .follow = NULL};
+
+t_symbol const g_end_of_input_symbol =
+{.name = "END_OF_INPUT", .prods = NULL, .first = NULL, .follow = NULL};

@@ -32,12 +32,21 @@ t_lst	*str_to_first_set_lst(char const **array, size_t nb_sym)
 	return (first_set_list);
 }
 
-static void		print_comparison(void const *str, va_list args)
+static void		print_sym_comp(void const *str, va_list args)
 {
 	ft_dprintf(va_arg(args, int), "%s ", str);
 }
 
+static void		print_set_comp(void const *first_set, va_list args)
+{
+	int	fd;
+
+	fd = va_arg(args, int);
+	f_lstiter_va(first_set, print_sym_comp, fd);
+	ft_putstr_fd("\n", fd);
+}
+
 void	print_first_set_comp(t_lst const *first_set_cmp, int const fd)
 {
-	f_lstiter_va(first_set_cmp, print_comparison, fd);
+	f_lstiter_va(first_set_cmp, print_set_comp, fd);
 }
