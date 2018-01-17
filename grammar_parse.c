@@ -63,6 +63,7 @@ t_grammar		*parse_grammar_fd(int const gram_fd)
 		destroy_grammar(&new_gram);
 	f_lstdel(&sym_defs, ft_gen_strdel);
 	close(gram_fd);
+	new_gram->start_symbol = (void*)get_fifo_elem(new_gram->sym_list, 0);
 	return (new_gram);
 }
 
@@ -82,5 +83,6 @@ t_grammar		*parse_grammar_string(char const *string)
 	else
 		new_gram = NULL;
 	f_lstdel(&list, ft_gen_strdel);
+	new_gram->start_symbol = (void*)get_fifo_elem(new_gram->sym_list, 0);
 	return (new_gram);
 }
