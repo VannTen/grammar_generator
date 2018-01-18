@@ -30,7 +30,6 @@ struct s_symbol
 	t_lst			*first;
 	t_lst			*follow;
 	t_prod			**parse_row;
-	size_t			token_id;
 	t_exec const	*exec_functions;
 };
 
