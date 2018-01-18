@@ -69,6 +69,9 @@ EXEC_STACK :=\
 	exec_stack_ressources.c\
 	exec_stack_meta_construct.c\
 	parser_exec_stack.c
+PARSER :=\
+	parser_generation.c\
+	parser_execution.c
 TEST_TOOLS :=\
 	prod_get_test.c\
 	sym_get_test.c\
@@ -93,6 +96,7 @@ SRC :=\
 	$(SYMBOL)\
 	$(GRAMMAR)\
 	$(EXEC_STACK)\
+	$(PARSER)\
 	$(TEST_TOOLS)
 
 #	grammar_print_init.c\

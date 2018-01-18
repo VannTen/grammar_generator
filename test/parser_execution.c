@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_generation.c                                :+:      :+:    :+:   */
+/*   parser_execution.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 13:09:11 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/22 13:09:11 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/18 14:11:11 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/18 14:11:11 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_defs.h"
+#include "parser_interface.h"
 #include "test_interface.h"
+#include "libft.h"
 #include <unistd.h>
 
 static char const	grammar[] =
@@ -19,34 +20,45 @@ static char const	grammar[] =
 "TERM: TERM MULT FACTOR | FACTOR;"
 "FACTOR: INTEGER | LEFT_PAR EXPR RIGHT_PAR;";
 
-t_bool		test(t_parser const *parser)
+static t_bool	test(t_parser const *parser)
 {
-	t_bool			result[] = {TRUE, FALSE, TRUE, FALSE, FALSE, TRUE};
-	char 			*input[] = {
-		"1 + 2 * 3 * (4 + 5)", "1 1 +", "1 + 3 + 4 * 4", "*", "4 * * 4",
-	"(((4 + 1) + 1) + 1 * 4)"};
 	size_t	index;
-	void	*ret;
-	char	*input_copy;
+	char const *const	expression[] = {
+		"1 + 2",
+		"1*3+4",
+		"2 * 2 * 2",
+		"43 + 12 * (75 + (1 + 4 * 3))",
+		"(0 * 1) + 2",
+	};
+	char const			*input;
+	int	const			cmp[] = {
+		1 + 2,
+		1 * 3 + 4,
+		2 * 2 *2,
+		43 + 12 * (75 + (1 + 4 * 3)),
+		(0 * 1) + 2
+	};
+	int					*result;
 
 	index = 0;
-	while (index < ARRAY_LENGTH(result))
+	while (index < ARRAY_LENGTH(expression))
 	{
-		input_copy = input[index];
-		ret = execute_construct(parser, "EXPR", &input_copy, get_token);
-		if (result[index] != (ret != NULL))
+		input = expression[index];
+		result = execute_construct(parser, "EXPR", &input, get_token);
+		if (*result != cmp[index])
 		{
-			ft_dprintf(STDERR_FILENO, "\"%s\" should %s have syntax error\n",
-					input[index], result[index] ? "not" : "");
+			ft_dprintf(STDERR_FILENO,
+					"Expression : %s. Result : %d. Expected : %d.\n",
+					expression[index], *result, cmp[index]);
 			break ;
 		}
-		free(ret);
+		free(result);
 		index++;
 	}
-	return (index == ARRAY_LENGTH(result));
+	return (index == ARRAY_LENGTH(expression));
 }
 
-int	main(void)
+int				main(void)
 {
 	t_parser			*parser;
 	char const			*tokens_name[] = {
@@ -59,15 +71,13 @@ int	main(void)
 	};
 	t_exec	const		sym[] = {
 		{.name = "EXPR", .create = create_expr, .give = give_expr},
+		{.name = "TERM", .create = create_term, .give = give_term},
+		{.name = "FACTOR", .create = create_factor, .give = give_factor},
+		{.name = "INTEGER", .create = create_integer, .give = NULL},
 		{.name = NULL, .create = NULL, .give = NULL},
 	};
-	t_bool				result;
 
 	parser = generate_parser(
 			grammar, tokens_name, sym, get_token_index);
-	result = parser == NULL ? FALSE : test(parser);
-	if (!result)
-		print_grammar_back(2, parser->grammar);
-	destroy_parser(&parser);
-	RET_TEST(result);
+	RET_TEST(test(parser));
 }
