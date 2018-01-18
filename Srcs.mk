@@ -62,7 +62,8 @@ GRAMMAR :=\
 	grammar_left_factor.c\
 	grammar_compute_first.c\
 	grammar_compute_follow.c\
-	grammar_print.c
+	grammar_print.c\
+	grammar_parsing_table.c
 TEST_TOOLS :=\
 	prod_get_test.c\
 	sym_get_test.c\
