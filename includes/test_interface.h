@@ -29,6 +29,13 @@
 t_lst const		*get_prod_lst(t_prod const *prod);
 
 /*
+** sym debug get
+** Implementation file : sym_get_test.c
+*/
+
+t_prod const	*const *get_sym_parse_row(t_symbol const *sym);
+
+/*
 ** Test syms and prods interaction (add, remove, ect)
 ** Implementation file : test_prods_syms.c
 */

@@ -49,7 +49,9 @@ SYMBOL :=\
 	sym_left_factor_trie_insert_prods.c\
 	sym_compute_first.c\
 	sym_compute_follow.c\
-	sym_associate_functions.c
+	sym_associate_functions.c\
+	sym_parse_table.c\
+	sym_parse_table_get.c
 GRAMMAR :=\
 	grammar_parse.c\
 	grammar_get.c\
@@ -63,7 +65,10 @@ GRAMMAR :=\
 	grammar_print.c
 TEST_TOOLS :=\
 	prod_get_test.c\
+	sym_get_test.c\
 	test_prods_syms.c\
+	sym_parse_table_test.c\
+	parse_table_test.c\
 	sym_compute_first_test_tools.c\
 	sym_compute_follow_test_tools.c\
 	grammar_compute_first_test_tools.c\
@@ -115,6 +120,7 @@ DONT_TEST := \
 	sym_left_factor_trie_insert_prods.c\
 	sym_get_sets.c\
 	sym_empty_symbol.c\
+	sym_parse_table_get.c\
 	prod_cmp.c\
 	prod_compute_first.c\
 	prod_compute_follow.c\
