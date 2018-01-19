@@ -177,6 +177,14 @@ t_bool			add_symbol_to_first_set(
 		t_symbol const *sym,
 		t_symbol *add_to,
 		t_bool *sym_added);
+t_bool			add_symbol_to_set(
+		t_symbol const *sym,
+		t_lst **set,
+		t_bool *sym_added);
+t_bool			add_first_set_to_set(
+		t_symbol const *sym,
+		t_lst **add_to,
+		t_bool *sym_added);
 
 /*
 ** (TESTING ONLY)
@@ -200,6 +208,7 @@ t_bool			has_symbol_in_follow(
 		t_symbol const *search_in, t_symbol const *to_find);
 t_lst const		*get_first_set(t_symbol const *sym);
 t_lst const		*get_follow_set(t_symbol const *sym);
+t_bool			has_symbol_in_set(t_lst const *set, t_symbol const *to_find);
 
 /*
 ** Sym FOLLOW set computation

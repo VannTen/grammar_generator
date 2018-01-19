@@ -145,4 +145,14 @@ t_bool		compute_follow_prod(t_prod *prod);
 t_bool		compute_follow_prod_step_3(
 		t_prod *prod, t_symbol const *parent_sym, t_bool *sym_added);
 
+/*
+** Check the FIRST set of a prod and eventually the FOLLOW set of its left-hand
+** (aka the symbol derived) to fill the entries in a parse table row.
+** Implementation file : prod_parse_table.c
+*/
+
+t_bool	for_each_in_first_prod(t_prod *prod,
+		t_bool (*apply)(void *sym, va_list),
+		...);
+
 #endif
