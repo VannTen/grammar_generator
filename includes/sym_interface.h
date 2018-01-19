@@ -187,17 +187,6 @@ t_bool			add_first_set_to_set(
 		t_bool *sym_added);
 
 /*
-** (TESTING ONLY)
-** Sym compute first test tools
-** Functions used in test/sym_compute_first.c for testing of the section above.
-** Implementation file : sym_compute_first_test_tools.c
-*/
-
-t_bool		compute_first_sets(t_symbol **syms, size_t nb_sym);
-t_bool	check_first_sets(
-		t_symbol **syms, t_lst **first_sets, size_t nb_sym);
-
-/*
 ** Sym first set getters
 ** Implementation file : sym_get_sets.c
 */

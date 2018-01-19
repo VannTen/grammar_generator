@@ -43,6 +43,17 @@ void	destroy_cmp_first_set(void **first_set);
 void	print_first_set_comp(t_lst const *first_set, int fd);
 
 /*
+** Compute sets test tools
+** Implementation file : compute_set_test_tools.c
+*/
+
+t_bool	check_sets(
+		void *set_cmp,
+		void *item_array,
+		size_t nb_item,
+		t_bool (*check)(void const *cmp, void const *item));
+
+/*
 ** Compute first test tools on sym
 ** Implementation file : sym_compute_first_test_tools.c
 */
@@ -50,6 +61,16 @@ void	print_first_set_comp(t_lst const *first_set, int fd);
 void	print_symbol_first_set(t_symbol const *sym, int const fd);
 t_bool	check_first_sets(
 		t_symbol **syms, t_lst **first_sets, size_t nb_sym);
+t_bool	compute_first_sets(t_symbol **syms, size_t nb_sym);
+t_bool	check_first_sets(
+		t_symbol **syms, t_lst **first_sets, size_t nb_sym);
+
+/*
+** Compute follow test tools on sym
+** Implementation file : sym_compute_follow_test_tools.c
+*/
+
+t_bool	compute_follow_sets(t_symbol **syms, size_t nb_sym);
 
 /*
 ** Grammar compute first_tools test
@@ -74,5 +95,12 @@ t_bool	gram_check_first_sets(
 		t_grammar const *gram, t_lst const *first_sets);
 t_bool	gram_check_follow_sets(
 		t_grammar const *gram, t_lst const *first_sets);
+
+/*
+** Sym sets test tools
+** Implementation file : sym_set_test_tools.c
+*/
+
+t_bool	compute_sets_all_syms(t_fifo *tokens, t_fifo *sym_list);
 
 #endif

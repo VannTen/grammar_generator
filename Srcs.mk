@@ -62,9 +62,12 @@ GRAMMAR :=\
 TEST_TOOLS :=\
 	test_prods_syms.c\
 	sym_compute_first_test_tools.c\
+	sym_compute_follow_test_tools.c\
 	grammar_compute_first_test_tools.c\
 	grammar_compute_set_test_tools.c\
-	compute_first_test_tools.c
+	compute_first_test_tools.c\
+	sym_set_test_tools.c\
+	compute_set_test_tools.c
 
 SRC :=\
 	$(PRODUCTION)\
