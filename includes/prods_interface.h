@@ -151,8 +151,6 @@ t_bool		compute_follow_prod_step_3(
 ** Implementation file : prod_parse_table.c
 */
 
-t_bool	for_each_in_first_prod(t_prod *prod,
-		t_bool (*apply)(void *sym, va_list),
-		...);
+t_lst		*create_first_set_prod(t_prod const *prod);
 
 #endif
