@@ -65,7 +65,7 @@ static t_symbol	*find_symbol(
 		return (NULL);
 	sym_to_add = f_fifotakeone_if_va(sym_pending, TRUE, same_sym_parsed, src);
 	if (sym_to_add == NULL)
-		sym_to_add = create_symbol(ft_strdup(src));
+		sym_to_add = create_symbol(src);
 	f_fifo_add(sym_parsed, sym_to_add);
 	return (sym_to_add);
 }
