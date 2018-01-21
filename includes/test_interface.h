@@ -22,6 +22,13 @@
 */
 
 /*
+** Prod debug get
+** Implementation file : prod_get_test.c
+*/
+
+t_lst const		*get_prod_lst(t_prod const *prod);
+
+/*
 ** Test syms and prods interaction (add, remove, ect)
 ** Implementation file : test_prods_syms.c
 */
