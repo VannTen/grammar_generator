@@ -51,6 +51,7 @@ t_symbol		*derivate_new_sym(t_symbol const *src,
 */
 
 t_prod			*add_prod(t_symbol *sym, t_prod *prod);
+void			set_token_id(t_symbol *token, size_t index);
 
 /*
 ** Getters
@@ -80,6 +81,7 @@ t_bool			has_symbol_in_first(
 		t_symbol const *sym_first,
 		t_symbol const *sym_is_here);
 t_bool			is_terminal(t_symbol const *sym);
+size_t			get_token_id(t_symbol const *token);
 
 /*
 ** Printers
