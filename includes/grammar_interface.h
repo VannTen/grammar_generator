@@ -89,6 +89,7 @@ t_bool		gram_are_equ(t_grammar const *gram_1, t_grammar const *gram_2);
 size_t			terminal_sym_count(t_grammar const *gram);
 size_t			non_terminal_sym_count(t_grammar const *gram);
 t_symbol const	*get_start_symbol(t_grammar const *gram);
+t_symbol		*find_sym_by_name(t_grammar const *gram, char const *sym_name);
 
 /*
 ** Performs transformation on the grammar, in order to make it suitable for some
