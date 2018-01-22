@@ -110,4 +110,56 @@ t_bool	gram_check_follow_sets(
 
 t_bool	compute_sets_all_syms(t_fifo *tokens, t_fifo *sym_list);
 
+/*
+** Parse table test
+** Implementation file : sym_parse_table_test.c
+*/
+
+t_bool	fill_syms_parse_table(t_symbol **syms, size_t nb_syms,
+		char const **tokens);
+
+/*
+** Parse table gen test
+** Implementation file : parse_table_test.c
+*/
+
+t_bool			parse_row_is_correct(
+		t_symbol const *sym,
+		char const **cmp,
+		size_t nb_tokens);
+
+/*
+** Parser generation test (use case : arithmetic expression)
+** Implementation file : arith_expr_test_1.c && arith_expr_test_2.c
+*/
+
+enum
+{
+	INTEGER,
+	PLUS,
+	MULT,
+	LEFT_PAR,
+	RIGHT_PAR,
+	END_OF_INPUT
+};
+
+typedef struct	s_token t_token;
+
+struct s_token
+{
+	size_t	type;
+	char	*start;
+};
+
+void	*create_expr(void const *no_val);
+t_bool	give_expr(void *v_expr, void *to_give);
+void	*create_term(void const *no_val);
+t_bool	give_term(void *v_term, void *to_give);
+void	*create_factor(void const *no_val);
+t_bool	give_factor(void *v_factor, void *to_give);
+void	*create_integer(void const *v_integer);
+void	destroy_token(t_token **token);
+void	*get_token(void	*input);
+size_t	get_token_index(void const *v_token);
+
 #endif

@@ -69,7 +69,9 @@ TEST_TOOLS :=\
 	grammar_compute_set_test_tools.c\
 	compute_first_test_tools.c\
 	sym_set_test_tools.c\
-	compute_set_test_tools.c
+	compute_set_test_tools.c\
+	arith_expr_test_1.c\
+	arith_expr_test_2.c
 
 SRC :=\
 	$(PRODUCTION)\
