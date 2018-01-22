@@ -148,9 +148,16 @@ t_bool		compute_follow_prod_step_3(
 /*
 ** Check the FIRST set of a prod and eventually the FOLLOW set of its left-hand
 ** (aka the symbol derived) to fill the entries in a parse table row.
-** Implementation file : prod_parse_table.c
+** Implementation file : prod_first_set.c
 */
 
 t_lst		*create_first_set_prod(t_prod const *prod);
+
+/*
+** Prod execution
+** Implementation file : prod_exec.c
+*/
+
+t_bool		add_prod_to_stack(t_prod const *prod, t_lst **stack);
 
 #endif

@@ -28,7 +28,8 @@ PRODUCTION :=\
 	prod_cmp.c\
 	prod_compute_first.c\
 	prod_compute_follow.c\
-	prod_first_set.c
+	prod_first_set.c\
+	prod_exec.c
 SYMBOL :=\
 	sym_valid.c\
 	sym_equality.c\
