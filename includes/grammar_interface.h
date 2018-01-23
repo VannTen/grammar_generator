@@ -121,4 +121,25 @@ t_bool			compute_first_grammar(t_grammar *grammar);
 
 t_bool			compute_follow_grammar(t_grammar *grammar);
 
+/*
+** Setup the an equivalent of a parsing table.
+** Implementation file : grammar_parsing_table.c
+*/
+
+t_bool			compute_parsing_table(
+		t_grammar *gram,
+		char const **tokens_names);
+void const		**create_tokens_table(
+		char const **tokens_name,
+		t_grammar const *gram);
+
+/*
+** Grammar symbol association
+** Implementation file : sym_associate_functions.c
+*/
+
+t_bool			associate_exec_functions(
+		t_grammar const *grammar,
+		t_exec const *rules);
+
 #endif

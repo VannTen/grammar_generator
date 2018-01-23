@@ -215,4 +215,29 @@ t_bool			add_set_to_follow_set(
 		t_lst const *set_to_add,
 		t_bool *sym_is_added);
 
+/*
+** Generation of the parsing table.
+** Generate a row of the parse table for each non-terminal symbol.
+** (taken all together, they form the parse table).
+** Implementation file : sym_parse_table.c
+*/
+
+t_bool			init_sym_parse_table(t_symbol *sym, size_t nb_tokens);
+t_bool			fill_sym_parse_table(t_symbol *sym, char const **token_name);
+
+/*
+** Get parse table
+** Implementation file : sym_parse_table_get.c
+*/
+
+t_prod const	*get_prod_for_token(t_symbol const *sym, size_t token_id);
+
+/*
+** Sym exec related stuff
+** Implementation file : sym_associate_functions.c
+*/
+
+t_exec const	*get_exec_functions(t_symbol const *sym);
+t_bool			is_exec_construct(t_symbol const *sym);
+
 #endif

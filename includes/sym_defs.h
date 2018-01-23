@@ -13,6 +13,9 @@
 #ifndef GRAM_GEN_SYM_DEFS_H
 # define GRAM_GEN_SYM_DEFS_H
 # include "sym_interface.h"
+# include "prods_interface.h"
+# include "exec_interface.h"
+# include <stddef.h>
 # define DERIVATION_SIGN ':'
 # define PROD_SEP_SIGN '|'
 
@@ -22,10 +25,13 @@
 
 struct s_symbol
 {
-	char const	*name;
-	t_lst		*prods;
-	t_lst		*first;
-	t_lst		*follow;
+	char const		*name;
+	t_lst			*prods;
+	t_lst			*first;
+	t_lst			*follow;
+	t_prod			**parse_row;
+	size_t			token_id;
+	t_exec const	*exec_functions;
 };
 
 #endif

@@ -24,6 +24,7 @@ t_symbol		*create_symbol(char const *name)
 		new->first = NULL;
 		new->follow = NULL;
 		new->name = ft_strdup(name);
+		new->exec_functions = NULL;
 		if (new->name == NULL)
 			destroy_symbol(&new);
 	}
@@ -42,6 +43,7 @@ static void		destroy_symbol_and_prods(
 		f_lstdel(&sym->prods, destroy_prods ? iter_del_prod : no_destroy);
 		f_lstdel(&sym->first, no_destroy);
 		f_lstdel(&sym->follow, no_destroy);
+		sym->exec_functions = NULL;
 		free(sym);
 		*to_destroy = NULL;
 	}
