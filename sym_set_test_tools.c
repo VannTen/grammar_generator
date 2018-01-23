@@ -43,8 +43,8 @@ t_bool	compute_sets_all_syms(t_fifo *tokens, t_fifo *sym)
 			return (FALSE);
 	}
 	sym_added = TRUE;
-	if (add_one_to_follow((void*)get_fifo_elem(sym, 0), END_OF_INPUT_SYMBOL,
-				&sym_added))
+	if (add_one_to_follow((void*)get_fifo_elem(sym, 0),
+				(void*)get_fifo_elem(tokens, 0), &sym_added))
 	{
 		if (f_fifoiterr(sym, follow_from_first))
 		{

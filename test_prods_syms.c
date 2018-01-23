@@ -97,6 +97,7 @@ t_bool			test_sym_prod(
 
 	sym_lists[0] = f_fifo_create();
 	sym_lists[1] = f_fifo_create();
+	f_fifo_add(sym_lists[1], create_symbol("END_OF_INPUT"));
 	prods = parse_prods(str, nb_prods, sym_lists);
 	syms = parse_symbols(str + nb_prods, nb_symbols, sym_lists);
 	if (prods != NULL && syms != NULL

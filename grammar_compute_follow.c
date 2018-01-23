@@ -27,10 +27,13 @@ static t_bool	follow_from_follow(void *sym, va_list args)
 
 t_bool			compute_follow_grammar(t_grammar *grammar)
 {
-	t_bool	sym_added;
+	t_bool			sym_added;
+	t_symbol const	*end_of_input;
 
 	sym_added = TRUE;
-	if (add_one_to_follow(grammar->start_symbol, END_OF_INPUT_SYMBOL, &sym_added))
+	end_of_input = find_sym_by_name(grammar, "END_OF_INPUT");
+	assert(end_of_input != NULL);
+	if (add_one_to_follow(grammar->start_symbol, end_of_input, &sym_added))
 	{
 		assert(sym_added);
 		if (f_fifoiterr(grammar->sym_list, follow_from_first))

@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <stddef.h>
 # define EMPTY_SYMBOL &g_empty_symbol
-# define END_OF_INPUT_SYMBOL &g_end_of_input_symbol
 
 typedef struct s_symbol	t_symbol;
 
@@ -30,7 +29,6 @@ typedef struct s_symbol	t_symbol;
 */
 
 extern t_symbol const	g_empty_symbol;
-extern t_symbol const	g_end_of_input_symbol;
 
 /*
 ** Ressources management
