@@ -14,6 +14,7 @@
 # define GRAMMAR_INTERFACE_H
 # include "libft.h"
 # include "sym_interface.h"
+# include "exec_interface.h"
 
 typedef struct s_grammar	t_grammar;
 

@@ -13,6 +13,7 @@
 #ifndef GRAM_GEN_SYM_INTERFACE_H
 # define GRAM_GEN_SYM_INTERFACE_H
 # include "prods_interface.h"
+# include "exec_interface.h"
 # include <stdarg.h>
 # include <stddef.h>
 # define EMPTY_SYMBOL &g_empty_symbol
