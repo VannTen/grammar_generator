@@ -15,6 +15,8 @@
 # include "prods_interface.h"
 # include "sym_interface.h"
 # include "grammar_interface.h"
+# include "exec_interface.h"
+# include "exec_construct_interface.h"
 
 /*
 ** Header for test functions used by many test. Having them as part of the
@@ -168,5 +170,31 @@ void	*create_integer(void const *v_integer);
 void	destroy_token(t_token **token);
 void	*get_token(void	*input);
 size_t	get_token_index(void const *v_token);
+
+/*
+** Exec stack test interface.h
+** Implementation file : exec_stack_test.c
+*/
+
+enum
+{
+	STACK_SIZE,
+	TERMINATED_CONSTRUCT
+};
+
+t_bool			test_one_construct_transition(
+		t_lst **stack,
+		t_exec const *functions,
+		size_t const prod_len,
+		void const *value);
+
+/*
+** debug printing
+** Implementation file : exec_construct_debug.c
+*/
+
+void	print_exec_stack(t_lst *stack)
+	__attribute__((used));
+void	print_exec_construct(t_exec_construct const *construct);
 
 #endif

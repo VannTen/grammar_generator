@@ -14,6 +14,7 @@
 # define EXEC_CONSTRUCT_DEFS_H
 # include "exec_construct_interface.h"
 # include "exec_interface.h"
+# include <stddef.h>
 
 struct	s_exec_construct
 {
@@ -21,5 +22,13 @@ struct	s_exec_construct
 	void			*real;
 	size_t			remaining_symbols;
 };
+
+/*
+** Implementation functions
+** Implementation file : exec_stack_ressources.c
+*/
+
+void				destroy_construct(t_exec_construct **to_destroy);
+t_exec_construct	*create_construct(t_exec const *exec_functions);
 
 #endif

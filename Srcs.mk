@@ -67,7 +67,8 @@ GRAMMAR :=\
 	grammar_parsing_table.c
 EXEC_STACK :=\
 	exec_stack_ressources.c\
-	exec_stack_meta_construct.c
+	exec_stack_meta_construct.c\
+	parser_exec_stack.c
 TEST_TOOLS :=\
 	prod_get_test.c\
 	sym_get_test.c\
@@ -82,12 +83,16 @@ TEST_TOOLS :=\
 	sym_set_test_tools.c\
 	compute_set_test_tools.c\
 	arith_expr_test_1.c\
-	arith_expr_test_2.c
+	arith_expr_test_2.c\
+	exec_stack_test.c\
+	parser_exec_stack_transition_test.c\
+	exec_construct_debug.c
 
 SRC :=\
 	$(PRODUCTION)\
 	$(SYMBOL)\
 	$(GRAMMAR)\
+	$(EXEC_STACK)\
 	$(TEST_TOOLS)
 
 #	grammar_print_init.c\
