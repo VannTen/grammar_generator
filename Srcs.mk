@@ -65,6 +65,9 @@ GRAMMAR :=\
 	grammar_compute_follow.c\
 	grammar_print.c\
 	grammar_parsing_table.c
+EXEC_STACK :=\
+	exec_stack_ressources.c\
+	exec_stack_meta_construct.c
 TEST_TOOLS :=\
 	prod_get_test.c\
 	sym_get_test.c\
@@ -136,6 +139,8 @@ DONT_TEST := \
 	grammar_test.c\
 	grammar_print.c\
 	generate_grammar.c\
+	exec_stack_ressources.c\
+	exec_stack_meta_construct.c\
 	$(TEST_TOOLS)
 
 ## Function tests
