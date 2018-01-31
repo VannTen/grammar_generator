@@ -34,9 +34,6 @@ static void		s_prod_back(void const *prod, ...)
 
 void			print_sym_back(t_symbol const *sym, int const fd)
 {
-	size_t	index;
-
-	index = 0;
 	ft_putstr_fd(sym->name, fd);
 	if (sym->prods != NULL)
 	{

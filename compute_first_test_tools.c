@@ -32,8 +32,11 @@ t_lst	*str_to_first_set_lst(char const **array, size_t nb_sym)
 	return (first_set_list);
 }
 
-static void		print_sym_comp(void const *str, va_list args)
+static void		print_sym_comp(void const *v_str, va_list args)
 {
+	char const	*str;
+
+	str = v_str;
 	ft_dprintf(va_arg(args, int), "%s ", str);
 }
 
