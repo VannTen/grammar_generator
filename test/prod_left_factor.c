@@ -50,6 +50,8 @@ static t_bool	test_lfact(t_prod **prods, t_symbol **syms, ...)
 	prod = prod_group_left_factor(prods_lst, 3, &sym_ref);
 	result = test_prod_str(result_prod, prod);
 	destroy_prod(&prod);
+	f_lstdel(&prods_lst, no_destroy);
+	f_lstdel(&sym_ref.sym_left_factored, iter_del_sym_not_prod);
 	return (result);
 }
 
