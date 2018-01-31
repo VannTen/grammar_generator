@@ -25,8 +25,8 @@ static t_bool	test_add_prod(t_prod **prod, t_symbol **syms, ...)
 		&& get_prod_nb(syms[2]) == 0;
 	if (result)
 	{
-		add_prod(syms[2], prod[2]);
-		add_prod(syms[2], prod[1]);
+		add_prod(syms[2], dup_prod(prod[2]));
+		add_prod(syms[2], dup_prod(prod[1]));
 		result = get_prod_nb(syms[2]) == 2;
 	}
 	return (result);
