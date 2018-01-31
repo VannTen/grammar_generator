@@ -35,8 +35,12 @@ static char		**strip_input(char const *src)
 
 static void		*s_prod_parse(void const *v_prod, va_list args)
 {
-	return (parse_prod(v_prod, va_arg(args, t_fifo const*),
-				va_arg(args, t_fifo*)));
+	t_fifo const	*sym_added;
+	t_fifo			*sym_pending;
+
+	sym_added = va_arg(args, t_fifo const*);
+	sym_pending = va_arg(args, t_fifo*);
+	return (parse_prod(v_prod, sym_added, sym_pending));
 }
 
 static t_lst	*parse_prods(char const *str,
