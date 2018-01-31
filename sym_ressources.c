@@ -14,7 +14,7 @@
 #include "prods_interface.h"
 #include <stdlib.h>
 
-t_symbol	*create_symbol(char const *name)
+t_symbol		*create_symbol(char const *name)
 {
 	t_symbol	*new;
 	new = malloc(sizeof(t_symbol));
@@ -30,7 +30,8 @@ t_symbol	*create_symbol(char const *name)
 	return (new);
 }
 
-void		destroy_symbol(t_symbol **to_destroy)
+static void		destroy_symbol_and_prods(
+		t_symbol **to_destroy, t_bool destroy_prods)
 {
 	t_symbol	*sym;
 
@@ -38,7 +39,7 @@ void		destroy_symbol(t_symbol **to_destroy)
 	if (sym != NULL)
 	{
 		ft_strdel((char**)&sym->name);
-		f_lstdel(&sym->prods, iter_del_prod);
+		f_lstdel(&sym->prods, destroy_prods ? iter_del_prod : no_destroy);
 		f_lstdel(&sym->first, no_destroy);
 		f_lstdel(&sym->follow, no_destroy);
 		free(sym);
@@ -46,9 +47,19 @@ void		destroy_symbol(t_symbol **to_destroy)
 	}
 }
 
-void		iter_del_sym(void **sym)
+void			destroy_symbol(t_symbol **to_destroy)
+{
+	destroy_symbol_and_prods(to_destroy, TRUE);
+}
+
+void			iter_del_sym(void **sym)
 {
 	destroy_symbol((t_symbol**)sym);
+}
+
+void			iter_del_sym_not_prod(void **sym)
+{
+	destroy_symbol_and_prods((t_symbol**)sym, FALSE);
 }
 
 t_symbol	*derivate_new_sym(t_symbol const *src,

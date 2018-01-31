@@ -40,6 +40,7 @@ extern t_symbol const	g_end_of_input_symbol;
 t_symbol		*create_symbol(char const *name);
 void			destroy_symbol(t_symbol **to_destroy);
 void			iter_del_sym(void **to_del);
+void			iter_del_sym_not_prod(void **to_del);
 t_symbol		*derivate_new_sym(t_symbol const *src,
 		char const *reason_why);
 
