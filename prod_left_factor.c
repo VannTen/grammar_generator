@@ -40,6 +40,7 @@ t_prod			*prod_group_left_factor(t_lst *prods, size_t const index,
 	lfac_sym = derivate_new_sym(ref_sym->sym, derivate);
 	ft_strdel(&derivate);
 	f_lstiterr_va(prods, add_to_new_sym, lfac_sym);
+	f_lstdel(&prods, no_destroy);
 	ref_sym->index++;
 	append_to_prod(common_prefix, lfac_sym);
 	f_lstpush(lfac_sym, &ref_sym->sym_left_factored);
