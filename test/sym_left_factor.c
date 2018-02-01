@@ -60,6 +60,7 @@ static t_bool		test_left_factor(
 		ft_dprintf(STDERR_FILENO, "\nSym result number %zu\n", index);
 		index++;
 	}
+	f_fifo_destroy(&new_syms, iter_del_sym);
 	return (result);
 }
 
