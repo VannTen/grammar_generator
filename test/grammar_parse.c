@@ -49,6 +49,8 @@ static t_bool		t_parse_from_string(void)
 	return (result);
 }
 
+/*
+
 static t_bool		t_parse_from_file(char const *file_path)
 {
 	t_grammar	*gram;
@@ -77,11 +79,9 @@ static t_bool		t_parse_from_fd(void)
 	return (result);
 }
 
-int					main(int const argc, char const *argv[])
+*/
+
+int					main(void)
 {
-	return (argc >= 2
-			&& t_parse_from_string()
-			&& t_parse_from_fd()
-			&& t_parse_from_file(argv[1]) ?
-			EXIT_SUCCESS : EXIT_FAILURE);
+	RET_TEST(t_parse_from_string());
 }
