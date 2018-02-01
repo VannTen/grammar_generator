@@ -89,8 +89,8 @@ int	main(void)
 	if (!result[1])
 		print_error(transform[1], expected_result[1]);
 	destroy_grammar(&transform[0]);
-	f_lstdel(&expected_result[0], ft_gen_strdel);
+	f_lstdel(&expected_result[0], destroy_cmp_first_set);
 	destroy_grammar(&transform[1]);
-	f_lstdel(&expected_result[1], ft_gen_strdel);
+	f_lstdel(&expected_result[1], destroy_cmp_first_set);
 	RET_TEST(result[0] && result[1]);
 }
