@@ -15,6 +15,19 @@
 # include "parser_interface.h"
 # include "grammar_interface.h"
 
+enum
+{
+	PARSE,
+	EXEC
+};
+
+struct	s_parse_state
+{
+	t_lst	*parse_stack;
+	t_lst	*exec_stack;
+	void	*token;
+};
+
 struct	s_parser
 {
 	t_grammar	*grammar;

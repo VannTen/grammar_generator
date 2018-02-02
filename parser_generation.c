@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #include "parser_defs.h"
+#include "grammar_interface.h"
+#include <assert.h>
+
+static t_bool	create_symbols_have_destructor(t_exec const *sym_rules)
+{
+	size_t	index;
+
+	index = 0;
+	while (sym_rules[index].create != NULL && sym_rules[index].destroy != NULL)
+		index++;
+	return (sym_rules[index].create == NULL);
+}
 
 t_parser	*generate_parser(
 		char const *grammar,
@@ -20,6 +32,7 @@ t_parser	*generate_parser(
 {
 	t_parser	*new_parser;
 
+	assert(create_symbols_have_destructor(rules));
 	new_parser = malloc(sizeof(*new_parser));
 	if (new_parser != NULL)
 	{

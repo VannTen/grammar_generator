@@ -39,12 +39,16 @@ static t_bool	test(t_parser const *parser)
 		(0 * 1) + 2
 	};
 	int					*result;
+	struct s_input		input_parse;
 
 	index = 0;
+	input_parse.get_token = get_token;
+	input_parse.del_token = del_arith_token;
 	while (index < ARRAY_LENGTH(expression))
 	{
 		input = expression[index];
-		result = execute_construct(parser, "EXPR", &input, get_token);
+		input_parse.input = &input;
+		result = execute_construct(parser, "EXPR", &input_parse);
 		if (*result != cmp[index])
 		{
 			ft_dprintf(STDERR_FILENO,
@@ -70,10 +74,14 @@ int				main(void)
 		NULL
 	};
 	t_exec	const		sym[] = {
-		{.name = "EXPR", .create = create_expr, .give = give_expr},
-		{.name = "TERM", .create = create_term, .give = give_term},
-		{.name = "FACTOR", .create = create_factor, .give = give_factor},
-		{.name = "INTEGER", .create = create_integer, .give = NULL},
+		{.name = "EXPR", .create = create_expr,
+			.destroy = arith_expr_destroy, .give = give_expr},
+		{.name = "TERM", .create = create_term,
+			.destroy = arith_expr_destroy, .give = give_term},
+		{.name = "FACTOR", .create = create_factor,
+			.destroy = arith_expr_destroy, .give = give_factor},
+		{.name = "INTEGER", .create = create_integer,
+			.destroy = arith_expr_destroy, .give = NULL},
 		{.name = NULL, .create = NULL, .give = NULL},
 	};
 
