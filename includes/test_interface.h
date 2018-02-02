@@ -39,6 +39,7 @@ t_bool	test_sym_prod(
 */
 
 t_lst	*str_to_first_set_lst(char const **array, size_t nb_sym);
+void	destroy_cmp_first_set(void **first_set);
 void	print_first_set_comp(t_lst const *first_set, int fd);
 
 /*

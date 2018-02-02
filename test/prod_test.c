@@ -13,9 +13,10 @@
 #include "prods_interface.h"
 #include "sym_interface.h"
 #include "libft.h"
+#include "test_interface.h"
 #include <stdlib.h>
 
-static t_bool	test(t_symbol **syms, t_prod **prods)
+static t_bool	test(t_prod **prods, t_symbol **syms, ...)
 {
 	size_t	index[2];
 
@@ -37,40 +38,12 @@ static t_bool	test(t_symbol **syms, t_prod **prods)
 	return (TRUE);
 }
 
-static t_bool	int_test(char **strings)
-{
-	t_bool		result;
-	t_fifo		*sym_list[2];
-	t_prod		*prod[3];
-	t_symbol	*sym[3];
-	size_t		index;
-
-	sym_list[0] = f_fifo_create();
-	sym_list[1] = f_fifo_create();
-	index = 0;
-	while (index < 3)
-	{
-		sym[index] = parse_symbol(strings[index + 3], sym_list[0], sym_list[1]);
-		prod[index] = parse_prod(strings[index], sym_list[0], sym_list[1]);
-		index++;
-	}
-	result = test(sym, prod);
-	index = 0;
-	while (index < 3)
-	{
-		destroy_prod(&prod[index]);
-		destroy_symbol(&sym[index]);
-		index++;
-	}
-	return (result);
-}
-
 int main(void)
 {
-	char	*str_prod[] = {
+	char const	*str_prod[] = {
 		"NON_TERM TERM_1 TERM_2",
 		"TERM_1 TERM_2 NON_TERM",
 		"TERM_2 NON_TERM TERM_1" ,"NON_TERM", "TERM_1", "TERM_2" };
 
-	return (int_test(str_prod) ? EXIT_SUCCESS : EXIT_FAILURE);
+	RET_TEST(test_sym_prod(str_prod, 3, 3, test));
 }

@@ -40,12 +40,17 @@ static t_bool	replace_sym_with_prods(
 		void *prod,
 		va_list args)
 {
+	t_symbol const	*sym;
+	t_fifo			*new_prods;
+
+	sym = va_arg(args, t_symbol const*);
+	new_prods = va_arg(args, t_fifo*);
 	remove_symbols_head(prod, 1);
 	return (f_lstiterr_va(
-				va_arg(args, t_symbol const*)->prods,
+				sym->prods,
 				produce_developed_prods,
 				prod,
-				va_arg(args, t_fifo*)));
+				new_prods));
 }
 
 t_bool			elim_indirect_left_recursion(

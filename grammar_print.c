@@ -27,9 +27,6 @@ static void	print_sym(void const *v_sym, va_list args)
 
 void	print_grammar_back(int const fd, t_grammar const *gram)
 {
-	size_t	index;
-
-	index = 0;
 	ft_putstr_fd("Grammar :\n", STDERR_FILENO);
 	f_fifoiter_va(gram->sym_list, print_sym, fd);
 }

@@ -11,13 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "test_interface.h"
 
 static void	*string_to_first_set(void const *str)
 {
 	return (f_strsplit_lst(str, ' '));
 }
 
-static void	destroy_first_set(void **first_set)
+void	destroy_cmp_first_set(void **first_set)
 {
 	f_lstdel((t_lst**)first_set, ft_gen_strdel);
 }
@@ -28,12 +29,16 @@ t_lst	*str_to_first_set_lst(char const **array, size_t nb_sym)
 	t_lst	*first_set_list;
 
 	tmp = array_to_lst_index(array, nb_sym);
-	first_set_list = f_lstmap(tmp, string_to_first_set, destroy_first_set);
+	first_set_list = f_lstmap(tmp, string_to_first_set, destroy_cmp_first_set);
+	f_lstdel(&tmp, no_destroy);
 	return (first_set_list);
 }
 
-static void		print_sym_comp(void const *str, va_list args)
+static void		print_sym_comp(void const *v_str, va_list args)
 {
+	char const	*str;
+
+	str = v_str;
 	ft_dprintf(va_arg(args, int), "%s ", str);
 }
 

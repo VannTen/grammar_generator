@@ -53,6 +53,6 @@ int					main(void)
 	if (!result)
 		print_error(transform, expected_result);
 	destroy_grammar(&transform);
-	f_lstdel(&expected_result, ft_gen_strdel);
+	f_lstdel(&expected_result, destroy_cmp_first_set);
 	RET_TEST(result);
 }

@@ -59,6 +59,7 @@ static void		destroy_first_sets(t_lst ***first_sets, size_t size)
 		f_lstdel(&lst[index], ft_gen_strdel);
 		index++;
 	}
+	free(lst);
 	*first_sets = NULL;
 }
 
