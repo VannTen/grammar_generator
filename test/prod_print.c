@@ -13,34 +13,25 @@
 #include "prods_interface.h"
 #include "sym_interface.h"
 #include "libft.h"
+#include "test_interface.h"
 #include <unistd.h>
-#include <stdlib.h>
 
-static void	sym_del(void **content)
-{
-	destroy_symbol((t_symbol**)content);
-}
+static char const	*prod_str[] = {"TYPE_1 TYPE_2", "TYPE_1, TYPE_2"};
 
-int main(void)
+t_bool	test(t_prod **prods, __attribute__((unused))t_symbol **symbol, ...)
 {
 	int			my_pipe[2];
-	char const	*prod_str[] = {"TYPE_1 TYPE_2", "TYPE_1, TYPE_2"};
 	char		buf[100];
-	t_fifo		*fifo[2];
-	t_prod		*prod;
 
-	fifo[0] = f_fifo_create();
-	fifo[1] = f_fifo_create();
-	prod = parse_prod(prod_str[0], fifo[0], fifo[1]);
 	pipe(my_pipe);
-	print_prod(prod, my_pipe[1]);
+	print_prod(prods[0], my_pipe[1]);
 	buf[read(my_pipe[0], buf, 50)] = '\0';
-	f_fifo_destroy(&fifo[0], sym_del);
-	f_fifo_destroy(&fifo[1], sym_del);
 	close(my_pipe[0]);
 	close(my_pipe[1]);
-	if (ft_strequ(prod_str[1], buf))
-		return (EXIT_SUCCESS);
-	else
-		return (EXIT_FAILURE);
+	return (ft_strequ(prod_str[1], buf));
+}
+
+int		main(void)
+{
+	RET_TEST(test_sym_prod(prod_str, 1, 0, test));
 }

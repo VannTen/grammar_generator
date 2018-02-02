@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 11:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/05 16:07:03 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/09 11:47:48 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GRAMMAR_INTERFACE_H
 # include "libft.h"
 # include "sym_interface.h"
+# include "exec_interface.h"
 
 typedef struct s_grammar	t_grammar;
 
@@ -89,6 +90,7 @@ t_bool		gram_are_equ(t_grammar const *gram_1, t_grammar const *gram_2);
 size_t			terminal_sym_count(t_grammar const *gram);
 size_t			non_terminal_sym_count(t_grammar const *gram);
 t_symbol const	*get_start_symbol(t_grammar const *gram);
+t_symbol		*find_sym_by_name(t_grammar const *gram, char const *sym_name);
 
 /*
 ** Performs transformation on the grammar, in order to make it suitable for some
@@ -104,5 +106,40 @@ t_bool			eliminate_all_left_recursion(t_grammar *gram);
 */
 
 t_bool			left_factor_grammar(t_grammar *gram);
+
+/*
+** Compute first on all grammar symbols
+** Implementation file : grammar_compute_first.c
+*/
+
+t_bool			compute_first_grammar(t_grammar *grammar);
+
+/*
+** Compute follow for all grammar_symbols
+** Implementation file grammar_compure_follow.c
+*/
+
+t_bool			compute_follow_grammar(t_grammar *grammar);
+
+/*
+** Setup the an equivalent of a parsing table.
+** Implementation file : grammar_parsing_table.c
+*/
+
+t_bool			compute_parsing_table(
+		t_grammar *gram,
+		char const **tokens_names);
+void const		**create_tokens_table(
+		char const **tokens_name,
+		t_grammar const *gram);
+
+/*
+** Grammar symbol association
+** Implementation file : sym_associate_functions.c
+*/
+
+t_bool			associate_exec_functions(
+		t_grammar const *grammar,
+		t_exec const *rules);
 
 #endif

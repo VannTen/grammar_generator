@@ -32,8 +32,12 @@ static t_bool		test_prod_parse(t_prod **prods, t_symbol **syms, ...)
 				&& get_prod_len(prods[1]) == 0
 				&& get_prod_len(prods[2]) == 0
 				&& fifo_len(va_arg(args, t_fifo*)) == 2
-				&& fifo_len(va_arg(args, t_fifo*)) == 2);
+				&& fifo_len(va_arg(args, t_fifo*)) == 3);
 }
+
+/*
+** Third token is EOF
+*/
 
 int					main(void)
 {

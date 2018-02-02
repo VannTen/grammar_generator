@@ -16,10 +16,15 @@
 
 static void	iter(void const *sym, va_list args)
 {
+	int			fd;
+	char const	*separator;
+
+	fd = va_arg(args, int);
+	separator = va_arg(args, char const*);
 	ft_dprintf(
-			va_arg(args, int),
+			fd,
 			"%s%s",
-			va_arg(args, char const*),
+			separator,
 			get_name(sym));
 }
 

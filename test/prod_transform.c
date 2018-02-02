@@ -34,6 +34,8 @@ static t_bool	test_append_sym_to_left(
 		print_prod_back(new_prod[0], STDERR_FILENO);
 		print_prod_back(new_prod[1], STDERR_FILENO);
 	}
+	destroy_prod(&new_prod[0]);
+	destroy_prod(&new_prod[1]);
 	return (result);
 }
 

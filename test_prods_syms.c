@@ -36,23 +36,9 @@ static void		destroy_prods(t_prod ***d_prods, size_t nb_prod)
 	}
 }
 
-static void		destroy_symbols(t_symbol ***d_symbols, size_t nb_symbol)
+static void		sym_del(void **sym)
 {
-	size_t		index;
-	t_symbol	**symbols;
-
-	symbols = *d_symbols;
-	if (symbols != NULL)
-	{
-		index = 0;
-		while (index < nb_symbol)
-		{
-			destroy_symbol(&symbols[index]);
-			index++;
-		}
-		free(symbols);
-		*d_symbols = NULL;
-	}
+	destroy_symbol((t_symbol**)sym);
 }
 
 static t_prod	**parse_prods(
@@ -111,14 +97,19 @@ t_bool			test_sym_prod(
 
 	sym_lists[0] = f_fifo_create();
 	sym_lists[1] = f_fifo_create();
+	f_fifo_add(sym_lists[1], create_symbol("END_OF_INPUT"));
 	prods = parse_prods(str, nb_prods, sym_lists);
 	syms = parse_symbols(str + nb_prods, nb_symbols, sym_lists);
-	if (prods != NULL && syms != NULL)
+	if (prods != NULL && syms != NULL
+			&& (fifo_len(sym_lists[0]) == 0
+				|| compute_sets_all_syms(sym_lists[1], sym_lists[0])))
 		result = test(prods, syms, sym_lists[0], sym_lists[1],
 				nb_prods, nb_symbols);
 	else
 		result = FALSE;
 	destroy_prods(&prods, nb_prods);
-	destroy_symbols(&syms, nb_symbols);
+	free(syms);
+	f_fifo_destroy(&sym_lists[0], sym_del);
+	f_fifo_destroy(&sym_lists[1], sym_del);
 	return (result);
 }

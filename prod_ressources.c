@@ -32,6 +32,7 @@ void		destroy_prod(t_prod	**to_destroy)
 	if (prod != NULL)
 	{
 		f_lstdel(&prod->sym_list, no_destroy);
+		free(prod);
 		*to_destroy = NULL;
 	}
 }

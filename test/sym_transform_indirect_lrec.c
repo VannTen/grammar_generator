@@ -29,9 +29,9 @@ static t_bool	test_indirect_left_recur(
 	if (!result)
 	{
 		print_sym_back(syms[1], STDERR_FILENO);
-		ft_putchar_fd(STDERR_FILENO, '\n');
+		ft_dprintf(STDERR_FILENO, "\n");
 		print_sym_back(syms[2], STDERR_FILENO);
-		ft_putchar_fd(STDERR_FILENO, '\n');
+		ft_dprintf(STDERR_FILENO, "\n");
 	}
 	if (!result)
 	{
@@ -39,9 +39,9 @@ static t_bool	test_indirect_left_recur(
 		result = result && have_same_prods(syms[3], syms[4]);
 		{
 			print_sym_back(syms[2], STDERR_FILENO);
-			ft_putchar_fd(STDERR_FILENO, '\n');
+			ft_dprintf(STDERR_FILENO, "\n");
 			print_sym_back(syms[3], STDERR_FILENO);
-			ft_putchar_fd(STDERR_FILENO, '\n');
+			ft_dprintf(STDERR_FILENO, "\n");
 		}
 	}
 	return (result);

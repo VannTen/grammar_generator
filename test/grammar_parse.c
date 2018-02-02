@@ -33,10 +33,14 @@ static t_bool		test_generated_gram(t_grammar const *gram)
 {
 	return (
 			symbols_are_valid(gram)
-			&& terminal_sym_count(gram) == 7
+			&& terminal_sym_count(gram) == 7 + 1
 			&& non_terminal_sym_count(gram) == 3
 			&& ft_strequ(get_name(get_start_symbol(gram)), "EXPR"));
 }
+
+/*
+** '+ 1' terminal sym count is for EOF.
+*/
 
 static t_bool		t_parse_from_string(void)
 {
@@ -48,6 +52,8 @@ static t_bool		t_parse_from_string(void)
 	destroy_grammar(&gram);
 	return (result);
 }
+
+/*
 
 static t_bool		t_parse_from_file(char const *file_path)
 {
@@ -77,11 +83,9 @@ static t_bool		t_parse_from_fd(void)
 	return (result);
 }
 
-int					main(int const argc, char const *argv[])
+*/
+
+int					main(void)
 {
-	return (argc >= 2
-			&& t_parse_from_string()
-			&& t_parse_from_fd()
-			&& t_parse_from_file(argv[1]) ?
-			EXIT_SUCCESS : EXIT_FAILURE);
+	RET_TEST(t_parse_from_string());
 }

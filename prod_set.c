@@ -26,10 +26,19 @@ t_bool	prefix_to_prod(t_prod *prod, t_symbol const *type)
 t_prod	*join_prods(t_prod const *prod_1, t_prod const *prod_2)
 {
 	t_prod	*new_prod;
+	t_lst	*new_sym_list;
 
+	new_sym_list = lst_join(prod_1->sym_list, prod_2->sym_list);
 	new_prod = create_prod();
-	if (new_prod != NULL)
-		new_prod->sym_list = join_lst(prod_1->sym_list, prod_2->sym_list);
+	if (new_prod != NULL
+			&& (new_sym_list != NULL
+			|| (prod_1->sym_list == NULL && prod_2->sym_list == NULL)))
+		new_prod->sym_list = new_sym_list;
+	else
+	{
+		f_lstdel(&new_sym_list, no_destroy);
+		destroy_prod(&new_prod);
+	}
 	return (new_prod);
 }
 

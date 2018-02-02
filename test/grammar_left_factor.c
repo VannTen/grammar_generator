@@ -26,7 +26,12 @@ static char const	*g_gram[] = {
 		"| Z B D W"
 		"| Z B W"
 		"|"
-		"| Z B E;"
+		"| Z B E;",
+	"EXPR: TERM EXPR_LREC;"
+		"TERM: FACTOR TERM_LREC;"
+		"FACTOR: INTEGER | LEFT_PAR EXPR RIGHT_PAR;"
+		"EXPR_LREC: PLUS TERM EXPR_LREC |;"
+		"TERM_LREC: MULT FACTOR TERM_LREC;"
 };
 
 static char const	*g_gram_left_factored[] = {
@@ -34,7 +39,12 @@ static char const	*g_gram_left_factored[] = {
 		"SYM_1_LFAC_: C SYM_0_LFAC_ | D W | W | E;"
 		"SYM_0_LFAC_: D E | | F E;"
 		"MYS: | Z B MYS_0_LFAC_;"
-		"MYS_0_LFAC_: C D E | D W | W | E;"
+		"MYS_0_LFAC_: C D E | D W | W | E;",
+	"EXPR: TERM EXPR_LREC;"
+		"TERM: FACTOR TERM_LREC;"
+		"FACTOR: INTEGER | LEFT_PAR EXPR RIGHT_PAR;"
+		"EXPR_LREC: PLUS TERM EXPR_LREC |;"
+		"TERM_LREC: MULT FACTOR TERM_LREC;"
 };
 
 int					main(void)
@@ -50,7 +60,8 @@ int					main(void)
 	{
 		gram = parse_grammar_string(g_gram[index]);
 		gram_left_factored = parse_grammar_string(g_gram_left_factored[index]);
-		left_factor_grammar(gram);
+		if (!left_factor_grammar(gram))
+			return (EXIT_FAILURE);
 		result = gram_are_equ(gram, gram_left_factored);
 		if (!result)
 		{

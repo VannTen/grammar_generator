@@ -6,7 +6,7 @@
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 14:06:36 by mgautier          #+#    #+#             */
-/*   Updated: 2017/12/18 11:52:25 by mgautier         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:10:50 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct s_symbol		t_symbol;
 ** forward declaration to make it compile. That does not grant access to the
 ** internals of sym.
 ** However, I wonder if there could be a better way...
-** TODO: Search for another way.
+** TODO: Search for another way. Right now C11 is required to compile
+** (c99 throw : redefinition of typedef).
+** using void pointers instead of t_symbol pointers might do the trick
 */
 
 /*
@@ -120,5 +122,42 @@ t_bool		prods_set_identical(t_prod const **prod_1, t_prod const **prod_2);
 */
 
 t_bool		prod_are_equ(t_prod const *prod_1, t_prod const *prod_2);
+
+/*
+** Relay to sym
+** Functions applied from one sym to the sym contained in its productions
+** Implementation file : prod_sym_relay.c
+*/
+
+t_bool		add_firsts_of_sub_symbols(
+		t_prod const *prod,
+		t_symbol *add_to,
+		t_bool *sym_added);
+
+/*
+** Prod : FOLLOW set computation
+** Give to each prod in a sym the FIRST set of the string of grammar symbols
+** following it in that prod.
+** Implementation file : prod_compute_follow.c
+*/
+
+t_bool		compute_follow_prod(t_prod *prod);
+t_bool		compute_follow_prod_step_3(
+		t_prod *prod, t_symbol const *parent_sym, t_bool *sym_added);
+
+/*
+** Check the FIRST set of a prod and eventually the FOLLOW set of its left-hand
+** (aka the symbol derived) to fill the entries in a parse table row.
+** Implementation file : prod_first_set.c
+*/
+
+t_lst		*create_first_set_prod(t_prod const *prod);
+
+/*
+** Prod execution
+** Implementation file : prod_exec.c
+*/
+
+t_bool		add_prod_to_stack(t_prod const *prod, t_lst **stack);
 
 #endif

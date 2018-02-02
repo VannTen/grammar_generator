@@ -29,9 +29,13 @@ static t_bool	test_sym_parse(
 	return ((get_prod_nb(sym[0]) == 4)
 			&& sym[1] == NULL
 			&& fifo_len(va_arg(args, t_fifo*)) == 1
-			&& fifo_len(va_arg(args, t_fifo*)) == 4
+			&& fifo_len(va_arg(args, t_fifo*)) == 5
 			&& ft_strequ(get_name(sym[0]), "HHHH"));
 }
+
+/*
+** Fifth token is EOF
+*/
 
 int				main(void)
 {
