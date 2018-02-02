@@ -18,6 +18,13 @@
 typedef struct s_exec_construct	t_exec_construct;
 
 /*
+** Exec stack ressources external
+** Implementation file : exec_stack_ressources.c
+*/
+
+void		clean_exec_struct(void **exec_struct);
+
+/*
 ** exec stack operation
 ** Perform operation need on the parser exec_stack to always have the instance
 ** of the symbol being currently parsed on top of it.

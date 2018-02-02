@@ -45,3 +45,25 @@ t_exec_construct	*create_construct(t_exec const *exec_functions)
 	}
 	return (new_construct);
 }
+
+/*
+** Intented to destroy symbols in the exec stack that have not be given to their
+** parent, except the meta construct, which does not belong to the exec_stack.
+*/
+
+static void			destroy_construct_in_stack(t_exec_construct **to_destroy)
+{
+	t_exec_construct	*construct;
+
+	construct = *to_destroy;
+	if (construct != construct->real)
+	{
+		construct->functions->destroy(&construct->real);
+		destroy_construct(to_destroy);
+	}
+}
+
+void				clean_exec_struct(void **exec_struct)
+{
+	destroy_construct_in_stack((t_exec_construct**)exec_struct);
+}
