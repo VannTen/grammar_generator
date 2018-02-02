@@ -22,22 +22,26 @@ static char const	grammar[] =
 t_bool		test(t_parser const *parser)
 {
 	t_bool			result[] = {TRUE, FALSE, TRUE, FALSE, FALSE, TRUE};
-	char 			*input[] = {
+	char 			*input_str[] = {
 		"1 + 2 * 3 * (4 + 5)", "1 1 +", "1 + 3 + 4 * 4", "*", "4 * * 4",
 	"(((4 + 1) + 1) + 1 * 4)"};
-	size_t	index;
-	void	*ret;
-	char	*input_copy;
+	size_t			index;
+	void			*ret;
+	char			*input_copy;
+	struct	s_input	input;
 
 	index = 0;
+	input.get_token = get_token;
+	input.del_token = del_arith_token;
 	while (index < ARRAY_LENGTH(result))
 	{
-		input_copy = input[index];
-		ret = execute_construct(parser, "EXPR", &input_copy, get_token);
+		input_copy = input_str[index];
+		input.input = &input_copy;
+		ret = execute_construct(parser, "EXPR", &input);
 		if (result[index] != (ret != NULL))
 		{
 			ft_dprintf(STDERR_FILENO, "\"%s\" should %s have syntax error\n",
-					input[index], result[index] ? "not" : "");
+					input_str[index], result[index] ? "not" : "");
 			break ;
 		}
 		free(ret);
@@ -58,7 +62,8 @@ int	main(void)
 		NULL
 	};
 	t_exec	const		sym[] = {
-		{.name = "EXPR", .create = create_expr, .give = give_expr},
+		{.name = "EXPR", .create = create_expr, .destroy = arith_expr_destroy,
+			.give = give_expr},
 		{.name = NULL, .create = NULL, .give = NULL},
 	};
 	t_bool				result;

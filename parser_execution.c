@@ -18,36 +18,57 @@
 #include <unistd.h>
 #include <assert.h>
 
-static t_bool		one_symbol_transition(
-		t_lst **parse_stack,
-		t_lst **exec_stack,
-		void **token,
-		size_t (*token_id)(void const *token))
+static t_bool		token_transition(
+		t_symbol const *token,
+		struct s_parse_state *state,
+		size_t const token_id,
+		t_exec const *functions)
 {
-	t_symbol const	*sym;
+	return(get_token_id(token) == token_id
+			&& put_token_in_stack(state->token, &state->exec_stack,
+				functions));
+}
+
+static t_bool		non_terminal_transition(
+		t_symbol const *sym,
+		struct s_parse_state *state,
+		size_t const token_id,
+		t_exec const *functions)
+{
 	t_prod const	*derivation;
 
-	sym = f_lstpop(parse_stack);
-	if (is_terminal(sym))
-	{
-		if (get_token_id(sym) == token_id(*token)
-				&& put_token_in_stack(*token, exec_stack,
-					get_exec_functions(sym)))
-			*token = NULL;
-		else
-			return (FALSE);
-	}
-	else
-	{
-		derivation = get_prod_for_token(sym, token_id(*token));
-		if (!(derivation != NULL
-					&& add_prod_to_stack(derivation, parse_stack)
-					&& put_sym_in_stack(exec_stack,
-						get_exec_functions(sym), get_prod_len(derivation))
-			 ))
-			return (FALSE);
-	}
-	return (TRUE);
+	derivation = get_prod_for_token(sym, token_id);
+	return (derivation != NULL
+			&& add_prod_to_stack(
+				derivation,
+				&state->parse_stack)
+			&& put_sym_in_stack(
+				&state->exec_stack,
+				functions,
+				get_prod_len(derivation)));
+}
+
+static t_bool		one_symbol_transition(
+		struct s_parse_state *state,
+		struct s_input const *token_flow,
+		size_t (*get_token_id)(void const *token))
+{
+	t_symbol const	*sym;
+	t_bool			result;
+	t_bool			(*transition)(t_symbol const*,
+			struct s_parse_state*, size_t, t_exec const*);
+
+	sym = f_lstpop(&state->parse_stack);
+	if (state->token == NULL)
+		state->token = token_flow->get_token(token_flow->input);
+	transition = is_terminal(sym) ? token_transition : non_terminal_transition;
+	result = state->token != NULL
+		&& transition(sym, state,
+				get_token_id(state->token),
+				get_exec_functions(sym));
+	if (result && is_terminal(sym))
+		token_flow->del_token(&state->token);
+	return (result);
 }
 
 static t_bool	init(
@@ -70,36 +91,32 @@ static t_bool	init(
 void		*execute_construct(
 		t_parser const *parser,
 		char const *construct,
-		void *input,
-		void *(get_token)(void *input))
+		struct s_input const *input)
 {
-	void				*token;
-	t_lst				*parse_stack;
-	t_lst				*exec_stack;
-	t_exec_construct	*meta_construct;
+	struct s_parse_state	state;
+	t_exec_construct		*meta_construct;
 
-	token = NULL;
-	parse_stack = NULL;
-	exec_stack = NULL;
+	state.token = NULL;
+	state.parse_stack = NULL;
+	state.exec_stack = NULL;
 	meta_construct = create_init_meta_construct();
-	f_lstpush(meta_construct, &exec_stack);
-	if (init(&parse_stack, construct, parser->grammar))
+	(void)f_lstpush(meta_construct, &state.exec_stack);
+	if (init(&state.parse_stack, construct, parser->grammar))
 	{
-		while (parse_stack != NULL)
+		while (state.parse_stack != NULL)
 		{
-			if (token == NULL)
-				token = get_token(input);
-			if (!one_symbol_transition(&parse_stack,
-						&exec_stack,
-						&token,
+			if (!one_symbol_transition(&state,
+						input,
 						parser->get_token_id))
 			{
 				ft_dprintf(STDERR_FILENO, "Syntax error\n");
-				f_lstdel(&parse_stack, no_destroy);
-				return (NULL);
+				f_lstdel(&state.parse_stack, no_destroy);
+				f_lstdel(&state.exec_stack, clean_exec_struct);
+				break ;
 			}
 		}
 	}
+	input->del_token(&state.token);
 	return (extract_top_symbol_value(&meta_construct));
 }
 

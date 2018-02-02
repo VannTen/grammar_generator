@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_defs.h                                      :+:      :+:    :+:   */
+/*   arith_expr_test_destructors.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 17:55:25 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/18 17:55:25 by mgautier         ###   ########.fr       */
+/*   Created: 2018/02/02 19:10:28 by mgautier          #+#    #+#             */
+/*   Updated: 2018/02/02 19:10:28 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_DEFS_H
-# define PARSER_DEFS_H
-# include "parser_interface.h"
-# include "grammar_interface.h"
+#include "test_interface.h"
+#include <stdlib.h>
 
-enum
+void	arith_expr_destroy(void **sub_expr)
 {
-	PARSE,
-	EXEC
-};
+	free(*sub_expr);
+}
 
-struct	s_parse_state
+void	del_arith_token(void **token)
 {
-	t_lst	*parse_stack;
-	t_lst	*exec_stack;
-	void	*token;
-};
-
-struct	s_parser
-{
-	t_grammar	*grammar;
-	void const	**tokens;
-	size_t		(*get_token_id)(void const *token);
-};
-
-#endif
+	destroy_token((t_token**)token);
+}

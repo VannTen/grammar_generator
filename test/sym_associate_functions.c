@@ -40,9 +40,9 @@ int	main(void)
 {
 	t_grammar		*gram;
 	t_exec const	functions[] = {
-		{.name = "EXPR", create_expr, give_expr},
-		{.name = "TERM", create_term, give_term},
-		{.name = "FACTOR", create_factor, give_factor},
+		{.name = "EXPR", .create = create_expr, .give = give_expr},
+		{.name = "TERM", .create = create_term, .give = give_term},
+		{.name = "FACTOR", .create = create_factor, .give = give_factor},
 		{.name = NULL, NULL, NULL},
 	};
 	t_bool			result;

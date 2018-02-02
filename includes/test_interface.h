@@ -140,6 +140,7 @@ t_bool			parse_row_is_correct(
 /*
 ** Parser generation test (use case : arithmetic expression)
 ** Implementation file : arith_expr_test_1.c && arith_expr_test_2.c
+** && arith_expr_test_destructors.c
 */
 
 enum
@@ -170,6 +171,8 @@ void	*create_integer(void const *v_integer);
 void	destroy_token(t_token **token);
 void	*get_token(void	*input);
 size_t	get_token_index(void const *v_token);
+void	arith_expr_destroy(void **sub_expr);
+void	del_arith_token(void **token);
 
 /*
 ** Exec stack test interface.h

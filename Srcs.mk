@@ -87,6 +87,7 @@ TEST_TOOLS :=\
 	compute_set_test_tools.c\
 	arith_expr_test_1.c\
 	arith_expr_test_2.c\
+	arith_expr_test_destructors.c\
 	exec_stack_test.c\
 	parser_exec_stack_transition_test.c\
 	exec_construct_debug.c
