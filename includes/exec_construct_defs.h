@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_defs.h                                         :+:      :+:    :+:   */
+/*   exec_construct_defs.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/11 19:33:25 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/12 18:34:13 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/23 18:55:39 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/23 18:55:39 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAM_GEN_SYM_DEFS_H
-# define GRAM_GEN_SYM_DEFS_H
-# include "sym_interface.h"
-# include "prods_interface.h"
+#ifndef EXEC_CONSTRUCT_DEFS_H
+# define EXEC_CONSTRUCT_DEFS_H
+# include "exec_construct_interface.h"
 # include "exec_interface.h"
 # include <stddef.h>
-# define DERIVATION_SIGN ':'
-# define PROD_SEP_SIGN '|'
+
+struct	s_exec_construct
+{
+	t_exec const	*functions;
+	void			*real;
+	size_t			remaining_symbols;
+};
 
 /*
-** prods member is a list of t_prod
+** Implementation functions
+** Implementation file : exec_stack_ressources.c
 */
 
-struct s_symbol
-{
-	char const		*name;
-	t_lst			*prods;
-	t_lst			*first;
-	t_lst			*follow;
-	t_prod			**parse_row;
-	t_exec const	*exec_functions;
-	size_t		token_id;
-};
+void				destroy_construct(t_exec_construct **to_destroy);
+t_exec_construct	*create_construct(t_exec const *exec_functions);
 
 #endif

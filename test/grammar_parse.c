@@ -33,10 +33,14 @@ static t_bool		test_generated_gram(t_grammar const *gram)
 {
 	return (
 			symbols_are_valid(gram)
-			&& terminal_sym_count(gram) == 7
+			&& terminal_sym_count(gram) == 7 + 1
 			&& non_terminal_sym_count(gram) == 3
 			&& ft_strequ(get_name(get_start_symbol(gram)), "EXPR"));
 }
+
+/*
+** '+ 1' terminal sym count is for EOF.
+*/
 
 static t_bool		t_parse_from_string(void)
 {

@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_empty_symbol.c                                 :+:      :+:    :+:   */
+/*   parser_defs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 15:56:31 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/05 18:10:24 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/18 17:55:25 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/18 17:55:25 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sym_defs.h"
-#include <stddef.h>
+#ifndef PARSER_DEFS_H
+# define PARSER_DEFS_H
+# include "parser_interface.h"
+# include "grammar_interface.h"
 
-t_symbol const g_empty_symbol =
-{.name = "EMPTY", .prods = NULL, .first = NULL, .follow = NULL};
+struct	s_parser
+{
+	t_grammar	*grammar;
+	void const	**tokens;
+	size_t		(*get_token_id)(void const *token);
+};
+
+#endif

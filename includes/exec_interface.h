@@ -1,17 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_empty_symbol.c                                 :+:      :+:    :+:   */
+/*   exec_interface.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 15:56:31 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/05 18:10:24 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/23 17:22:07 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/23 17:22:07 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sym_defs.h"
-#include <stddef.h>
+#ifndef EXEC_INTERFACE_H
+# define EXEC_INTERFACE_H
+# include "libft.h"
 
-t_symbol const g_empty_symbol =
-{.name = "EMPTY", .prods = NULL, .first = NULL, .follow = NULL};
+typedef	void *(*t_create_construct)(void const *lex_value);
+typedef	t_bool (*t_give_construct)(void *construct, void *sub_construct);
+
+typedef struct s_exec	t_exec;
+
+struct	s_exec
+{
+	char const			*name;
+	t_create_construct	create;
+	t_give_construct	give;
+};
+
+#endif

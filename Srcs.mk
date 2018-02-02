@@ -27,7 +27,9 @@ PRODUCTION :=\
 	prod_left_factor.c\
 	prod_cmp.c\
 	prod_compute_first.c\
-	prod_compute_follow.c
+	prod_compute_follow.c\
+	prod_first_set.c\
+	prod_exec.c
 SYMBOL :=\
 	sym_valid.c\
 	sym_equality.c\
@@ -47,7 +49,10 @@ SYMBOL :=\
 	sym_left_factor_compute.c\
 	sym_left_factor_trie_insert_prods.c\
 	sym_compute_first.c\
-	sym_compute_follow.c
+	sym_compute_follow.c\
+	sym_associate_functions.c\
+	sym_parse_table.c\
+	sym_parse_table_get.c
 GRAMMAR :=\
 	grammar_parse.c\
 	grammar_get.c\
@@ -58,18 +63,40 @@ GRAMMAR :=\
 	grammar_left_factor.c\
 	grammar_compute_first.c\
 	grammar_compute_follow.c\
-	grammar_print.c
+	grammar_print.c\
+	grammar_parsing_table.c
+EXEC_STACK :=\
+	exec_stack_ressources.c\
+	exec_stack_meta_construct.c\
+	parser_exec_stack.c
+PARSER :=\
+	parser_generation.c\
+	parser_execution.c
 TEST_TOOLS :=\
+	prod_get_test.c\
+	sym_get_test.c\
 	test_prods_syms.c\
+	sym_parse_table_test.c\
+	parse_table_test.c\
 	sym_compute_first_test_tools.c\
+	sym_compute_follow_test_tools.c\
 	grammar_compute_first_test_tools.c\
 	grammar_compute_set_test_tools.c\
-	compute_first_test_tools.c
+	compute_first_test_tools.c\
+	sym_set_test_tools.c\
+	compute_set_test_tools.c\
+	arith_expr_test_1.c\
+	arith_expr_test_2.c\
+	exec_stack_test.c\
+	parser_exec_stack_transition_test.c\
+	exec_construct_debug.c
 
 SRC :=\
 	$(PRODUCTION)\
 	$(SYMBOL)\
 	$(GRAMMAR)\
+	$(EXEC_STACK)\
+	$(PARSER)\
 	$(TEST_TOOLS)
 
 #	grammar_print_init.c\
@@ -107,6 +134,7 @@ DONT_TEST := \
 	sym_left_factor_trie_insert_prods.c\
 	sym_get_sets.c\
 	sym_empty_symbol.c\
+	sym_parse_table_get.c\
 	prod_cmp.c\
 	prod_compute_first.c\
 	prod_compute_follow.c\
@@ -120,6 +148,8 @@ DONT_TEST := \
 	grammar_test.c\
 	grammar_print.c\
 	generate_grammar.c\
+	exec_stack_ressources.c\
+	exec_stack_meta_construct.c\
 	$(TEST_TOOLS)
 
 ## Function tests

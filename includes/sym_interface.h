@@ -13,10 +13,10 @@
 #ifndef GRAM_GEN_SYM_INTERFACE_H
 # define GRAM_GEN_SYM_INTERFACE_H
 # include "prods_interface.h"
+# include "exec_interface.h"
 # include <stdarg.h>
 # include <stddef.h>
 # define EMPTY_SYMBOL &g_empty_symbol
-# define END_OF_INPUT_SYMBOL &g_end_of_input_symbol
 
 typedef struct s_symbol	t_symbol;
 
@@ -30,7 +30,6 @@ typedef struct s_symbol	t_symbol;
 */
 
 extern t_symbol const	g_empty_symbol;
-extern t_symbol const	g_end_of_input_symbol;
 
 /*
 ** Ressources management
@@ -52,6 +51,7 @@ t_symbol		*derivate_new_sym(t_symbol const *src,
 */
 
 t_prod			*add_prod(t_symbol *sym, t_prod *prod);
+void			set_token_id(t_symbol *token, size_t index);
 
 /*
 ** Getters
@@ -81,6 +81,7 @@ t_bool			has_symbol_in_first(
 		t_symbol const *sym_first,
 		t_symbol const *sym_is_here);
 t_bool			is_terminal(t_symbol const *sym);
+size_t			get_token_id(t_symbol const *token);
 
 /*
 ** Printers
@@ -177,17 +178,14 @@ t_bool			add_symbol_to_first_set(
 		t_symbol const *sym,
 		t_symbol *add_to,
 		t_bool *sym_added);
-
-/*
-** (TESTING ONLY)
-** Sym compute first test tools
-** Functions used in test/sym_compute_first.c for testing of the section above.
-** Implementation file : sym_compute_first_test_tools.c
-*/
-
-t_bool		compute_first_sets(t_symbol **syms, size_t nb_sym);
-t_bool	check_first_sets(
-		t_symbol **syms, t_lst **first_sets, size_t nb_sym);
+t_bool			add_symbol_to_set(
+		t_symbol const *sym,
+		t_lst **set,
+		t_bool *sym_added);
+t_bool			add_first_set_to_set(
+		t_symbol const *sym,
+		t_lst **add_to,
+		t_bool *sym_added);
 
 /*
 ** Sym first set getters
@@ -200,6 +198,7 @@ t_bool			has_symbol_in_follow(
 		t_symbol const *search_in, t_symbol const *to_find);
 t_lst const		*get_first_set(t_symbol const *sym);
 t_lst const		*get_follow_set(t_symbol const *sym);
+t_bool			has_symbol_in_set(t_lst const *set, t_symbol const *to_find);
 
 /*
 ** Sym FOLLOW set computation
@@ -217,5 +216,30 @@ t_bool			add_set_to_follow_set(
 		t_symbol *add_to,
 		t_lst const *set_to_add,
 		t_bool *sym_is_added);
+
+/*
+** Generation of the parsing table.
+** Generate a row of the parse table for each non-terminal symbol.
+** (taken all together, they form the parse table).
+** Implementation file : sym_parse_table.c
+*/
+
+t_bool			init_sym_parse_table(t_symbol *sym, size_t nb_tokens);
+t_bool			fill_sym_parse_table(t_symbol *sym, char const **token_name);
+
+/*
+** Get parse table
+** Implementation file : sym_parse_table_get.c
+*/
+
+t_prod const	*get_prod_for_token(t_symbol const *sym, size_t token_id);
+
+/*
+** Sym exec related stuff
+** Implementation file : sym_associate_functions.c
+*/
+
+t_exec const	*get_exec_functions(t_symbol const *sym);
+t_bool			is_exec_construct(t_symbol const *sym);
 
 #endif

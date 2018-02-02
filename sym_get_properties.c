@@ -13,6 +13,8 @@
 #include "sym_defs.h"
 #include "prods_interface.h"
 #include "libft.h"
+#include <stddef.h>
+#include <assert.h>
 
 static t_bool	is_empty_prod(void const *prod,
 		__attribute__((unused))va_list args)
@@ -28,4 +30,10 @@ t_bool			has_empty_prod(t_symbol const *sym)
 t_bool			is_terminal(t_symbol const *sym)
 {
 	return (0 == get_prod_nb(sym));
+}
+
+size_t			get_token_id(t_symbol const *token)
+{
+	assert(is_terminal(token));
+	return (token->token_id);
 }

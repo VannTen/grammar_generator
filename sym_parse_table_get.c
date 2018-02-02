@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sym_empty_symbol.c                                 :+:      :+:    :+:   */
+/*   sym_parse_table_get.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgautier <mgautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/05 15:56:31 by mgautier          #+#    #+#             */
-/*   Updated: 2018/01/05 18:10:24 by mgautier         ###   ########.fr       */
+/*   Created: 2018/01/22 14:08:13 by mgautier          #+#    #+#             */
+/*   Updated: 2018/01/22 14:08:13 by mgautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sym_defs.h"
-#include <stddef.h>
+#include "prods_interface.h"
 
-t_symbol const g_empty_symbol =
-{.name = "EMPTY", .prods = NULL, .first = NULL, .follow = NULL};
+t_prod const	*get_prod_for_token(t_symbol const *sym, size_t token_id)
+{
+	return (sym->parse_row[token_id]);
+}
