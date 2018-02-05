@@ -32,7 +32,7 @@ void		destroy_parser(t_parser **parser);
 ** Parser execution
 */
 
-struct	s_input
+struct	s_parse_input
 {
 	void	*input;
 	void	*(*get_token)(void *input);
@@ -42,7 +42,7 @@ struct	s_input
 void		*execute_construct(
 		t_parser const *parser,
 		char const *construct,
-		struct s_input const *input);
+		struct s_parse_input const *input);
 
 /*
 ** *** generate_parser ***
